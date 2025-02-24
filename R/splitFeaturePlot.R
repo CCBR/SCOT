@@ -1,3 +1,6 @@
+#' splitFeaturePlot: Splits FeaturePlot by groups
+#' 
+#' @description
 #' Adapts the FeaturePlot function from Seurat to split by groups and arrange by user specification
 #' 
 #' @param so A Seurat object
@@ -22,7 +25,7 @@ splitFeaturePlot = function(so,features,splitIdent,label=F,ncol=NA,nrow=NA,min.c
     plotList = list()
     plotOutput=list()
     if(is.null(reduction)){
-        embed = Embeddings(so)
+        embed = so@reductions[[DefaultDimReduc(so)]]@cell.embeddings
     }else{
         embed = Embeddings(so, reduction=reduction)
     }

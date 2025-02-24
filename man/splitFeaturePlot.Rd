@@ -2,7 +2,7 @@
 % Please edit documentation in R/splitFeaturePlot.R
 \name{splitFeaturePlot}
 \alias{splitFeaturePlot}
-\title{Adapts the FeaturePlot function from Seurat to split by groups and arrange by user specification}
+\title{splitFeaturePlot: Splits FeaturePlot by groups}
 \usage{
 splitFeaturePlot(
   so,
