@@ -6,7 +6,7 @@ on:
     types: [published]
 
 env:
-  IMAGE_NAME: "SINCLAIR_tools"
+  IMAGE_NAME: "SCOT"
   CONTEXT: "./"
   NAMESPACE: "nciccbr"
 
