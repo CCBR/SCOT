@@ -10,6 +10,9 @@ env:
   CONTEXT: "./"
   NAMESPACE: "nciccbr"
 
+permissions:
+  contents: read
+
 jobs:
   build-docker:
     runs-on: ubuntu-latest
