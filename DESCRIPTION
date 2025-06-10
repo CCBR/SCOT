@@ -1,4 +1,5 @@
 Package: SCOT
+<<<<<<< HEAD
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
@@ -16,3 +17,32 @@ Imports:
     ggpubr,
     reshape2,
     Seurat
+=======
+Title: Single Cell Omics Toolbox
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Nathan", "Wong", , "nathan.wong@nih.gov", role = c("aut", "cre")),
+    person("Kelly", "Sovacool", , "kelly.sovacool@nih.gov", role = "aut",
+           comment = c(ORCID = "0000-0003-3283-829X")),
+    person("Vishal", "Koparde", , "vishal.koparde@nih.gov", role = "aut",
+           comment = c(ORCID = "0000-0001-8978-8495")),
+    person("CCR Collaborative Bioinformatics Resource", role = "cph")
+  )
+Description: R package development for frequently used single cell RNA-seq
+    functions
+License: MIT + file LICENSE
+Imports:
+    dplyr,
+    magrittr,
+    rlang
+Suggests:
+    cffr,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    usethis
+Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+>>>>>>> 4062cb6a659bbd96252b7ebd6b6d44e5ac8611c6

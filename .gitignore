@@ -4,3 +4,11 @@
 .httr-oauth
 .DS_Store
 .quarto
+<<<<<<< HEAD
+=======
+docs
+inst/doc
+/doc/
+/Meta/
+/README.html
+>>>>>>> 4062cb6a659bbd96252b7ebd6b6d44e5ac8611c6
