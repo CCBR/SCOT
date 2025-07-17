@@ -19,7 +19,7 @@ run_singleR_db <- function(so_in, species) {
     so_in$HPCA_ont <- run_singleR(
       so_in, celldex::HumanPrimaryCellAtlasData(), "label.ont"
     )
-    so_in$HPCA_ont <- cellOnt$name[so_in$HPCA_ont]
+    so_in$HPCA_ont <- cell_ont$name[so_in$HPCA_ont]
 
     so_in$BP_encode_main <- run_singleR(
       so_in, celldex::BlueprintEncodeData(), "label.main"
@@ -30,7 +30,7 @@ run_singleR_db <- function(so_in, species) {
     so_in$BP_encode_ont <- run_singleR(
       so_in, celldex::BlueprintEncodeData()(), "label.ont"
     )
-    so_in$BP_encode_ont <- cellOnt$name[so_in$BP_encode_ont]
+    so_in$BP_encode_ont <- cell_ont$name[so_in$BP_encode_ont]
 
     so_in$monaco_main <- run_singleR(
       so_in, celldex::MonacoImmuneData(), "label.main"
@@ -41,7 +41,7 @@ run_singleR_db <- function(so_in, species) {
     so_in$monaco_ont <- run_singleR(
       so_in, celldex::MonacoImmuneData(), "label.ont"
     )
-    so_in$monaco_ont <- cellOnt$name[so_in$monaco_ont]
+    so_in$monaco_ont <- cell_ont$name[so_in$monaco_ont]
 
     so_in$immu_cell_exp_main <- run_singleR(
       so_in, celldex::DatabaseImmuneCellExpressionData(),
@@ -54,13 +54,13 @@ run_singleR_db <- function(so_in, species) {
     so_in$immu_cell_exp_ont <- run_singleR(
       so_in, celldex::DatabaseImmuneCellExpressionData(), "label.ont"
     )
-    so_in$immu_cell_exp_ont <- cellOnt$name[so_in$immu_cell_exp_ont]
+    so_in$immu_cell_exp_ont <- cell_ont$name[so_in$immu_cell_exp_ont]
     so_in$annot <- so_in$HPCA_main
   } else if (species == "mm10") {
     so_in$immgen_main <- run_singleR(so_in, celldex::ImmGenData(), "label.main")
     so_in$immgen_fine <- run_singleR(so_in, celldex::ImmGenData(), "label.fine")
     so_in$immgen_ont <- run_singleR(so_in, celldex::ImmGenData(), "label.ont")
-    so_in$immgen_ont <- cell_ont$names[so_in$immgen_ont]
+    so_in$immgen_ont <- cell_ont$name[so_in$immgen_ont]
 
     so_in$mouseRNAseq_main <- run_singleR(
       so_in, celldex::MouseRNAseqData(), "label.main"
@@ -71,7 +71,7 @@ run_singleR_db <- function(so_in, species) {
     so_in$mouseRNAseq_ont <- run_singleR(
       so_in, celldex::MouseRNAseqData(), "label.ont"
     )
-    so_in$mouseRNAseq_ont <- cellOnt$name[so_in$mouseRNAseq_ont]
+    so_in$mouseRNAseq_ont <- cell_ont$name[so_in$mouseRNAseq_ont]
 
     so_in$annot <- so_in$immgen_main
   }

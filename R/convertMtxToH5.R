@@ -1,3 +1,13 @@
+#'convertMtxToH5: Converts the triple .mtx files from single cell experiments to a .h5 counts file
+#' 
+#' @description 
+#' 
+#' @details 
+#' 
+#' @param 
+#' 
+#' @return 
+
 library(Seurat)
 library(DropletUtils)
 
