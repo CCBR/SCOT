@@ -1,23 +1,4 @@
 Package: SCOT
-<<<<<<< HEAD
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
-Imports: 
-    clusterSim,
-    dplyr,
-    ggplot2,
-    ggpubr,
-    reshape2,
-    Seurat
-=======
 Title: Single Cell Omics Toolbox
 Version: 0.0.0.9000
 Authors@R: c(
@@ -32,9 +13,24 @@ Description: R package development for frequently used single cell RNA-seq
     functions
 License: MIT + file LICENSE
 Imports:
+    AnnotationDbi,
+    AUCell,
+    celldex,
+    clusterSim,
+    DoubletFinder,
     dplyr,
+    DropletUtils,
+    ggplot2,
+    ggpubr,
+    GSEABase,
     magrittr,
-    rlang
+    ontologyIndex,
+    ontoProc,
+    rlang,
+    scDblFinder,
+    Seurat,
+    SingleCellExperiment,
+    SingleR
 Suggests:
     cffr,
     knitr,
@@ -45,4 +41,3 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
->>>>>>> 4062cb6a659bbd96252b7ebd6b6d44e5ac8611c6
