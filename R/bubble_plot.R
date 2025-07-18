@@ -13,7 +13,7 @@ bubblePlot = function(so,features,palette="RdBu",assay="SCT",ident="seurat_clust
         avgExpression.df[i,4]=pct.expression$pct.exp[which(pct.expression$id==avgExpression.df[ident,i] & pct.expression$features.plot==avgExpression.df$Gene[i])]
     }
 
-    plot = ggplot(avgExpression.df,aes(x=group,y=Gene,size=Pct.Exp,color=AvgExp)){
+    plot = ggplot(avgExpression.df,aes(x=group,y=Gene,size=Pct.Exp,color=AvgExp))+
         geom_point()+
         scale_color_distiller(palette=palette)+
         theme_bw()+

@@ -1,5 +1,5 @@
 #' splitFeaturePlot: Splits FeaturePlot by groups
-#'
+#'  
 #' @description
 #' Adapts the FeaturePlot function from Seurat to split by groups and arrange by user specification
 #'
