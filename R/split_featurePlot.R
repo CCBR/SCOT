@@ -27,17 +27,18 @@
 
 
 splitFeaturePlot <- function(
-    so,
-    features,
-    split_ident,
-    label = FALSE,
-    ncol = NA, nrow = NA,
-    min.cutoff = NA, max.cutoff = NA,
-    plot_image = FALSE,
-    return_list = FALSE,
-    slot = "scale.data",
-    order = FALSE,
-    reduction = NULL) {
+  so,
+  features,
+  split_ident,
+  label = FALSE,
+  ncol = NA, nrow = NA,
+  min.cutoff = NA, max.cutoff = NA,
+  plot_image = FALSE,
+  return_list = FALSE,
+  slot = "scale.data",
+  order = FALSE,
+  reduction = NULL
+) {
   plot_list <- list()
   plot_output <- list()
   if (is.null(reduction)) {
