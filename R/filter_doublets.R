@@ -12,8 +12,13 @@
 #' @param doublet_finder_method Character string indicating the use of
 #' "DoubletFinder" (default), "scDblFinder", "consensus" removal of doublets,
 #' or the "union" of total doublets identified in both algorithms
+#' 
+#' @import DoubletFinder
+#' @import scDblFinder
+#' 
+#' @export
 #'
-#' @return
+#' @return A subsetted Seurat object with doublets removed
 
 filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
   if (doublet_finder_method == "DoubletFinder") {

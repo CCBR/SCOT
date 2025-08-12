@@ -15,6 +15,10 @@
 #' dataset as a whole
 #' @param lowerTail Calculates the p-value as likelihood of being in the upper
 #' tail (default) or the lower tail of the distribution
+#' 
+#' @import stats
+#'
+#' @export
 #'
 #' @return Returns a vector with the relevant statistics used to generate the
 #' hypergeometric test

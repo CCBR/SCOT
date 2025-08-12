@@ -9,11 +9,13 @@ run_singleR_db(so_in, species)
 \arguments{
 \item{so_in}{A given Seurat single cell object}
 
-\item{species}{Indicates human (hg19 or hg38) or mouse (mm10) references to be used}
+\item{species}{Indicates human (hg19 or hg38) or mouse (mm10) references to
+be used}
 }
 \value{
 A Seurat single cell object with predicted cell type annotations
 }
 \description{
-Uses the run_singleR function with the provided default human or mouse references
+Uses the run_singleR function with the provided default
+human or mouse references
 }

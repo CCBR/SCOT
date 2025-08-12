@@ -1,12 +1,11 @@
 #' split_featurePlot: Splits FeaturePlot by groups
 #'
-#' @description
-#' Adapts the FeaturePlot function from Seurat to split by groups and
-#' arrange by user specification
+#' @description Adapts the FeaturePlot function from Seurat to split by groups
+#' and arrange by user specification
 #'
 #' @param so A Seurat object
 #' @param features A list of features (e.g. genes) to plot on a projection
-#' @param splitIdent A metadata identity for splitting the image
+#' @param split_ident A metadata identity for splitting the image
 #' @param label Boolean for whether to label the plot with the current Idents
 #' value of the Seurat object
 #' @param ncol Integer value for number of columns in plot
@@ -15,14 +14,20 @@
 #' specify quantile in the form of 'q##' where '##' is the quantile (eg, 1, 10)
 #' @param max.cutoff Vector of maximum cutoff values for each feature, may
 #' specify quantile in the form of 'q##' where '##' is the quantile (eg, 1, 10)
-#' @param plotImage Boolean for whether to export plots to current visualization
-#' window
-#' @param returnList Boolean for whether to export list of plots
+#' @param plot_image Boolean for whether to export plots to current 
+#' visualization window
+#' @param return_list Boolean for whether to export list of plots
 #' @param slot Data slot from which to extract values
 #' @param order Boolean for whether to show highest feature values at the front
 #' of the image
 #' @param reduction Dimensionality reduction to use
+#' 
+#' @import ggplot2
+#' @import ggpubr
+#' @import Seurat
 #'
+#' @export
+#' 
 #' @return A list of ggplot2 plots
 
 

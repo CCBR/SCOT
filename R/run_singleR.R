@@ -6,6 +6,11 @@
 #' @param ref_file A reference file in a SingleCellExperiment format, such as those obtained from SingleR/CellDex package
 #' @param label The label identity to be used. Must be a column header in the metadata of `ref_file`
 #'
+#' @import SingleR
+#' @import Seurat
+#' 
+#' @export
+#' 
 #' @return A vector of pruned cell type labels
 
 

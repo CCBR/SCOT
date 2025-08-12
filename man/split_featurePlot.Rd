@@ -25,6 +25,8 @@ split_featurePlot(
 
 \item{features}{A list of features (e.g. genes) to plot on a projection}
 
+\item{split_ident}{A metadata identity for splitting the image}
+
 \item{label}{Boolean for whether to label the plot with the current Idents
 value of the Seurat object}
 
@@ -38,24 +40,22 @@ specify quantile in the form of 'q##' where '##' is the quantile (eg, 1, 10)}
 \item{max.cutoff}{Vector of maximum cutoff values for each feature, may
 specify quantile in the form of 'q##' where '##' is the quantile (eg, 1, 10)}
 
+\item{plot_image}{Boolean for whether to export plots to current
+visualization window}
+
+\item{return_list}{Boolean for whether to export list of plots}
+
 \item{slot}{Data slot from which to extract values}
 
 \item{order}{Boolean for whether to show highest feature values at the front
 of the image}
 
 \item{reduction}{Dimensionality reduction to use}
-
-\item{splitIdent}{A metadata identity for splitting the image}
-
-\item{plotImage}{Boolean for whether to export plots to current visualization
-window}
-
-\item{returnList}{Boolean for whether to export list of plots}
 }
 \value{
 A list of ggplot2 plots
 }
 \description{
-Adapts the FeaturePlot function from Seurat to split by groups and
-arrange by user specification
+Adapts the FeaturePlot function from Seurat to split by groups
+and arrange by user specification
 }

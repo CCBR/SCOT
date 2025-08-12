@@ -12,6 +12,21 @@ bubble_plot(
   ident = "seurat_clusters"
 )
 }
+\arguments{
+\item{so}{A Seurat single cell RNA object}
+
+\item{features}{A character vector of genes to plot}
+
+\item{palette}{A color palette from ggplot2}
+
+\item{assay}{The counts assay to use for determining expression}
+
+\item{ident}{The categorical identity to classify groups of cells}
+}
+\value{
+A ggplot2 figure
+}
 \description{
-bubble_plot: Flexible dotplot
+Creates a bubble plot that shows average expression percent
+expression for genes in single cell categories
 }

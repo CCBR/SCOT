@@ -8,6 +8,11 @@
 #' (SingleCellExperiment object)
 #' @param label A cell type label from the metadata column headers
 #'
+#' @import celldex
+#' @import SingleR
+#' 
+#' @export 
+#' 
 #' @return A character vector of matched cell type annotations based on
 #' clusters
 #'

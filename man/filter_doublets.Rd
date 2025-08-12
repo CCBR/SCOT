@@ -14,6 +14,9 @@ filter_doublets(so_in, doublet_finder_method = "DoubletFinder")
 "DoubletFinder" (default), "scDblFinder", "consensus" removal of doublets,
 or the "union" of total doublets identified in both algorithms}
 }
+\value{
+A subsetted Seurat object with doublets removed
+}
 \description{
 Wrapper for DoubletFinder and scDblFinder for identifying doublets
 }

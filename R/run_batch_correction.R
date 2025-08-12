@@ -34,6 +34,12 @@
 #' @param conda_env A character string for indicating which conda environment
 #' contains the necessary packages
 #'
+#' @import Seurat
+#' @import harmony
+#' @import rliger
+#' 
+#' @export 
+#' 
 #' @return A batch corrected Seurat object with updated UMAP projections and
 #' clusters
 #'

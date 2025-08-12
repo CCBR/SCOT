@@ -11,13 +11,15 @@ preprocess_sample(so_in, species, npcs_in)
 
 \item{species}{Species of the sample (hg38, hg19, or mm10)}
 
-\item{npcs_in}{Number of principal components to use for dimensionality reduction}
+\item{npcs_in}{Number of principal components to use for dimensionality
+reduction}
 }
 \value{
 A Seurat single cell object with normalized read counts
 }
 \description{
-: Conducts preliminary normalization/scaling, cell cycle scoring, and clustering on a Seurat single cell object
+: Conducts preliminary normalization/scaling, cell cycle scoring,
+and clustering on a Seurat single cell object
 }
 \details{
 The function performs the following processes on the data:assay
@@ -25,6 +27,7 @@ The function performs the following processes on the data:assay
 \item Cell cycle scoring
 \item Normalization and scaling of RNA counts with log normalization
 \item Normalization and scaling of RNA counts with SCTransform
-\item Principal components analysis, neighbor identification, UMAP dimensionality reduction and preliminary clustering (through \code{seurat_clustering} function)
+\item Principal components analysis, neighbor identification, UMAP dimensionality
+reduction and preliminary clustering (through \code{seurat_clustering} function)
 }
 }

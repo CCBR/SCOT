@@ -1,9 +1,17 @@
 #' run_singleR_db: Runs SingleR with the built-in databases from celldex
 #'
-#' @description Uses the run_singleR function with the provided default human or mouse references
+#' @description Uses the run_singleR function with the provided default
+#' human or mouse references
 #'
 #' @param so_in A given Seurat single cell object
-#' @param species Indicates human (hg19 or hg38) or mouse (mm10) references to be used
+#' @param species Indicates human (hg19 or hg38) or mouse (mm10) references to
+#' be used
+#' 
+#' @import SingleR
+#' @import celldex
+#' @import ontoProc
+#' 
+#' @export
 #'
 #' @return A Seurat single cell object with predicted cell type annotations
 

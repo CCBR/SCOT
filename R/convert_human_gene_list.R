@@ -6,6 +6,9 @@
 #' @param genes Character vector of human genes
 #'
 #' @import AnnotationDbi
+#' @import org.Hs.eg.db
+#' @import org.Mm.eg.db
+#' @import Orthology.eg.db
 #' 
 #' @export
 #' 
