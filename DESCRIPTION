@@ -22,6 +22,7 @@ Imports:
     DropletUtils,
     ggplot2,
     ggpubr,
+    grDevices,
     GSEABase,
     magrittr,
     ontologyIndex,
@@ -30,7 +31,9 @@ Imports:
     scDblFinder,
     Seurat,
     SingleCellExperiment,
-    SingleR
+    SingleR,
+    stats,
+    utils
 Suggests:
     cffr,
     knitr,
