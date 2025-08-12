@@ -13,5 +13,6 @@ convert_human_gene_list(genes)
 Character vector of mapped mouse genes
 }
 \description{
-Uses the ENSEMBL database to convert human gene names to mouse gene names
+Uses the ENSEMBL database to convert human gene names to mouse
+gene names
 }

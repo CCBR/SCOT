@@ -1,4 +1,4 @@
-#' convertMtxToH5: Converts the triple .mtx files from single cell experiments to a .h5 counts file
+#' convert_mtx_to_h5: Converts the triple .mtx files from single cell experiments to a .h5 counts file
 #'
 #' @description
 #'

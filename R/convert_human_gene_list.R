@@ -1,8 +1,13 @@
 #' convert_human_gene_list
-#' 
-#' @description Uses the ENSEMBL database to convert human gene names to mouse gene names
-#' 
+#'
+#' @description Uses the ENSEMBL database to convert human gene names to mouse
+#' gene names
+#'
 #' @param genes Character vector of human genes
+#'
+#' @import AnnotationDbi
+#' 
+#' @export
 #' 
 #' @return Character vector of mapped mouse genes
 

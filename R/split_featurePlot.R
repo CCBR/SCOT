@@ -26,7 +26,7 @@
 #' @return A list of ggplot2 plots
 
 
-splitFeaturePlot <- function(
+split_featurePlot <- function(
   so,
   features,
   split_ident,
