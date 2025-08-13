@@ -18,7 +18,7 @@ reduction}
 A Seurat single cell object with normalized read counts
 }
 \description{
-: Conducts preliminary normalization/scaling, cell cycle scoring,
+Conducts preliminary normalization/scaling, cell cycle scoring,
 and clustering on a Seurat single cell object
 }
 \details{

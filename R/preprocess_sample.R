@@ -1,6 +1,6 @@
 #' preprocess_sample: Performs an initial preprocess on a Seurat object
 #' 
-#' @description: Conducts preliminary normalization/scaling, cell cycle scoring,
+#' @description Conducts preliminary normalization/scaling, cell cycle scoring,
 #' and clustering on a Seurat single cell object
 #' 
 #' @details The function performs the following processes on the data:assay

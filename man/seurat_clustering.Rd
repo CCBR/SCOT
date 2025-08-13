@@ -4,19 +4,19 @@
 \alias{seurat_clustering}
 \title{seurat_clustering: A quick end-to-end clustering of a Seurat object}
 \usage{
-seurat_clustering(so_in, ncps_in, resolution = 0.8, algorithm = 3)
+seurat_clustering(so_in, npcs_in, resolution = 0.8, algorithm = 3)
 }
 \arguments{
 \item{so_in}{A Seurat single cell object}
+
+\item{npcs_in}{Number of principal components to be used to calculate
+neighbors, UMAP projection, and clustering}
 
 \item{resolution}{A resolution value for clustering. Higher values will
 produce more clusters (Default 0.8)}
 
 \item{algorithm}{A value of 1 (Louvain), 2 (Leiden), or 3 (Slow Local Moving
 (SLM)) to select the clustering algorithm (Default 3)}
-
-\item{npcs_in}{Number of principal components to be used to calculate
-neighbors, UMAP projection, and clustering}
 }
 \value{
 The updated Seurat single cell object with recalculated PCA,

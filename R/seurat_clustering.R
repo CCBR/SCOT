@@ -1,7 +1,6 @@
 #' seurat_clustering: A quick end-to-end clustering of a Seurat object
 #'
-#' @description
-#' Wrapper to perform PCA, neighbor-finding, UMAP calculations and clustering
+#' @description Wrapper to perform PCA, neighbor-finding, UMAP calculations and clustering
 #'
 #' @param so_in A Seurat single cell object
 #' @param npcs_in Number of principal components to be used to calculate
