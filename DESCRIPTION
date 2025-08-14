@@ -17,6 +17,7 @@ Imports:
     AUCell,
     celldex,
     clusterSim,
+    djvdj,
     DoubletFinder,
     dplyr,
     DropletUtils,
