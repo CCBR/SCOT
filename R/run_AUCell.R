@@ -1,23 +1,23 @@
 #' run_AUCell: A wrapper script for running AUCell for per cell gene set
 #' enrichment analysis
-#' 
+#'
 #' @description Runs AUCell on basic inputs
-#' 
+#'
 #' @details AUCell evaluates the likelihood of a gene set being enriched in an
 #' individual cells using the Area Under the Curve (AUC). The wrapper script
 #' uses a Seurat object and a list of gene sets to calculate the AUC for each
 #' gene set and also provides the assignment likelihood, based on the
-#' distribution of the AUCs across the dataset. 
-#' 
+#' distribution of the AUCs across the dataset.
+#'
 #' @param so A Seurat object
 #' @param gene_sets A list of gene sets, such as those obtained via GSEABase
-#' 
+#'
 #' @import AUCell
 #' @import Seurat
 #' @import GSEABase
-#' 
-#' @export 
-#' 
+#'
+#' @export
+#'
 #' @return A list object containing the AUCell scores for each gene set and the
 #' assignment of the cells as to the likelihood of the cells overexpressing the
 #' gene set. These values can be added to the original Seurat object ex post

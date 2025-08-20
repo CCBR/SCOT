@@ -36,6 +36,25 @@ detailed information on each function in the package.
 &#10;
 ``` r
 library(SCOT)
+#>
+#> Warning: replacing previous import 'SingleR::NovershternHematopoieticData' by
+#> 'celldex::NovershternHematopoieticData' when loading 'SCOT'
+#> Warning: replacing previous import 'SingleR::DatabaseImmuneCellExpressionData'
+#> by 'celldex::DatabaseImmuneCellExpressionData' when loading 'SCOT'
+#> Warning: replacing previous import 'SingleR::MouseRNAseqData' by
+#> 'celldex::MouseRNAseqData' when loading 'SCOT'
+#> Warning: replacing previous import 'SingleR::MonacoImmuneData' by
+#> 'celldex::MonacoImmuneData' when loading 'SCOT'
+#> Warning: replacing previous import 'SingleR::HumanPrimaryCellAtlasData' by
+#> 'celldex::HumanPrimaryCellAtlasData' when loading 'SCOT'
+#> Warning: replacing previous import 'SingleR::BlueprintEncodeData' by
+#> 'celldex::BlueprintEncodeData' when loading 'SCOT'
+#> Warning: replacing previous import 'SingleR::ImmGenData' by
+#> 'celldex::ImmGenData' when loading 'SCOT'
+#>
+#>
+#> Warning: replacing previous import 'SingleR::plotMarkerHeatmap' by
+#> 'rliger::plotMarkerHeatmap' when loading 'SCOT'
 ## basic example code
 ```
 &#10;-->

@@ -37,9 +37,9 @@
 #' @import Seurat
 #' @import harmony
 #' @import rliger
-#' 
-#' @export 
-#' 
+#'
+#' @export
+#'
 #' @return A batch corrected Seurat object with updated UMAP projections and
 #' clusters
 #'

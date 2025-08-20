@@ -1,21 +1,21 @@
 #' make_bubble_plot: Flexible dotplot
-#' 
+#'
 #' @description Creates a bubble plot that shows average expression percent
 #' expression for genes in single cell categories
-#' 
+#'
 #' @param so A Seurat single cell RNA object
 #' @param features A character vector of genes to plot
 #' @param palette A color palette from ggplot2
 #' @param assay The counts assay to use for determining expression
 #' @param ident The categorical identity to classify groups of cells
-#' 
+#'
 #' @import Seurat
 #' @import ggplot2
-#' 
+#'
 #' @export
-#' 
+#'
 #' @return A ggplot2 figure
-#' 
+#'
 
 
 make_bubble_plot <- function(

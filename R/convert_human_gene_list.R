@@ -9,9 +9,9 @@
 #' @import org.Hs.eg.db
 #' @import org.Mm.eg.db
 #' @import Orthology.eg.db
-#' 
+#'
 #' @export
-#' 
+#'
 #' @return Character vector of mapped mouse genes
 
 

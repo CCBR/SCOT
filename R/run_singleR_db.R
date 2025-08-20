@@ -6,11 +6,11 @@
 #' @param so_in A given Seurat single cell object
 #' @param species Indicates human (hg19 or hg38) or mouse (mm10) references to
 #' be used
-#' 
+#'
 #' @import SingleR
 #' @import celldex
 #' @import ontoProc
-#' 
+#'
 #' @export
 #'
 #' @return A Seurat single cell object with predicted cell type annotations

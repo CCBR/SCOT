@@ -14,20 +14,20 @@
 #' specify quantile in the form of 'q##' where '##' is the quantile (eg, 1, 10)
 #' @param max.cutoff Vector of maximum cutoff values for each feature, may
 #' specify quantile in the form of 'q##' where '##' is the quantile (eg, 1, 10)
-#' @param plot_image Boolean for whether to export plots to current 
+#' @param plot_image Boolean for whether to export plots to current
 #' visualization window
 #' @param return_list Boolean for whether to export list of plots
 #' @param slot Data slot from which to extract values
 #' @param order Boolean for whether to show highest feature values at the front
 #' of the image
 #' @param reduction Dimensionality reduction to use
-#' 
+#'
 #' @import ggplot2
 #' @import ggpubr
 #' @import Seurat
 #'
 #' @export
-#' 
+#'
 #' @return A list of ggplot2 plots
 
 

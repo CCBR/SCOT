@@ -1,24 +1,24 @@
 #' preprocess_sample: Performs an initial preprocess on a Seurat object
-#' 
+#'
 #' @description Conducts preliminary normalization/scaling, cell cycle scoring,
 #' and clustering on a Seurat single cell object
-#' 
+#'
 #' @details The function performs the following processes on the data:assay
 #' - Cell cycle scoring
 #' - Normalization and scaling of RNA counts with log normalization
 #' - Normalization and scaling of RNA counts with SCTransform
 #' - Principal components analysis, neighbor identification, UMAP dimensionality
 #' reduction and preliminary clustering (through `seurat_clustering` function)
-#' 
+#'
 #' @param so_in A Seurat single cell object with RNA counts
 #' @param species Species of the sample (hg38, hg19, or mm10)
 #' @param npcs_in Number of principal components to use for dimensionality
 #' reduction
-#' 
+#'
 #' @import Seurat
-#' 
+#'
 #' @export
-#' 
+#'
 #' @return A Seurat single cell object with normalized read counts
 
 preprocess_sample <- function(so_in, species, npcs_in) {

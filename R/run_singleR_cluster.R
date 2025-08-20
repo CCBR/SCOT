@@ -10,9 +10,9 @@
 #'
 #' @import celldex
 #' @import SingleR
-#' 
-#' @export 
-#' 
+#'
+#' @export
+#'
 #' @return A character vector of matched cell type annotations based on
 #' clusters
 #'

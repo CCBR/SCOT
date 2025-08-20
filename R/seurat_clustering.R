@@ -9,9 +9,9 @@
 #' produce more clusters (Default 0.8)
 #' @param algorithm A value of 1 (Louvain), 2 (Leiden), or 3 (Slow Local Moving
 #' (SLM)) to select the clustering algorithm (Default 3)
-#' 
+#'
 #' @import Seurat
-#' 
+#'
 #' @export
 #'
 #' @return The updated Seurat single cell object with recalculated PCA,
