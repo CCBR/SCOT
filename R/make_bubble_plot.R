@@ -1,4 +1,4 @@
-#' bubble_plot: Flexible dotplot
+#' make_bubble_plot: Flexible dotplot
 #' 
 #' @description Creates a bubble plot that shows average expression percent
 #' expression for genes in single cell categories
@@ -18,7 +18,7 @@
 #' 
 
 
-bubble_plot <- function(
+make_bubble_plot <- function(
   so, features, palette = "RdBu", assay = "SCT", ident = "seurat_clusters"
 ) {
   Idents(so) <- ident

@@ -5,7 +5,7 @@
 #' Seurat object. Can be used for TCRa/TCRb, TCRg/TCRd, and BCR
 #' 
 #' @param so A Seurat single cell RNA object
-#' @param vdj_file A path to a V(D)J annotation from CellRanger
+#' @param vdj_file A path to a V(D)J annotation directory from CellRanger
 #' 
 #' @import djvdj
 #' @import Seurat
@@ -19,7 +19,7 @@ add_VDJ_metadata = function(so, vdj_file){
 
   #Used in the case of multiple V(D)J alignments
   if (prefix == "outs"){
-    prefix <- NA
+    prefix <- ""
   } else {
     prefix <- paste0(prefix, "_")
   }

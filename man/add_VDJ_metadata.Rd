@@ -10,7 +10,7 @@ add_VDJ_metadata(so, vdj_file)
 \arguments{
 \item{so}{A Seurat single cell RNA object}
 
-\item{vdj_file}{A path to a V(D)J annotation from CellRanger}
+\item{vdj_file}{A path to a V(D)J annotation directory from CellRanger}
 }
 \value{
 A Seurat object with V(D)J metadata

@@ -1,4 +1,4 @@
-#' volcano_plot: Optimized volcano plot for Seurat differential expression
+#' make_volcano_plot: Optimized volcano plot for Seurat differential expression
 #' (FindMarkers) output
 #'
 #' @description Uses ggplot2 to create a generic volcano plot from the
@@ -16,7 +16,7 @@
 #'
 #' @return Returns a volcano plot as a ggplot2 object
 
-volcano_plot <- function(
+make_volcano_plot <- function(
   de_table, 
   significant = TRUE, 
   logfc = TRUE, 
