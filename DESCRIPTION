@@ -12,6 +12,7 @@ Authors@R: c(
 Description: R package development for frequently used single cell RNA-seq
     functions
 License: MIT + file LICENSE
+biocViews:
 Imports:
     AnnotationDbi,
     AUCell,
