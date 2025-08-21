@@ -35,19 +35,25 @@
 #' contains the necessary packages
 #'
 #' @import Seurat
+#' @import SeuratWrappers
 #' @import harmony
 #' @import rliger
-#' 
-#' @export 
-#' 
+#'
+#' @export
+#'
 #' @return A batch corrected Seurat object with updated UMAP projections and
 #' clusters
 #'
-
 run_batch_correction <- function(
     so_in, npcs, species, resolution_list, method_in,
     reduction_in = c(0.2, 0.4, 0.5, 0.8, 1.0),
     vars_to_regress = NULL, conda_env = "") {
+  # data variables must be initialized to silence the R CMD check note:
+  #    'no visible binding for global variable'
+  v_list <- NULL
+
+  # TODO recommend using package::function syntax instead of importing entire packages
+
   # set assay to RNA to avoid double transform/normalization
   DefaultAssay(so_in) <- "RNA"
 
@@ -56,7 +62,7 @@ run_batch_correction <- function(
   ### LIGER
   ### harmony,rpca,cca
   if (method_in == "scVIIntegration") {
-    print("--running SCVI integration")
+    message("--running SCVI integration")
 
     so_transform <- NormalizeData(so_in)
     so_variable <- FindVariableFeatures(so_transform)
@@ -69,7 +75,7 @@ run_batch_correction <- function(
       conda_env = conda_env, dims = 1:npcs
     )
   } else if (method_in == "LIGER") {
-    print("--running LIGER")
+    message("--running LIGER")
 
     # preprocess
     so_norm <- NormalizeData(so_in)
@@ -78,7 +84,7 @@ run_batch_correction <- function(
     so_norm <- RunOptimizeALS(so_norm, k = npcs, lambda = 5)
     so_integrate <- RunQuantileNorm(so_norm)
   } else {
-    print("--running SCT")
+    message("--running SCT")
 
     # vars.to.regress is NULL by default
     so_transform <- SCTransform(so_in, vars.to.regress = v_list)

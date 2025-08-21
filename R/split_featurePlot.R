@@ -14,56 +14,51 @@
 #' specify quantile in the form of 'q##' where '##' is the quantile (eg, 1, 10)
 #' @param max.cutoff Vector of maximum cutoff values for each feature, may
 #' specify quantile in the form of 'q##' where '##' is the quantile (eg, 1, 10)
-#' @param plot_image Boolean for whether to export plots to current 
+#' @param plot_image Boolean for whether to export plots to current
 #' visualization window
 #' @param return_list Boolean for whether to export list of plots
 #' @param slot Data slot from which to extract values
 #' @param order Boolean for whether to show highest feature values at the front
 #' of the image
 #' @param reduction Dimensionality reduction to use
-#' 
-#' @import ggplot2
-#' @import ggpubr
-#' @import Seurat
 #'
 #' @export
-#' 
+#'
 #' @return A list of ggplot2 plots
-
-
 split_featurePlot <- function(
-  so,
-  features,
-  split_ident,
-  label = FALSE,
-  ncol = NA, nrow = NA,
-  min.cutoff = NA, max.cutoff = NA,
-  plot_image = FALSE,
-  return_list = FALSE,
-  slot = "scale.data",
-  order = FALSE,
-  reduction = NULL
-) {
+    so,
+    features,
+    split_ident,
+    label = FALSE,
+    ncol = NA, nrow = NA,
+    min.cutoff = NA, max.cutoff = NA,
+    plot_image = FALSE,
+    return_list = FALSE,
+    slot = "scale.data",
+    order = FALSE,
+    reduction = NULL) {
   plot_list <- list()
   plot_output <- list()
   if (is.null(reduction)) {
-    embed <- so@reductions[[DefaultDimReduc(so)]]@cell.embeddings
+    embed <- so@reductions[[SeuratObject::DefaultDimReduc(so)]]@cell.embeddings
   } else {
-    embed <- Embeddings(so, reduction = reduction)
+    embed <- Seurat::Embeddings(so, reduction = reduction)
   }
 
+  # TODO refactor with map or lapply
   for (feature in features) {
     for (ident in unique(unlist(so[[split_ident]]))) {
-      plot_list[[feature]][[ident]] <- FeaturePlot(
+      plot_list[[feature]][[ident]] <- Seurat::FeaturePlot(
         so[, which(so[[split_ident]] == ident)],
         features = feature, label = label,
         min.cutoff = min.cutoff, max.cutoff = max.cutoff,
         slot = slot, order = order, reduction = reduction
       ) +
-        xlim(range(embed[, 1])) + ylim(range(embed[, 2])) +
-        ggtitle(ident)
+        ggplot2::xlim(range(embed[, 1])) + ggplot2::ylim(range(embed[, 2])) +
+        ggplot2::ggtitle(ident)
     }
   }
+  # TODO refactor with map or lapply
   for (feature in names(plot_list)) {
     if (is.na(ncol) & is.na(nrow)) {
       ncol <- length(plot_list[[feature]])
@@ -76,17 +71,17 @@ split_featurePlot <- function(
       nrow <- ceiling(length(plot_list[[feature]]) / ncol)
     }
 
-    plot_print <- ggarrange(
+    plot_print <- ggpubr::ggarrange(
       plotlist = plot_list[[feature]],
       ncol = ncol, nrow = nrow,
       common.legend = TRUE, legend = "right"
     )
-    plot_print <- annotate_figure(plot_print,
-      top = text_grob(feature, face = "bold", size = 14)
+    plot_print <- ggpubr::annotate_figure(plot_print,
+      top = ggpubr::text_grob(feature, face = "bold", size = 14)
     )
     plot_output[[feature]] <- plot_print
     if (plot_image == TRUE) {
-      dev.new()
+      grDevices::dev.new()
       print(plot_print)
     }
   }

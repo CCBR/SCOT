@@ -36,6 +36,9 @@ detailed information on each function in the package.
 &#10;
 ``` r
 library(SCOT)
+#>
+#>
+#>
 ## basic example code
 ```
 &#10;-->
