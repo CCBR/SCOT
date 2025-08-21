@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  warning = FALSE
 )
 ```
 
@@ -27,7 +28,7 @@ You can install the development version of SCOT from [GitHub](https://github.com
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("CCBR/SCOT")
+devtools::install_github("CCBR/SCOT", dependences = TRUE)
 ```
 
 ## Usage
