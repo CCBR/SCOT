@@ -39,13 +39,13 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
       reuse.pANN = NULL, PCs = 1:10, sct = TRUE
     )
 
-    pAAN <- tail(names(dfso@meta.data), 2)[1]
+    pAAN <- utils::tail(names(dfso@meta.data), 2)[1]
     dfso <- doubletFinder(dfso,
       pN = 0.25, pK = 0.09,
       nExp = nExp_poi_adj,
       reuse.pANN = pAAN, PCs = 1:10, sct = T
     )
-    so_in$doubletFinder_label <- dfso[[tail(names(dfso@meta.data), 1)]]
+    so_in$doubletFinder_label <- dfso[[utils::tail(names(dfso@meta.data), 1)]]
     so_in <- subset(
       so_in,
       cells = colnames(so_in)[which(so_in$doubletFinder_label == "Singlet")]
@@ -77,13 +77,13 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
       reuse.pANN = NULL, PCs = 1:10, sct = TRUE
     )
 
-    pAAN <- tail(names(dfso@meta.data), 2)[1]
+    pAAN <- utils::tail(names(dfso@meta.data), 2)[1]
     dfso <- doubletFinder(dfso,
       pN = 0.25, pK = 0.09,
       nExp = nExp_poi_adj,
       reuse.pANN = pAAN, PCs = 1:10, sct = T
     )
-    so_in$doubletFinder_label <- dfso[[tail(names(dfso@meta.data), 1)]]
+    so_in$doubletFinder_label <- dfso[[utils::tail(names(dfso@meta.data), 1)]]
 
     sce <- as.SingleCellExperiment(so_in)
     set.seed(42)
@@ -114,13 +114,13 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
       reuse.pANN = NULL, PCs = 1:10, sct = TRUE
     )
 
-    pAAN <- tail(names(dfso@meta.data), 2)[1]
+    pAAN <- utils::tail(names(dfso@meta.data), 2)[1]
     dfso <- doubletFinder(dfso,
       pN = 0.25, pK = 0.09,
       nExp = nExp_poi_adj,
       reuse.pANN = pAAN, PCs = 1:10, sct = T
     )
-    so_in$doubletFinder_label <- dfso[[tail(names(dfso@meta.data), 1)]]
+    so_in$doubletFinder_label <- dfso[[utils::tail(names(dfso@meta.data), 1)]]
 
     sce <- as.SingleCellExperiment(so_in)
     set.seed(42)

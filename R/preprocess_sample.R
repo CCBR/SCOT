@@ -23,6 +23,7 @@
 
 preprocess_sample <- function(so_in, species, npcs_in) {
   # assign genes depending on species input
+  # TODO cc.genes is not initialized
   if (species == "hg38" || species == "hg19") {
     print("--proccesing human data")
     s.genes <- cc.genes$s.genes

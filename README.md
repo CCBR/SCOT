@@ -17,7 +17,7 @@ You can install the development version of SCOT from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("CCBR/SCOT")
+devtools::install_github("CCBR/SCOT", dependences = TRUE)
 ```
 
 ## Usage

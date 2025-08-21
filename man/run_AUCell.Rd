@@ -10,8 +10,7 @@ run_AUCell(so, gene_sets)
 \arguments{
 \item{so}{A Seurat object}
 
-\item{gene_sets}{A list of gene sets, such as those obtained via GSEABase
-#'}
+\item{gene_sets}{A list of gene sets, such as those obtained via GSEABase}
 }
 \value{
 A list object containing the AUCell scores for each gene set and the
