@@ -12,10 +12,10 @@
 #' @param doublet_finder_method Character string indicating the use of
 #' "DoubletFinder" (default), "scDblFinder", "consensus" removal of doublets,
 #' or the "union" of total doublets identified in both algorithms
-#' 
+#'
 #' @import DoubletFinder
 #' @import scDblFinder
-#' 
+#'
 #' @export
 #'
 #' @return A subsetted Seurat object with doublets removed

@@ -11,7 +11,7 @@
 #'
 #' @param so A Seurat object
 #' @param gene_sets A list of gene sets, such as those obtained via GSEABase
-#' #'
+#'
 #' @export
 #'
 #' @return A list object containing the AUCell scores for each gene set and the

@@ -3,7 +3,7 @@
 #'
 #' @description Uses existing tools to generate .h5 files, which can be easier
 #' to import or transfer
-#' 
+#'
 #' @details Older versions of CellRanger, in addition to some other single cell
 #' alignment tools, such as PipSeq and DropSeq, produce a trio of files in an
 #' output director that pointed to all the necessary features:
@@ -19,7 +19,7 @@
 #'
 #' @import DropletUtils
 #' @import Seurat
-#' 
+#'
 #' @export
 
 convert_mtx_to_h5 <- function(
@@ -29,8 +29,8 @@ convert_mtx_to_h5 <- function(
   barcodes_file
 ) {
   counts <- Seurat::ReadMtx(
-    mtx = mtx_file, 
-    cells = barcodes_file, 
+    mtx = mtx_file,
+    cells = barcodes_file,
     features = features_file
   )
   outfile <- paste0(sample_name, ".h5")
