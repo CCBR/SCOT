@@ -44,6 +44,7 @@ Suggests:
     GSEABase,
     knitr,
     ontologyIndex,
+    R.utils,
     rmarkdown,
     SingleCellExperiment,
     testthat (>= 3.0.0),
