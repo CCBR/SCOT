@@ -28,6 +28,100 @@ contact:
   email: nathan.wong@nih.gov
 references:
 - type: software
+  title: AnnotationDbi
+  abstract: 'AnnotationDbi: Manipulation of SQLite-based annotations in Bioconductor'
+  notes: Imports
+  url: https://bioconductor.org/packages/AnnotationDbi
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Pagès
+    given-names: Hervé
+  - family-names: Carlson
+    given-names: Marc
+  - family-names: Falcon
+    given-names: Seth
+  - family-names: Li
+    given-names: Nianhua
+  year: '2025'
+  doi: 10.18129/B9.bioc.AnnotationDbi
+- type: software
+  title: AUCell
+  abstract: 'AUCell: AUCell: Analysis of ''gene set'' activity in single-cell RNA-seq
+    data (e.g. identify cells with specific gene signatures)'
+  notes: Imports
+  url: http://scenic.aertslab.org
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Aibar
+    given-names: Sara
+  - family-names: Leuven
+    given-names: Stein Aerts. Laboratory of Computational Biology. VIB-KU Leuven Center
+      for Brain & Disease Research.
+  - name: Belgium.
+  year: '2025'
+  doi: 10.18129/B9.bioc.AUCell
+- type: software
+  title: celldex
+  abstract: 'celldex: Index of Reference Cell Type Datasets'
+  notes: Imports
+  url: https://support.bioconductor.org/
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Aran
+    given-names: Dvir
+    email: dvir.aran@ucsf.edu
+  - family-names: Lun
+    given-names: Aaron
+    email: infinite.monkeys.with.keyboards@gmail.com
+  - family-names: Bunis
+    given-names: Daniel
+  - family-names: Andrews
+    given-names: Jared
+    email: jared.andrews07@gmail.com
+  - family-names: Dündar
+    given-names: Friederike
+    email: frd2007@med.cornell.edu
+  year: '2025'
+  doi: 10.18129/B9.bioc.celldex
+- type: software
+  title: clusterSim
+  abstract: 'clusterSim: Searching for Optimal Clustering Procedure for a Data Set'
+  notes: Imports
+  repository: https://CRAN.R-project.org/package=clusterSim
+  authors:
+  - family-names: Walesiak
+    given-names: Marek
+    email: marek.walesiak@ue.wroc.pl
+    orcid: https://orcid.org/0000-0003-0922-2323
+  - family-names: Dudek
+    given-names: Andrzej
+    email: andrzej.dudek@ue.wroc.pl
+    orcid: https://orcid.org/0000-0002-4943-8703
+  year: '2025'
+  doi: 10.32614/CRAN.package.clusterSim
+- type: software
+  title: djvdj
+  abstract: 'djvdj: A collection of single-cell V(D)J tools'
+  notes: Imports
+  url: https://rnabioco.github.io/djvdj/
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Sheridan
+    given-names: Ryan
+    email: ryan.sheridan@cuanschutz.edu
+    orcid: https://orcid.org/0000-0003-4012-3147
+  year: '2025'
+- type: software
+  title: DoubletFinder
+  abstract: 'DoubletFinder: DoubletFinder is a suite of tools for identifying doublets
+    in single-cell RNA sequencing data'
+  notes: Imports
+  authors:
+  - name: c)
+  - name: person
+  - name: c
+  year: '2025'
+- type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
   notes: Imports
@@ -53,6 +147,132 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.dplyr
 - type: software
+  title: DropletUtils
+  abstract: 'DropletUtils: Utilities for Handling Single-Cell Droplet Data'
+  notes: Imports
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Lun
+    given-names: Aaron
+  year: '2025'
+  doi: 10.18129/B9.bioc.DropletUtils
+- type: software
+  title: ggplot2
+  abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
+  notes: Imports
+  url: https://ggplot2.tidyverse.org
+  repository: https://CRAN.R-project.org/package=ggplot2
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Chang
+    given-names: Winston
+    orcid: https://orcid.org/0000-0002-1576-2126
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@posit.co
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Takahashi
+    given-names: Kohske
+  - family-names: Wilke
+    given-names: Claus
+    orcid: https://orcid.org/0000-0002-7470-9261
+  - family-names: Woo
+    given-names: Kara
+    orcid: https://orcid.org/0000-0002-5125-4188
+  - family-names: Yutani
+    given-names: Hiroaki
+    orcid: https://orcid.org/0000-0002-3385-7233
+  - family-names: Dunnington
+    given-names: Dewey
+    orcid: https://orcid.org/0000-0002-9415-4582
+  - family-names: Brand
+    given-names: Teun
+    name-particle: van den
+    orcid: https://orcid.org/0000-0002-9335-7468
+  year: '2025'
+  doi: 10.32614/CRAN.package.ggplot2
+- type: software
+  title: ggpubr
+  abstract: 'ggpubr: ''ggplot2'' Based Publication Ready Plots'
+  notes: Imports
+  url: https://rpkgs.datanovia.com/ggpubr/
+  repository: https://CRAN.R-project.org/package=ggpubr
+  authors:
+  - family-names: Kassambara
+    given-names: Alboukadel
+    email: alboukadel.kassambara@gmail.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.ggpubr
+- type: software
+  title: grDevices
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+- type: software
+  title: GSEABase
+  abstract: 'GSEABase: Gene set enrichment data structures and methods'
+  notes: Imports
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Morgan
+    given-names: Martin
+  - family-names: Falcon
+    given-names: Seth
+  - family-names: Gentleman
+    given-names: Robert
+  year: '2025'
+  doi: 10.18129/B9.bioc.GSEABase
+- type: software
+  title: harmony
+  abstract: 'harmony: Fast, Sensitive, and Accurate Integration of Single Cell Data'
+  notes: Imports
+  url: https://github.com/immunogenomics/harmony
+  repository: https://CRAN.R-project.org/package=harmony
+  authors:
+  - family-names: Korsunsky
+    given-names: Ilya
+    email: ilya.korsunsky@gmail.com
+    orcid: https://orcid.org/0000-0003-4848-3948
+  - family-names: Hemberg
+    given-names: Martin
+    email: mhemberg@bwh.harvard.edu
+    orcid: https://orcid.org/0000-0001-8895-5239
+  - family-names: Patikas
+    given-names: Nikolaos
+    email: nik.patik@gmail.com
+    orcid: https://orcid.org/0000-0002-3978-0134
+  - family-names: Yao
+    given-names: Hongcheng
+    email: hongchengyaonk@gmail.com
+    orcid: https://orcid.org/0000-0002-0743-4835
+  - family-names: Millard
+    given-names: Nghia
+    email: nmillard@g.harvard.edu
+    orcid: https://orcid.org/0000-0002-0518-7674
+  - family-names: Fan
+    given-names: Jean
+    email: jeanfan@fas.harvard.edu
+    orcid: https://orcid.org/0000-0002-0212-5451
+  - family-names: Slowikowski
+    given-names: Kamil
+    email: kslowikowski@gmail.com
+    orcid: https://orcid.org/0000-0002-2843-6370
+  - family-names: Raychaudhuri
+    given-names: Soumya
+    orcid: https://orcid.org/0000-0002-1901-8265
+  year: '2025'
+  doi: 10.32614/CRAN.package.harmony
+- type: software
   title: magrittr
   abstract: 'magrittr: A Forward-Pipe Operator for R'
   notes: Imports
@@ -68,6 +288,57 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.magrittr
 - type: software
+  title: ontologyIndex
+  abstract: 'ontologyIndex: Reading Ontologies into R'
+  notes: Imports
+  repository: https://CRAN.R-project.org/package=ontologyIndex
+  authors:
+  - family-names: Greene
+    given-names: Daniel
+    email: dg333@cam.ac.uk
+  year: '2025'
+  doi: 10.32614/CRAN.package.ontologyIndex
+- type: software
+  title: ontoProc
+  abstract: 'ontoProc: processing of ontologies of anatomy, cell lines, and so on'
+  notes: Imports
+  url: https://github.com/vjcitn/ontoProc
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Carey
+    given-names: Vincent
+    email: stvjc@channing.harvard.edu
+    orcid: https://orcid.org/0000-0003-4046-0063
+  year: '2025'
+  doi: 10.18129/B9.bioc.ontoProc
+- type: software
+  title: org.Hs.eg.db
+  abstract: 'org.Hs.eg.db: Genome wide annotation for Human'
+  notes: Imports
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Carlson
+    given-names: Marc
+  year: '2025'
+- type: software
+  title: org.Mm.eg.db
+  abstract: 'org.Mm.eg.db: Genome wide annotation for Mouse'
+  notes: Imports
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Carlson
+    given-names: Marc
+  year: '2025'
+- type: software
+  title: Orthology.eg.db
+  abstract: 'Orthology.eg.db: Orthology mapping package'
+  notes: Imports
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Carlson
+    given-names: Marc
+  year: '2025'
+- type: software
   title: rlang
   abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
   notes: Imports
@@ -82,6 +353,106 @@ references:
     email: hadley@posit.co
   year: '2025'
   doi: 10.32614/CRAN.package.rlang
+- type: software
+  title: rliger
+  abstract: 'rliger: Linked Inference of Genomic Experimental Relationships'
+  notes: Imports
+  url: https://welch-lab.github.io/liger/
+  repository: https://CRAN.R-project.org/package=rliger
+  authors:
+  - family-names: Welch
+    given-names: Joshua
+    email: welchjd@umich.edu
+  - family-names: Wang
+    given-names: Yichen
+    email: wayichen@umich.edu
+  - family-names: Gao
+    given-names: Chao
+    email: gchao@umich.edu
+  - family-names: Liu
+    given-names: Jialin
+    email: alanliu@umich.edu
+  - family-names: Sodicoff
+    given-names: Joshua
+    email: sodicoff@umich.edu
+  - family-names: Kozareva
+    given-names: Velina
+  - family-names: Macosko
+    given-names: Evan
+  year: '2025'
+  doi: 10.32614/CRAN.package.rliger
+- type: software
+  title: scDblFinder
+  abstract: 'scDblFinder: scDblFinder'
+  notes: Imports
+  url: https://plger.github.io/scDblFinder/
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Germain
+    given-names: Pierre-Luc
+    email: pierre-luc.germain@hest.ethz.ch
+    orcid: https://orcid.org/0000-0003-3418-4218
+  year: '2025'
+  doi: 10.18129/B9.bioc.scDblFinder
+- type: software
+  title: Seurat
+  abstract: 'Seurat: Tools for Single Cell Genomics'
+  notes: Imports
+  url: https://satijalab.org/seurat
+  repository: https://CRAN.R-project.org/package=Seurat
+  authors:
+  - family-names: Satija
+    given-names: Rahul
+    email: seurat@nygenome.org
+    orcid: https://orcid.org/0000-0001-9448-8833
+  year: '2025'
+  doi: 10.32614/CRAN.package.Seurat
+- type: software
+  title: SingleCellExperiment
+  abstract: 'SingleCellExperiment: S4 Classes for Single Cell Data'
+  notes: Imports
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Lun
+    given-names: Aaron
+    email: infinite.monkeys.with.keyboards@gmail.com
+  - family-names: Risso
+    given-names: Davide
+    email: risso.davide@gmail.com
+  year: '2025'
+  doi: 10.18129/B9.bioc.SingleCellExperiment
+- type: software
+  title: SingleR
+  abstract: 'SingleR: Reference-Based Single-Cell RNA-Seq Annotation'
+  notes: Imports
+  url: https://github.com/SingleR-inc/SingleR
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Aran
+    given-names: Dvir
+    email: dvir.aran@ucsf.edu
+  year: '2025'
+  doi: 10.18129/B9.bioc.SingleR
+- type: software
+  title: stats
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+- type: software
+  title: utils
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
 - type: software
   title: cffr
   abstract: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'

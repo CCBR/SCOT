@@ -17,3 +17,7 @@ rlang::`:=`
 #' @importFrom rlang .data
 #' @export
 rlang::.data
+
+# Namespaces in Imports field not imported from:
+#   ‘SingleCellExperiment’ ‘grDevices’ ‘ontologyIndex’ ‘utils’
+#   All declared Imports should be used.
