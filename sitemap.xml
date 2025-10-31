@@ -7,6 +7,26 @@
 <url><loc>https://ccbr.github.io/SCOT/authors.html</loc></url>
 <url><loc>https://ccbr.github.io/SCOT/index.html</loc></url>
 <url><loc>https://ccbr.github.io/SCOT/news/index.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/abort_packages_not_installed.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/add_VDJ_metadata.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/calc_sc_gsea_score.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/check_packages_installed.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/cluster_metrics.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/convert_human_gene_list.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/convert_mtx_to_h5.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/filter_doublets.html</loc></url>
 <url><loc>https://ccbr.github.io/SCOT/reference/index.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/make_bubble_plot.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/make_volcano_plot.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/preprocess_sample.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/reexports.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/run_AUCell.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/run_batch_correction.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/run_hypergeometric_test.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/run_singleR.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/run_singleR_cluster.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/run_singleR_db.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/seurat_clustering.html</loc></url>
+<url><loc>https://ccbr.github.io/SCOT/reference/split_featurePlot.html</loc></url>
 </urlset>
 
