@@ -9,7 +9,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0001-8978-8495")),
     person("CCR Collaborative Bioinformatics Resource", role = "cph")
   )
-Description: R package for frequently used single cell RNA-seq functions.
+Description: Toolbox for single cell RNA-seq.
 License: MIT + file LICENSE
 Imports:
     AnnotationDbi,
