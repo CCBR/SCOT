@@ -28,8 +28,8 @@ preprocess_sample <- function(so_in, species, npcs_in) {
     g2m.genes <- Seurat::cc.genes$g2m.genes
   } else if (species == "mm10") {
     print("--proccesing mouse data")
-    s.genes <- convert_human_gene_list(cc.genes$s.genes)
-    g2m.genes <- convert_human_gene_list(cc.genes$g2m.genes)
+    s.genes <- convert_human_gene_list(Seurat::cc.genes$s.genes)
+    g2m.genes <- convert_human_gene_list(Seurat::cc.genes$g2m.genes)
   }
 
   # process
