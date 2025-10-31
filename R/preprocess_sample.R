@@ -22,12 +22,10 @@
 #' @return A Seurat single cell object with normalized read counts
 
 preprocess_sample <- function(so_in, species, npcs_in) {
-  # assign genes depending on species input
-  # TODO cc.genes is not initialized
   if (species == "hg38" || species == "hg19") {
     print("--proccesing human data")
-    s.genes <- cc.genes$s.genes
-    g2m.genes <- cc.genes$g2m.genes
+    s.genes <- Seurat::cc.genes$s.genes
+    g2m.genes <- Seurat::cc.genes$g2m.genes
   } else if (species == "mm10") {
     print("--proccesing mouse data")
     s.genes <- convert_human_gene_list(cc.genes$s.genes)
