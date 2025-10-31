@@ -1,4 +1,4 @@
-FROM nciccbr/ccbr_ubuntu_22.04:v4
+FROM nciccbr/ccbr_ubuntu_base_20.04:v7
 
 # build time variables
 ARG BUILD_DATE="000000"
@@ -13,13 +13,8 @@ ENV R_VERSION=${R_VERSION}
 
 SHELL ["/bin/bash", "-lc"]
 
-# Pin channels and update
-RUN conda config --add channels conda-forge \
- && conda config --add channels bioconda \
- && conda config --set channel_priority strict
-
 # install conda packages
-RUN mamba install -y -c conda-forge \
+RUN mamba install -y -c conda-forge -c bioconda \
     r-base=${R_VERSION} \
     r-devtools \
   && conda clean -afy
