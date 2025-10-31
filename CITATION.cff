@@ -9,7 +9,7 @@ type: software
 license: MIT
 title: 'SCOT: Single Cell Omics Toolbox'
 version: 0.0.0.9000
-abstract: R package development for frequently used single cell RNA-seq functions
+abstract: Toolbox for single cell RNA-seq.
 authors:
 - family-names: Wong
   given-names: Nathan
@@ -219,20 +219,6 @@ references:
     address: Vienna, Austria
   year: '2025'
 - type: software
-  title: GSEABase
-  abstract: 'GSEABase: Gene set enrichment data structures and methods'
-  notes: Imports
-  repository: https://bioconductor.org/
-  authors:
-  - family-names: Morgan
-    given-names: Martin
-  - family-names: Falcon
-    given-names: Seth
-  - family-names: Gentleman
-    given-names: Robert
-  year: '2025'
-  doi: 10.18129/B9.bioc.GSEABase
-- type: software
   title: harmony
   abstract: 'harmony: Fast, Sensitive, and Accurate Integration of Single Cell Data'
   notes: Imports
@@ -284,20 +270,9 @@ references:
     email: stefan@stefanbache.dk
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
   year: '2025'
   doi: 10.32614/CRAN.package.magrittr
-- type: software
-  title: ontologyIndex
-  abstract: 'ontologyIndex: Reading Ontologies into R'
-  notes: Imports
-  repository: https://CRAN.R-project.org/package=ontologyIndex
-  authors:
-  - family-names: Greene
-    given-names: Daniel
-    email: dg333@cam.ac.uk
-  year: '2025'
-  doi: 10.32614/CRAN.package.ontologyIndex
 - type: software
   title: ontoProc
   abstract: 'ontoProc: processing of ontologies of anatomy, cell lines, and so on'
@@ -338,6 +313,18 @@ references:
   - family-names: Carlson
     given-names: Marc
   year: '2025'
+- type: software
+  title: reshape2
+  abstract: 'reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package'
+  notes: Imports
+  url: https://github.com/hadley/reshape
+  repository: https://CRAN.R-project.org/package=reshape2
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: h.wickham@gmail.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.reshape2
 - type: software
   title: rlang
   abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
@@ -408,19 +395,69 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.Seurat
 - type: software
-  title: SingleCellExperiment
-  abstract: 'SingleCellExperiment: S4 Classes for Single Cell Data'
+  title: SeuratObject
+  abstract: 'SeuratObject: Data Structures for Single Cell Data'
   notes: Imports
-  repository: https://bioconductor.org/
+  url: https://satijalab.github.io/seurat-object/
+  repository: https://CRAN.R-project.org/package=SeuratObject
   authors:
-  - family-names: Lun
-    given-names: Aaron
-    email: infinite.monkeys.with.keyboards@gmail.com
-  - family-names: Risso
-    given-names: Davide
-    email: risso.davide@gmail.com
+  - family-names: Hoffman
+    given-names: Paul
+    email: hoff0792@alumni.umn.edu
+    orcid: https://orcid.org/0000-0002-7693-8957
+  - family-names: Satija
+    given-names: Rahul
+    email: seurat@nygenome.org
+    orcid: https://orcid.org/0000-0001-9448-8833
+  - family-names: Collins
+    given-names: David
+    email: dcollins@nygenome.org
+    orcid: https://orcid.org/0000-0001-9243-7821
+  - family-names: Hao
+    given-names: Yuhan
+    email: yhao@nygenome.org
+    orcid: https://orcid.org/0000-0002-1810-0822
+  - family-names: Hartman
+    given-names: Austin
+    email: ahartman@nygenome.org
+    orcid: https://orcid.org/0000-0001-7278-1852
+  - family-names: Molla
+    given-names: Gesmira
+    email: gmolla@nygenome.org
+    orcid: https://orcid.org/0000-0002-8628-5056
+  - family-names: Butler
+    given-names: Andrew
+    email: abutler@nygenome.org
+    orcid: https://orcid.org/0000-0003-3608-0463
+  - family-names: Stuart
+    given-names: Tim
+    email: tstuart@nygenome.org
+    orcid: https://orcid.org/0000-0002-3044-0897
   year: '2025'
-  doi: 10.18129/B9.bioc.SingleCellExperiment
+  doi: 10.32614/CRAN.package.SeuratObject
+- type: software
+  title: SeuratWrappers
+  abstract: 'SeuratWrappers: Community-Provided Methods and Extensions for the Seurat
+    Object'
+  notes: Imports
+  authors:
+  - family-names: Butler
+    given-names: Andrew
+    email: abutler@nygenome.org
+    orcid: https://orcid.org/0000-0003-3608-0463
+  - family-names: Hoffman
+    given-names: Paul
+    email: nygcSatijalab@nygenome.org
+    orcid: https://orcid.org/0000-0002-7693-8957
+  - family-names: Satija
+    given-names: Rahul
+    email: rsatija@nygenome.org
+    orcid: https://orcid.org/0000-0001-9448-8833
+  - family-names: Stuart
+    given-names: Tim
+    email: tstuart@nygenome.org
+    orcid: https://orcid.org/0000-0002-3044-0897
+  year: '2025'
 - type: software
   title: SingleR
   abstract: 'SingleR: Reference-Based Single-Cell RNA-Seq Annotation'
@@ -467,6 +504,20 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.cffr
 - type: software
+  title: GSEABase
+  abstract: 'GSEABase: Gene set enrichment data structures and methods'
+  notes: Suggests
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Morgan
+    given-names: Martin
+  - family-names: Falcon
+    given-names: Seth
+  - family-names: Gentleman
+    given-names: Robert
+  year: '2025'
+  doi: 10.18129/B9.bioc.GSEABase
+- type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
   notes: Suggests
@@ -479,6 +530,29 @@ references:
     orcid: https://orcid.org/0000-0003-0645-5666
   year: '2025'
   doi: 10.32614/CRAN.package.knitr
+- type: software
+  title: ontologyIndex
+  abstract: 'ontologyIndex: Reading Ontologies into R'
+  notes: Suggests
+  repository: https://CRAN.R-project.org/package=ontologyIndex
+  authors:
+  - family-names: Greene
+    given-names: Daniel
+    email: dg333@cam.ac.uk
+  year: '2025'
+  doi: 10.32614/CRAN.package.ontologyIndex
+- type: software
+  title: R.utils
+  abstract: 'R.utils: Various Programming Utilities'
+  notes: Suggests
+  url: https://henrikbengtsson.github.io/R.utils/
+  repository: https://CRAN.R-project.org/package=R.utils
+  authors:
+  - family-names: Bengtsson
+    given-names: Henrik
+    email: henrikb@braju.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.R.utils
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -523,6 +597,20 @@ references:
     orcid: https://orcid.org/0000-0003-3925-190X
   year: '2025'
   doi: 10.32614/CRAN.package.rmarkdown
+- type: software
+  title: SingleCellExperiment
+  abstract: 'SingleCellExperiment: S4 Classes for Single Cell Data'
+  notes: Suggests
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Lun
+    given-names: Aaron
+    email: infinite.monkeys.with.keyboards@gmail.com
+  - family-names: Risso
+    given-names: Davide
+    email: risso.davide@gmail.com
+  year: '2025'
+  doi: 10.18129/B9.bioc.SingleCellExperiment
 - type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
