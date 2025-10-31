@@ -9,6 +9,7 @@
 ^\.pre-commit-config\.yaml$
 ^\.prettierignore$
 ^\.prettierrc$
+^\.lintr$
 ^data-raw$
 ^Dockerfile$
 ^CITATION\.cff$
