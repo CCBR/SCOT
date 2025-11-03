@@ -17,7 +17,7 @@
 run_singleR_cluster <- function(so_in, ref_file, label) {
   avg <- Seurat::AverageExpression(so_in, assays = "SCT")
   avg <- as.data.frame(avg)
-  ref <- refFile # TODO R CMD check: no visible binding for global variable ‘refFile’
+  ref <- ref_file
   s <- SingleR::SingleR(test = as.matrix(avg), ref = ref, labels = ref[[label]])
 
   clust_annot <- s$labels
