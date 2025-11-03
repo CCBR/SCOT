@@ -53,8 +53,7 @@ detailed information on each function in the package.
 <!--
 ## Example
 &#10;This is a basic example which shows you how to solve a common problem:
-&#10;
-``` r
+&#10;```r
 library(SCOT)
 ## basic example code
 ```

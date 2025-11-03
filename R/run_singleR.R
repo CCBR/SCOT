@@ -8,9 +8,9 @@
 #'
 #' @import SingleR
 #' @import Seurat
-#' 
+#'
 #' @export
-#' 
+#'
 #' @return A vector of pruned cell type labels
 
 
