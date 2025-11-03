@@ -6,18 +6,12 @@
 #' @param ref_file A reference file in a SingleCellExperiment format, such as those obtained from SingleR/CellDex package
 #' @param label The label identity to be used. Must be a column header in the metadata of `ref_file`
 #'
-#' @import SingleR
-#' @import Seurat
-#'
 #' @export
 #'
 #' @return A vector of pruned cell type labels
-
-
 run_singleR <- function(so, ref_file, label) {
-  obj <- DietSeurat(so, graphs = "umap")
-  sce <- as.SingleCellExperiment(so, assay = "SCT")
-  ref <- ref_file
-  s <- SingleR(test = sce, ref = ref, labels = ref[[label]])
+  obj <- Seurat::DietSeurat(so, graphs = "umap")
+  sce <- Seurat::as.SingleCellExperiment(so, assay = "SCT")
+  s <- SingleR::SingleR(test = sce, ref = ref_file, labels = ref_file[[label]])
   return(s$pruned.labels)
 }
