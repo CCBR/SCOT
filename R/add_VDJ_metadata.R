@@ -12,13 +12,12 @@
 #'
 #' @export
 #'
-#'@return A Seurat object with V(D)J metadata
-
-add_VDJ_metadata = function(so, vdj_file){
+#' @return A Seurat object with V(D)J metadata
+add_VDJ_metadata <- function(so, vdj_file) {
   prefix <- basename(vdj_file)
 
-  #Used in the case of multiple V(D)J alignments
-  if (prefix == "outs"){
+  # Used in the case of multiple V(D)J alignments
+  if (prefix == "outs") {
     prefix <- ""
   } else {
     prefix <- paste0(prefix, "_")
