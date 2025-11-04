@@ -5,7 +5,7 @@
 \title{run_hypergeometric_test: Calculates the p-value of an overrepresentation test
 using the hypergeometric test}
 \usage{
-run_hypergeometric_test(selectedVect, refVect, worldSize, lowerTail = F)
+run_hypergeometric_test(selectedVect, refVect, worldSize, lowerTail = FALSE)
 }
 \arguments{
 \item{selectedVect}{A vector of selected genes from a dataset}
