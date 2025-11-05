@@ -17,7 +17,8 @@ check_packages_installed <- function(...) {
 #' Throw error if required packages are not installed.
 #'
 #' Reports which packages need to be installed and the parent function name.
-#' See \url{https://stackoverflow.com/questions/15595478/how-to-get-the-name-of-the-calling-function-inside-the-called-routine}
+#' https://stackoverflow.com/questions/15595478/how-to-get-the-name-of-the-calling-function-inside-the-called-routine
+#'
 #' This is only intended to be used inside a function. It will error otherwise.
 #'
 #' @inheritParams check_packages_installed
@@ -34,7 +35,8 @@ abort_packages_not_installed <- function(...) {
   packages_not_installed <- Filter(isFALSE, package_status)
   if (length(packages_not_installed) > 0) {
     msg <- paste0(
-      "The following package(s) are required for `", parent_fcn_name,
+      "The following package(s) are required for `",
+      parent_fcn_name,
       "` but are not installed: \n  ",
       paste0(names(packages_not_installed), collapse = ", ")
     )

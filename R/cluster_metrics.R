@@ -27,29 +27,26 @@
 #' @export
 #'
 #' @import clusterSim
-
-cluster_metrics <- function(
-  so,cluster_list, dims = 1:20,
-  reduction = "pca", silhouette = TRUE
-) {
-  embed_mat <- Embeddings(so, reduction = reduction)[, dims]
+cluster_metrics <- function(so,
+                            cluster_list,
+                            dims = 1:20,
+                            reduction = "pca",
+                            silhouette = TRUE) {
+  embed_mat <- SeuratObject::Embeddings(so, reduction = reduction)[, dims]
 
   cluster_scores <- matrix(ncol = 2, nrow = length(cluster_list))
   colnames(cluster_scores)[1:2] <- c("CalinskiHarabasz", "DaviesBouldin")
   if (ncol(so) > 90000) {
-    silhouette <- F
+    silhouette <- FALSE
   }
   if (silhouette == TRUE) {
     distance <- dist(embed_mat)
-    cluster_scores <- cbind(
-      cluster_scores,
-      vector(length = length(cluster_list))
-    )
+    cluster_scores <- cbind(cluster_scores, vector(length = length(cluster_list)))
     colnames(cluster_scores)[3] <- "Silhouette"
   }
   rownames(cluster_scores) <- cluster_list
 
-  for (i in 1:length(cluster_list)) {
+  for (i in seq_along(cluster_list)) {
     cluster_label <- cluster_list[i]
     clusters <- as.numeric(unlist(so[[cluster_label]]))
 

@@ -25,18 +25,19 @@
 #' @export
 #'
 #' @return A list of ggplot2 plots
-split_featurePlot <- function(
-    so,
-    features,
-    split_ident,
-    label = FALSE,
-    ncol = NA, nrow = NA,
-    min.cutoff = NA, max.cutoff = NA,
-    plot_image = FALSE,
-    return_list = FALSE,
-    slot = "scale.data",
-    order = FALSE,
-    reduction = NULL) {
+split_featurePlot <- function(so,
+                              features,
+                              split_ident,
+                              label = FALSE,
+                              ncol = NA,
+                              nrow = NA,
+                              min.cutoff = NA,
+                              max.cutoff = NA,
+                              plot_image = FALSE,
+                              return_list = FALSE,
+                              slot = "scale.data",
+                              order = FALSE,
+                              reduction = NULL) {
   plot_list <- list()
   plot_output <- list()
   if (is.null(reduction)) {
@@ -50,9 +51,13 @@ split_featurePlot <- function(
     for (ident in unique(unlist(so[[split_ident]]))) {
       plot_list[[feature]][[ident]] <- Seurat::FeaturePlot(
         so[, which(so[[split_ident]] == ident)],
-        features = feature, label = label,
-        min.cutoff = min.cutoff, max.cutoff = max.cutoff,
-        slot = slot, order = order, reduction = reduction
+        features = feature,
+        label = label,
+        min.cutoff = min.cutoff,
+        max.cutoff = max.cutoff,
+        slot = slot,
+        order = order,
+        reduction = reduction
       ) +
         ggplot2::xlim(range(embed[, 1])) + ggplot2::ylim(range(embed[, 2])) +
         ggplot2::ggtitle(ident)
@@ -60,21 +65,23 @@ split_featurePlot <- function(
   }
   # TODO refactor with map or lapply
   for (feature in names(plot_list)) {
-    if (is.na(ncol) & is.na(nrow)) {
+    if (is.na(ncol) && is.na(nrow)) {
       ncol <- length(plot_list[[feature]])
       nrow <- 1
     }
-    if (is.na(ncol) & !is.na(nrow)) {
+    if (is.na(ncol) && !is.na(nrow)) {
       ncol <- ceiling(length(plot_list[[feature]]) / nrow)
     }
-    if (is.na(nrow) & !is.na(ncol)) {
+    if (is.na(nrow) && !is.na(ncol)) {
       nrow <- ceiling(length(plot_list[[feature]]) / ncol)
     }
 
     plot_print <- ggpubr::ggarrange(
       plotlist = plot_list[[feature]],
-      ncol = ncol, nrow = nrow,
-      common.legend = TRUE, legend = "right"
+      ncol = ncol,
+      nrow = nrow,
+      common.legend = TRUE,
+      legend = "right"
     )
     plot_print <- ggpubr::annotate_figure(plot_print,
       top = ggpubr::text_grob(feature, face = "bold", size = 14)

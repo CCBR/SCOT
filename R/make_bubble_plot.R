@@ -13,8 +13,11 @@
 #'
 #' @return A ggplot2 figure
 #'
-make_bubble_plot <- function(
-    so, features, palette = "RdBu", assay = "SCT", ident = "seurat_clusters") {
+make_bubble_plot <- function(so,
+                             features,
+                             palette = "RdBu",
+                             assay = "SCT",
+                             ident = "seurat_clusters") {
   # data variables must be initialized to silence the R CMD check note:
   #    'no visible binding for global variable'
   pct.exp <- id <- features.plot <- group <- Gene <- Pct.Exp <- AvgExp <- NULL
@@ -38,13 +41,23 @@ make_bubble_plot <- function(
     )]
   }
 
-  bubble_plot <- ggplot2::ggplot(avg_expression_df, ggplot2::aes(
-    x = group, y = Gene, size = Pct.Exp, color = AvgExp
-  )) +
+  bubble_plot <- ggplot2::ggplot(
+    avg_expression_df,
+    ggplot2::aes(
+      x = group,
+      y = Gene,
+      size = Pct.Exp,
+      color = AvgExp
+    )
+  ) +
     ggplot2::geom_point() +
     ggplot2::scale_color_distiller(palette = palette) +
     ggplot2::theme_bw() +
-    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, vjust = 1, hjust = 1))
+    ggplot2::theme(axis.text.x = ggplot2::element_text(
+      angle = 45,
+      vjust = 1,
+      hjust = 1
+    ))
 
   return(bubble_plot)
 }

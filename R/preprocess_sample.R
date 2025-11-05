@@ -20,7 +20,6 @@
 #' @export
 #'
 #' @return A Seurat single cell object with normalized read counts
-
 preprocess_sample <- function(so_in, species, npcs_in) {
   if (species == "hg38" || species == "hg19") {
     print("--proccesing human data")
@@ -33,13 +32,15 @@ preprocess_sample <- function(so_in, species, npcs_in) {
   }
 
   # process
-  so_1 <- NormalizeData(so_in,
+  so_1 <- NormalizeData(
+    so_in,
     normalization.method = "LogNormalize",
     scale.factor = 10000,
     assay = "RNA"
   )
   so_2 <- ScaleData(so_1, assay = "RNA")
-  so_3 <- CellCycleScoring(so_2,
+  so_3 <- CellCycleScoring(
+    so_2,
     s.features = s.genes,
     g2m.features = g2m.genes,
     set.ident = TRUE
