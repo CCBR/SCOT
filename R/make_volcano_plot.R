@@ -10,8 +10,6 @@
 #' @param pval Boolean to color genes meeting p-value threshold of 0.05
 #' @param significant Boolean to color genes that meet both above thresholds
 #'
-#' @import ggplot2
-#'
 #' @export
 #'
 #' @return Returns a volcano plot as a ggplot2 object
@@ -50,7 +48,7 @@ make_volcano_plot <- function(de_table,
     )
   )
 
-  volcano <- ggplot(df, aes(x = avg_log2FC, y = log10_p, col = significance)) +
-    geom_point()
+  volcano <- ggplot2::ggplot(df, ggplot2::aes(x = avg_log2FC, y = log10_p, col = significance)) +
+    ggplot2::geom_point()
   return(volcano)
 }

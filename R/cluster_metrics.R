@@ -32,7 +32,7 @@ cluster_metrics <- function(so,
                             dims = 1:20,
                             reduction = "pca",
                             silhouette = TRUE) {
-  embed_mat <- Embeddings(so, reduction = reduction)[, dims]
+  embed_mat <- SeuratObject::Embeddings(so, reduction = reduction)[, dims]
 
   cluster_scores <- matrix(ncol = 2, nrow = length(cluster_list))
   colnames(cluster_scores)[1:2] <- c("CalinskiHarabasz", "DaviesBouldin")

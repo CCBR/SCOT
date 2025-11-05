@@ -26,13 +26,13 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     # bcmvn <- find.pK(sweep_stats)
 
     ## Homotypic Doublet Proportion Estimate
-    homotypic_prop <- modelHomotypic(so_in$annot)
+    homotypic_prop <- DoubletFinder::modelHomotypic(so_in$annot)
     perc <- 0.005 * (length(colnames(so_in)) / 1000)
     nExp_poi <- round(perc * length(colnames(so_in))) # dfso@cell.names
     nExp_poi_adj <- round(nExp_poi * (1 - homotypic_prop))
 
     ## Run DoubletFinder with varying classification stringencies
-    dfso <- doubletFinder(
+    dfso <- DoubletFinder::doubletFinder(
       so_in,
       pN = 0.25,
       pK = 0.09,
@@ -43,7 +43,7 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     )
 
     pAAN <- utils::tail(names(dfso@meta.data), 2)[1]
-    dfso <- doubletFinder(
+    dfso <- DoubletFinder::doubletFinder(
       dfso,
       pN = 0.25,
       pK = 0.09,
@@ -55,7 +55,7 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     so_in$doubletFinder_label <- dfso[[utils::tail(names(dfso@meta.data), 1)]]
     so_in <- subset(so_in, cells = colnames(so_in)[which(so_in$doubletFinder_label == "Singlet")])
   } else if (doublet_finder_method == "scDblFinder") {
-    sce <- as.SingleCellExperiment(so_in)
+    sce <- Seurat::as.SingleCellExperiment(so_in)
     set.seed(42)
     sce_dbl <- scDblFinder(sce) %>% suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
@@ -66,13 +66,13 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     # bcmvn <- find.pK(sweep_stats)
 
     ## Homotypic Doublet Proportion Estimate
-    homotypic_prop <- modelHomotypic(so_in$annot)
+    homotypic_prop <- DoubletFinder::modelHomotypic(so_in$annot)
     perc <- 0.005 * (length(colnames(so_in)) / 1000)
     nExp_poi <- round(perc * length(colnames(so_in))) # dfso@cell.names
     nExp_poi_adj <- round(nExp_poi * (1 - homotypic_prop))
 
     ## Run DoubletFinder with varying classification stringencies
-    dfso <- doubletFinder(
+    dfso <- DoubletFinder::doubletFinder(
       so_in,
       pN = 0.25,
       pK = 0.09,
@@ -83,7 +83,7 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     )
 
     pAAN <- utils::tail(names(dfso@meta.data), 2)[1]
-    dfso <- doubletFinder(
+    dfso <- DoubletFinder::doubletFinder(
       dfso,
       pN = 0.25,
       pK = 0.09,
@@ -94,9 +94,9 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     )
     so_in$doubletFinder_label <- dfso[[utils::tail(names(dfso@meta.data), 1)]]
 
-    sce <- as.SingleCellExperiment(so_in)
+    sce <- Seurat::as.SingleCellExperiment(so_in)
     set.seed(42)
-    sce_dbl <- scDblFinder(sce) %>% suppressWarnings()
+    sce_dbl <- scDblFinder::scDblFinder(sce) %>% suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
     so_in <- subset(so_in, cells = colnames(so_in)[intersect(
       which(so_in$doubletFinder_label == "Singlet"),
@@ -108,13 +108,13 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     # bcmvn <- find.pK(sweep_stats)
 
     ## Homotypic Doublet Proportion Estimate
-    homotypic_prop <- modelHomotypic(so_in$annot)
+    homotypic_prop <- DoubletFinder::modelHomotypic(so_in$annot)
     perc <- 0.005 * (length(colnames(so_in)) / 1000)
     nExp_poi <- round(perc * length(colnames(so_in))) # dfso@cell.names
     nExp_poi_adj <- round(nExp_poi * (1 - homotypic_prop))
 
     ## Run DoubletFinder with varying classification stringencies
-    dfso <- doubletFinder(
+    dfso <- DoubletFinder::doubletFinder(
       so_in,
       pN = 0.25,
       pK = 0.09,
@@ -125,7 +125,7 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     )
 
     pAAN <- utils::tail(names(dfso@meta.data), 2)[1]
-    dfso <- doubletFinder(
+    dfso <- DoubletFinder::doubletFinder(
       dfso,
       pN = 0.25,
       pK = 0.09,
@@ -136,7 +136,7 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     )
     so_in$doubletFinder_label <- dfso[[utils::tail(names(dfso@meta.data), 1)]]
 
-    sce <- as.SingleCellExperiment(so_in)
+    sce <- Seurat::as.SingleCellExperiment(so_in)
     set.seed(42)
     sce_dbl <- scDblFinder(sce) %>% suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
