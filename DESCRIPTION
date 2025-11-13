@@ -35,13 +35,8 @@ Imports:
     rliger,
     scDblFinder,
     Seurat,
-<<<<<<< HEAD
-    SeuratObject,
-    SeuratWrappers,
-=======
     SeuratData,
     SingleCellExperiment,
->>>>>>> 6c9f3fa (feat: tests and plotting function updates)
     SingleR,
     stats,
     utils
@@ -55,16 +50,12 @@ Suggests:
     SingleCellExperiment,
     testthat (>= 3.0.0),
     usethis
-<<<<<<< HEAD
 Remotes:
     chris-mcginnis-ucsf/DoubletFinder,
     rnabioco/djvdj@*release,
     SeuratWrappers=satijalab/seurat-wrappers
 biocViews:
 Config/Needs/check: rcmdcheck, lintr, goodpractice
-=======
-biocViews:
->>>>>>> 6c9f3fa (feat: tests and plotting function updates)
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
