@@ -27,16 +27,22 @@ make_bubble_plot <- function(so,
   dotplot <- Seurat::DotPlot(so, features = features)
   pct_expression <- dplyr::select(dotplot$data, pct.exp, id, features.plot)
 
-  avg_expression <- Seurat::AverageExpression(so, assays = assay)[[assay]]
+  avg_expression <- Seurat::AverageExpression(so, assays = assay)[[assay]][features,]
   avg_expression <- as.matrix(avg_expression)
   avg_expression_df <- reshape2::melt(avg_expression)
-  colnames(avg_expression_df) <- c("group", "Gene", "AvgExp")
+  
+  # group and Gene appears to be in the wrong order
+  ## original
+  ## colnames(avg_expression_df) <- c("group", "Gene", "AvgExp")
+  
+  ## new
+  colnames(avg_expression_df) <- c("Gene","group","AvgExp")
   avg_expression_df$PctExp <- 0
 
   # TODO refactor this with map
-  for (i in seq_len(avg_expression_df)) {
+  for (i in 1:nrow(avg_expression_df)) {
     avg_expression_df[i, 4] <- pct_expression$pct.exp[which(
-      pct_expression$id == avg_expression_df[ident, i] &
+      pct_expression$id == avg_expression_df$group[i] &
         pct_expression$features.plot == avg_expression_df$Gene[i]
     )]
   }
