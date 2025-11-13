@@ -8,20 +8,20 @@
 #' (SingleCellExperiment object)
 #' @param label A cell type label from the metadata column headers
 #'
-#' @import celldex
-#' @import SingleR
-#' 
-#' @export 
-#' 
+#' @export
+#'
 #' @return A character vector of matched cell type annotations based on
 #' clusters
 #'
-
 run_singleR_cluster <- function(so_in, ref_file, label) {
-  avg <- AverageExpression(so_in, assays = "SCT")
+  avg <- Seurat::AverageExpression(so_in, assays = "SCT")
   avg <- as.data.frame(avg)
-  ref <- refFile
-  s <- SingleR(test = as.matrix(avg), ref = ref, labels = ref[[label]])
+  ref <- ref_file
+  s <- SingleR::SingleR(
+    test = as.matrix(avg),
+    ref = ref,
+    labels = ref[[label]]
+  )
 
   clust_annot <- s$labels
   names(clust_annot) <- colnames(avg)

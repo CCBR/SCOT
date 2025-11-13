@@ -9,15 +9,17 @@
 #' produce more clusters (Default 0.8)
 #' @param algorithm A value of 1 (Louvain), 2 (Leiden), or 3 (Slow Local Moving
 #' (SLM)) to select the clustering algorithm (Default 3)
-#' 
+#'
 #' @import Seurat
-#' 
+#'
 #' @export
 #'
 #' @return The updated Seurat single cell object with recalculated PCA,
 #' neighbors, UMAP and clusters
-
-seurat_clustering <- function(so_in, npcs_in, resolution = 0.8, algorithm = 3) {
+seurat_clustering <- function(so_in,
+                              npcs_in,
+                              resolution = 0.8,
+                              algorithm = 3) {
   so <- RunPCA(
     object = so_in,
     features = VariableFeatures(object = so_in),
@@ -25,7 +27,11 @@ seurat_clustering <- function(so_in, npcs_in, resolution = 0.8, algorithm = 3) {
     npcs = 50
   )
   so <- FindNeighbors(so, dims = 1:npcs_in)
-  so <- FindClusters(so, resolution = 0.8, algorithm = 3, verbose = TRUE)
+  so <- FindClusters(so,
+    resolution = 0.8,
+    algorithm = 3,
+    verbose = TRUE
+  )
   so <- RunUMAP(so, dims = 1:npcs_in, n.components = 3)
   return(so)
 }

@@ -9,10 +9,8 @@ Authors@R: c(
            comment = c(ORCID = "0000-0001-8978-8495")),
     person("CCR Collaborative Bioinformatics Resource", role = "cph")
   )
-Description: R package development for frequently used single cell RNA-seq
-    functions
+Description: Toolbox for single cell RNA-seq.
 License: MIT + file LICENSE
-biocViews:
 Imports:
     AnnotationDbi,
     AUCell,
@@ -25,29 +23,39 @@ Imports:
     ggplot2,
     ggpubr,
     grDevices,
-    GSEABase,
     harmony,
     magrittr,
-    ontologyIndex,
     ontoProc,
     org.Hs.eg.db,
     org.Mm.eg.db,
     Orthology.eg.db,
+    reshape2,
     rlang,
     rliger,
     scDblFinder,
     Seurat,
-    SingleCellExperiment,
+    SeuratObject,
+    SeuratWrappers,
     SingleR,
     stats,
     utils
 Suggests:
     cffr,
+    GSEABase,
     knitr,
+    ontologyIndex,
+    R.utils,
     rmarkdown,
+    SingleCellExperiment,
     testthat (>= 3.0.0),
     usethis
+Remotes:
+    chris-mcginnis-ucsf/DoubletFinder,
+    rnabioco/djvdj@*release,
+    SeuratWrappers=satijalab/seurat-wrappers
+biocViews:
+Config/Needs/check: rcmdcheck, lintr, goodpractice
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3

@@ -9,7 +9,8 @@ run_singleR(so, ref_file, label)
 \arguments{
 \item{so}{A Seurat single cell object}
 
-\item{ref_file}{A reference file in a SingleCellExperiment format, such as those obtained from SingleR/CellDex package}
+\item{ref_file}{A reference file in a SingleCellExperiment format, such as those obtained from SingleR/CellDex
+package}
 
 \item{label}{The label identity to be used. Must be a column header in the metadata of \code{ref_file}}
 }

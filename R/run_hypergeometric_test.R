@@ -15,15 +15,17 @@
 #' dataset as a whole
 #' @param lowerTail Calculates the p-value as likelihood of being in the upper
 #' tail (default) or the lower tail of the distribution
-#' 
+#'
 #' @import stats
 #'
 #' @export
 #'
 #' @return Returns a vector with the relevant statistics used to generate the
 #' hypergeometric test
-
-run_hypergeometric_test <- function(selectedVect, refVect, worldSize, lowerTail = F) {
+run_hypergeometric_test <- function(selectedVect,
+                                    refVect,
+                                    worldSize,
+                                    lowerTail = FALSE) {
   intersectList <- intersect(selectedVect, refVect)
   inter.size <- length(intersectList)
   ref.size <- length(refVect)
@@ -32,12 +34,32 @@ run_hypergeometric_test <- function(selectedVect, refVect, worldSize, lowerTail 
 
   pVal <- 1
   if (inter.size > 0) {
-    pVal <- phyper(q = inter.size, m = ref.size, n = nonref.size, k = selection.size, lower.tail = lowerTail)
+    pVal <- phyper(
+      q = inter.size,
+      m = ref.size,
+      n = nonref.size,
+      k = selection.size,
+      lower.tail = lowerTail
+    )
   }
 
-  statVector <- c(pVal, inter.size, selection.size, ref.size, worldSize, paste(intersectList, collapse = ";"))
+  statVector <- c(
+    pVal,
+    inter.size,
+    selection.size,
+    ref.size,
+    worldSize,
+    paste(intersectList, collapse = ";")
+  )
 
-  names(statVector) <- c("P-value", "IntersectSize", "SelectGenesSize", "ReferenceSize", "WorldSize", "IntersectedGenes")
+  names(statVector) <- c(
+    "P-value",
+    "IntersectSize",
+    "SelectGenesSize",
+    "ReferenceSize",
+    "WorldSize",
+    "IntersectedGenes"
+  )
 
   return(statVector)
 }
