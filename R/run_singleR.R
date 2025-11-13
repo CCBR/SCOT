@@ -7,12 +7,9 @@
 #'   package
 #' @param label The label identity to be used. Must be a column header in the metadata of `ref_file`
 #'
-<<<<<<< HEAD
-=======
 #' @import SingleR
 #' @import Seurat
 #'
->>>>>>> 6c9f3fa (feat: tests and plotting function updates)
 #' @export
 #'
 #' @return A vector of pruned cell type labels
