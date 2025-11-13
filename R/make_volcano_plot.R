@@ -8,42 +8,16 @@
 #' p_val, pct.1, pct.2 avg_log2FC and p_val_adj
 #' @param logfc Boolean to color genes meeting logfc threshold of 1.5
 #' @param pval Boolean to color genes meeting p-value threshold of 0.05
-#' @param significant Boolean to color genes that meet both above thresholds
-<<<<<<< HEAD
-=======
 #' @param label Numeric value of top n genes to label, or a character vector of
 #' genes to label. Set label to NULL to generate unlabeled plot
 #'
 #' @import ggplot2
 #' @import ggrepel
->>>>>>> 6c9f3fa (feat: tests and plotting function updates)
 #'
 #' @export
 #'
 #' @return Returns a volcano plot as a ggplot2 object
-make_volcano_plot <- function(de_table,
-                              significant = TRUE,
-                              logfc = TRUE,
-                              pval = TRUE) {
-  log10_p <- -log10(de_table$p_val_adj)
-  log10_p[which(de_table$p_val_adj == 0)] <- 500
-  avg_log2FC <- de_table$avg_log2FC
-  gene <- rownames(de_table)
-  significance <- vector(length = length(log10_p))
-  significance[] <- "NotSignificant"
-  if (logfc == TRUE) {
-    significance[which(abs(de_table$avg_log2FC) > 1.5)] <- "avg_log2FC > 1.5"
-  }
-  if (pval == TRUE) {
-    significance[which(de_table$p_val_adj < 0.05)] <- "p_val_adj < 0.05"
-  }
-  if (significant == TRUE) {
-    significance[which(abs(de_table$avg_log2FC) > 1.5 &
-      de_table$p_val_adj < 0.05)] <- "p_val_adj < 0.05 & avg_log2FC > 1.5"
-  }
 
-<<<<<<< HEAD
-=======
 make_volcano_plot <- function(
   de_table,
   significant = TRUE,
@@ -72,21 +46,6 @@ make_volcano_plot <- function(
   rownames(df) <- rownames(de_table)
   df[, 1] <- as.numeric(df[, 1])
   df[, 2] <- as.numeric(df[, 2])
-<<<<<<< HEAD
-  df[, 3] <- factor(
-    df[, 3],
-    levels = c(
-      "NotSignificant",
-      "avg_log2FC > 1.5",
-      "p_val_adj < 0.05",
-      "p_val_adj < 0.05 & avg_log2FC > 1.5"
-    )
-  )
-
-  volcano <- ggplot2::ggplot(df, ggplot2::aes(x = avg_log2FC, y = log10_p, col = significance)) +
-    ggplot2::geom_point()
-  return(volcano)
-=======
   df[, 3] <- factor(df[, 3],
     levels = c(
       "NotSignificant", "avg_log2FC > 1.5",
@@ -119,5 +78,4 @@ make_volcano_plot <- function(
 
     return(volcano)
   }
->>>>>>> 6c9f3fa (feat: tests and plotting function updates)
 }
