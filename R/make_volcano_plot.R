@@ -40,8 +40,6 @@ make_volcano_plot <- function(
   if (significant == T) {
     significance[which(abs(de_table$avg_log2FC) > 1.5 & de_table$p_val_adj < 0.05)] <- "p_val_adj < 0.05 & avg_log2FC > 1.5"
   }
-
->>>>>>> 6c9f3fa (feat: tests and plotting function updates)
   df <- as.data.frame(cbind(avg_log2FC, log10_p, significance, gene))
   rownames(df) <- rownames(de_table)
   df[, 1] <- as.numeric(df[, 1])
