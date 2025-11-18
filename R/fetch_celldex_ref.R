@@ -7,11 +7,12 @@
 #'
 #' @param ref_name Character string to be used for retrieving references from
 #' the celldex package
+#' @param cache Character string to identify cache download location
 #'
 #' @export
 #'
 #' @return A celldex single cell object in SCE data structure
-fetch_celldex_ref <- function(ref_name, cache = '.') {
+fetch_celldex_ref <- function(ref_name, cache = ".") {
   ref <- switch(ref_name,
     "hpca" = ,
     "HumanPrimaryCellAtlasData" = celldex::fetchReference(

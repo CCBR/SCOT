@@ -8,10 +8,10 @@
 #' p_val, pct.1, pct.2 avg_log2FC and p_val_adj
 #' @param logfc Boolean to color genes meeting logfc threshold of 1.5
 #' @param pval Boolean to color genes meeting p-value threshold of 0.05
+#' @param significant Boolean to color genes that meet both logfc and p-value
+#' thresholds
 #' @param label Numeric value of top n genes to label, or a character vector of
 #' genes to label. Set label to NULL to generate unlabeled plot
-#' @param significant Numeric value of significant genes to label (top n genes)
-#' or character vector of user-specified genes
 #'
 #'
 #' @export

@@ -8,14 +8,15 @@
 #' @param palette A color palette from ggplot2
 #' @param assay The counts assay to use for determining expression
 #' @param ident The categorical identity to classify groups of cells
-#'
+#' @param scale Boolean to scale average expression across identities
 #'
 #' @export
 #'
 #' @return A ggplot2 figure
 #'
 make_bubble_plot <- function(
-  so, features, palette = "RdBu", assay = "SCT", ident = "seurat_clusters"
+  so, features, palette = "RdBu", assay = "SCT",
+  scale = FALSE, ident = "seurat_clusters"
 ) {
   pct.exp <- id <- features.plot <- NULL
   Group <- Gene <- PctExp <- AvgExp <- NULL
@@ -27,6 +28,10 @@ make_bubble_plot <- function(
 
   avg_expression <- Seurat::AverageExpression(so, assay = assay, features = features)[[assay]]
   avg_expression <- as.matrix(avg_expression)
+  colnames(avg_expression) <- gsub("-", "_", colnames(avg_expression))
+  if (isTRUE(scale)) {
+    avg_expression <- t(scale(t(avg_expression)))
+  }
   avg_expression_df <- reshape2::melt(avg_expression)
   colnames(avg_expression_df) <- c("Gene", "Group", "AvgExp")
   avg_expression_df$PctExp <- 0
