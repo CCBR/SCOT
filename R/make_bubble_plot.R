@@ -9,11 +9,6 @@
 #' @param assay The counts assay to use for determining expression
 #' @param ident The categorical identity to classify groups of cells
 #'
-#' @import Seurat
-#' @import ggplot2
-#' @import dplyr
-#' @import reshape2
-#' @import RColorBrewer
 #'
 #' @export
 #'
@@ -40,13 +35,13 @@ make_bubble_plot <- function(
     )]
   }
 
-  plot <- ggplot2::ggplot(avg_expression_df, aes(
+  plot <- ggplot2::ggplot(avg_expression_df, ggplot2::aes(
     x = Group, y = Gene, size = PctExp, color = AvgExp
   )) +
-    geom_point() +
-    scale_color_distiller(palette = palette) +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+    ggplot2::geom_point() +
+    ggplot2::scale_color_distiller(palette = palette) +
+    ggplot2::theme_bw() +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, vjust = 1, hjust = 1))
 
   return(bubble_plot)
 }

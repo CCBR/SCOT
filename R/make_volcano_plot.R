@@ -11,8 +11,6 @@
 #' @param label Numeric value of top n genes to label, or a character vector of
 #' genes to label. Set label to NULL to generate unlabeled plot
 #'
-#' @import ggplot2
-#' @import ggrepel
 #'
 #' @export
 #'
@@ -34,10 +32,10 @@ make_volcano_plot <- function(
   if (logfc == TRUE) {
     significance[which(abs(de_table$avg_log2FC) > 1.5)] <- "avg_log2FC > 1.5"
   }
-  if (pval == TRUE) {
+  if (isTRUE(pval)) {
     significance[which(de_table$p_val_adj < 0.05)] <- "p_val_adj < 0.05"
   }
-  if (significant == T) {
+  if (isTRUE(significant)) {
     significance[which(abs(de_table$avg_log2FC) > 1.5 & de_table$p_val_adj < 0.05)] <- "p_val_adj < 0.05 & avg_log2FC > 1.5"
   }
   df <- as.data.frame(cbind(avg_log2FC, log10_p, significance, gene))

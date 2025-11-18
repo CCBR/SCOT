@@ -7,9 +7,6 @@
 #' @param species Indicates human (hg19 or hg38) or mouse (mm10) references to
 #' be used
 #'
-#' @import SingleR
-#' @import celldex
-#' @import ontoProc
 #'
 #' @export
 #'

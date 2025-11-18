@@ -5,8 +5,6 @@
 #' be cache-agnostic by declaring the cache location as the local working
 #' directory
 #'
-#' @import celldex
-#' @import SingleR
 #'
 #' @export
 #'
