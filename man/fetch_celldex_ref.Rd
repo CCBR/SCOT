@@ -5,7 +5,7 @@
 \title{fetch_celldex_ref: Helper function to import annotation references from
 celldex}
 \usage{
-fetch_celldex_ref(ref_name)
+fetch_celldex_ref(ref_name, cache = ".")
 }
 \arguments{
 \item{ref_name}{Character string to be used for retrieving references from
