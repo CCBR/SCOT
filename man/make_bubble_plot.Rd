@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_bubble_plot.R
 \name{make_bubble_plot}
 \alias{make_bubble_plot}
-\title{make a flexible bubble plot with Seurat::DotPlot}
+\title{make_bubble_plot: Flexible dotplot}
 \usage{
 make_bubble_plot(
   so,

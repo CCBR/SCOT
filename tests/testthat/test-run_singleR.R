@@ -5,7 +5,7 @@ test_that("object_size", {
 
 test_that("cell_type_annotation", {
   pbmc <- suppressMessages(import_pbmc())
-
+  set.seed(42)
   ref <- fetch_celldex_ref("hpca")
 
   singleR_output <- run_singleR(pbmc, ref, "label.main")

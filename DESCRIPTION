@@ -30,13 +30,14 @@ Imports:
     org.Hs.eg.db,
     org.Mm.eg.db,
     Orthology.eg.db,
+    RColorBrewer,
     reshape2,
     rlang,
     rliger,
     scDblFinder,
     Seurat,
-    SeuratData,
-    SingleCellExperiment,
+    SeuratObject,
+    SeuratWrappers,
     SingleR,
     stats,
     utils
@@ -47,6 +48,7 @@ Suggests:
     ontologyIndex,
     R.utils,
     rmarkdown,
+    SeuratData,
     SingleCellExperiment,
     testthat (>= 3.0.0),
     usethis
@@ -54,6 +56,7 @@ Remotes:
     chris-mcginnis-ucsf/DoubletFinder,
     rnabioco/djvdj@*release,
     SeuratWrappers=satijalab/seurat-wrappers
+    SeuratData=satijalab/seurat-data
 biocViews:
 Config/Needs/check: rcmdcheck, lintr, goodpractice
 Config/testthat/edition: 3

@@ -56,7 +56,6 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     so_in <- subset(so_in, cells = colnames(so_in)[which(so_in$doubletFinder_label == "Singlet")])
   } else if (doublet_finder_method == "scDblFinder") {
     sce <- Seurat::as.SingleCellExperiment(so_in)
-    set.seed(42)
     sce_dbl <- scDblFinder(sce) %>% suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
     so_in <- subset(so_in, cells = colnames(so_in)[which(so_in$scDblFinder_label == "singlet")])
@@ -95,7 +94,6 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     so_in$doubletFinder_label <- dfso[[utils::tail(names(dfso@meta.data), 1)]]
 
     sce <- Seurat::as.SingleCellExperiment(so_in)
-    set.seed(42)
     sce_dbl <- scDblFinder::scDblFinder(sce) %>% suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
     so_in <- subset(so_in, cells = colnames(so_in)[intersect(
@@ -137,7 +135,6 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     so_in$doubletFinder_label <- dfso[[utils::tail(names(dfso@meta.data), 1)]]
 
     sce <- Seurat::as.SingleCellExperiment(so_in)
-    set.seed(42)
     sce_dbl <- scDblFinder(sce) %>% suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
     so_in <- subset(so_in, cells = colnames(so_in)[unique(c(

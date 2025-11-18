@@ -24,15 +24,15 @@ make_bubble_plot <- function(
 ) {
   Idents(so) <- ident
 
-  dotplot <- DotPlot(so, features = features)
+  dotplot <- Seurat::DotPlot(so, features = features)
   pct_expression <- dplyr::select(dotplot$data, pct.exp, id, features.plot)
 
-  avg_expression <- AverageExpression(so, assay = assay, features = features)[[assay]]
+  avg_expression <- Seurat::AverageExpression(so, assay = assay, features = features)[[assay]]
   avg_expression <- as.matrix(avg_expression)
   avg_expression_df <- reshape2::melt(avg_expression)
   colnames(avg_expression_df) <- c("Gene", "Group", "AvgExp")
   avg_expression_df$PctExp <- 0
-  avg_expression_df$Group <- as.integer(gsub("[^0-9]", "", avg_expression_df$Group))
+  # avg_expression_df$Group <- as.integer(gsub("[^0-9]", "", avg_expression_df$Group))
   for (i in seq_len(nrow(avg_expression_df))) {
     avg_expression_df[i, 4] <- pct_expression$pct.exp[which(
       pct_expression$id == avg_expression_df[i, "Group"] &
@@ -40,7 +40,7 @@ make_bubble_plot <- function(
     )]
   }
 
-  plot <- ggplot(avg_expression_df, aes(
+  plot <- ggplot2::ggplot(avg_expression_df, aes(
     x = Group, y = Gene, size = PctExp, color = AvgExp
   )) +
     geom_point() +
