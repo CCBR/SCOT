@@ -22,7 +22,8 @@ RUN mamba install -y -c conda-forge -c bioconda \
 # install R package
 COPY . /opt2/SCOT
 RUN R -e "devtools::install_local('/opt2/SCOT', dependencies = TRUE, repos='http://cran.rstudio.com')" && \
-  R -e "library(SCOT); utils::packageVersion('SCOT')"
+  R -e "library(SCOT)" && \
+  R -s -e "readr::write_tsv(tibble::as_tibble(installed.packages()), '/mnt/r-packages.tsv')"
 
 # Save Dockerfile in the docker
 COPY Dockerfile /opt2/Dockerfile_${REPONAME}.${BUILD_TAG}
