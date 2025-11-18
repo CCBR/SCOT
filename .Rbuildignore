@@ -17,3 +17,8 @@
 ^Meta$
 ^SCOT\.Rproj$
 ^README.html$
+^bucket$
+^status$
+^tests/testthat/bucket$
+^tests/testthat/status$
+^\.vscode$

@@ -17,7 +17,10 @@
 make_bubble_plot <- function(
   so, features, palette = "RdBu", assay = "SCT", ident = "seurat_clusters"
 ) {
-  Idents(so) <- ident
+  pct.exp <- id <- features.plot <- NULL
+  Group <- Gene <- PctExp <- AvgExp <- NULL
+
+  Seurat::Idents(so) <- ident
 
   dotplot <- Seurat::DotPlot(so, features = features)
   pct_expression <- dplyr::select(dotplot$data, pct.exp, id, features.plot)
@@ -35,7 +38,7 @@ make_bubble_plot <- function(
     )]
   }
 
-  plot <- ggplot2::ggplot(avg_expression_df, ggplot2::aes(
+  bubble_plot <- ggplot2::ggplot(avg_expression_df, ggplot2::aes(
     x = Group, y = Gene, size = PctExp, color = AvgExp
   )) +
     ggplot2::geom_point() +

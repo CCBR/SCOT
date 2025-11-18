@@ -18,7 +18,7 @@ run_singleR_cluster <- function(so_in, ref_file, label) {
   avg <- Seurat::AverageExpression(so_in, assays = "SCT")$SCT
   avg <- as.data.frame(avg)
   ref <- ref_file
-  s <- Singler::SingleR(test = as.matrix(avg), ref = ref, labels = ref[[label]])
+  s <- SingleR::SingleR(test = as.matrix(avg), ref = ref, labels = ref[[label]])
 
   clust_annot <- s$labels
   names(clust_annot) <- colnames(avg)

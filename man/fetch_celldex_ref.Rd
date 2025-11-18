@@ -7,6 +7,10 @@ celldex}
 \usage{
 fetch_celldex_ref(ref_name)
 }
+\arguments{
+\item{ref_name}{Character string to be used for retrieving references from
+the celldex package}
+}
 \value{
 A celldex single cell object in SCE data structure
 }

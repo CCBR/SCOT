@@ -30,7 +30,6 @@ Imports:
     org.Hs.eg.db,
     org.Mm.eg.db,
     Orthology.eg.db,
-    RColorBrewer,
     reshape2,
     rlang,
     rliger,

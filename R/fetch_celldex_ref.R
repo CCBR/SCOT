@@ -5,6 +5,8 @@
 #' be cache-agnostic by declaring the cache location as the local working
 #' directory
 #'
+#' @param ref_name Character string to be used for retrieving references from
+#' the celldex package
 #'
 #' @export
 #'

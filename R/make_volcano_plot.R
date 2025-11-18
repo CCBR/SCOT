@@ -10,6 +10,8 @@
 #' @param pval Boolean to color genes meeting p-value threshold of 0.05
 #' @param label Numeric value of top n genes to label, or a character vector of
 #' genes to label. Set label to NULL to generate unlabeled plot
+#' @param significant Numeric value of significant genes to label (top n genes)
+#' or character vector of user-specified genes
 #'
 #'
 #' @export
@@ -58,15 +60,15 @@ make_volcano_plot <- function(
   }
 
 
-  volcano <- ggplot(df, aes(x = avg_log2FC, y = log10_p, col = significance)) +
-    geom_point() +
+  volcano <- ggplot2::ggplot(df, ggplot2::aes(x = avg_log2FC, y = log10_p, col = significance)) +
+    ggplot2::geom_point() +
     #      geom_vline(xintercept = 0, color = "black", linewidth = 1.5)+
-    xlim(-ceiling(max(abs(df$avg_log2FC))), ceiling(max(abs(df$avg_log2FC))))
+    ggplot2::xlim(-ceiling(max(abs(df$avg_log2FC))), ceiling(max(abs(df$avg_log2FC))))
 
   if (!is.null(data_subset)) {
     volcano <- volcano +
-      geom_text_repel(
-        aes(label = gene),
+      ggrepel::geom_text_repel(
+        ggplot2::aes(label = gene),
         data_subset,
         color = "black",
         max.overlaps = Inf
