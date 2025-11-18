@@ -322,7 +322,7 @@ references:
   authors:
   - family-names: Wickham
     given-names: Hadley
-    email: h.wickham@gmail.com
+    email: hadley@posit.co
   year: '2025'
   doi: 10.32614/CRAN.package.reshape2
 - type: software
