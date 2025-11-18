@@ -54,8 +54,8 @@ Suggests:
 Remotes:
     chris-mcginnis-ucsf/DoubletFinder,
     rnabioco/djvdj@*release,
+    SeuratData=satijalab/seurat-data,
     SeuratWrappers=satijalab/seurat-wrappers
-    SeuratData=satijalab/seurat-data
 biocViews:
 Config/Needs/check: rcmdcheck, lintr, goodpractice
 Config/testthat/edition: 3
