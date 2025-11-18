@@ -5,16 +5,16 @@ import_pbmc <- function() {
 
   # prepare test dataset
   pbmc3k <- suppressWarnings(SeuratData::LoadData("pbmc3k"))
-  pbmc <- UpdateSeuratObject(pbmc3k)
+  pbmc <- Seurat::UpdateSeuratObject(pbmc3k)
   set.seed(42)
-  pbmc[["percent.mt"]] <- PercentageFeatureSet(pbmc, pattern = "^MT-")
+  pbmc[["percent.mt"]] <- Seurat::PercentageFeatureSet(pbmc, pattern = "^MT-")
   pbmc <- subset(pbmc,
     subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 5
   )
-  pbmc <- SCTransform(pbmc, vars.to.regress = "percent.mt", verbose = FALSE)
-  pbmc <- RunPCA(pbmc, features = VariableFeatures(object = pbmc))
-  pbmc <- FindNeighbors(pbmc, dims = 1:30)
-  pbmc <- FindClusters(pbmc, resolution = 0.8, verbose = FALSE)
+  pbmc <- Seurat::SCTransform(pbmc, vars.to.regress = "percent.mt", verbose = FALSE)
+  pbmc <- Seurat::RunPCA(pbmc, features = VariableFeatures(object = pbmc))
+  pbmc <- Seurat::FindNeighbors(pbmc, dims = 1:30)
+  pbmc <- Seurat::FindClusters(pbmc, resolution = 0.8, verbose = FALSE)
 
   return(pbmc)
 }
