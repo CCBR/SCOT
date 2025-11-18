@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @return A celldex single cell object in SCE data structure
-fetch_celldex_ref <- function(ref_name) {
+fetch_celldex_ref <- function(ref_name, cache = '.') {
   ref <- switch(ref_name,
     "hpca" = ,
     "HumanPrimaryCellAtlasData" = celldex::fetchReference(
