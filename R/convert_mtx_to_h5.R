@@ -17,9 +17,6 @@
 #' @param barcodes_file Path to the barcodes.tsv.gz file
 #' @param features_file Path to the features.tsv.gz file
 #'
-#' @import DropletUtils
-#' @import Seurat
-#'
 #' @export
 convert_mtx_to_h5 <- function(sample_name,
                               mtx_file,

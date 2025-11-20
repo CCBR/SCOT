@@ -15,7 +15,6 @@
 #' @param npcs_in Number of principal components to use for dimensionality
 #' reduction
 #'
-#' @import Seurat
 #'
 #' @export
 #'
@@ -32,20 +31,20 @@ preprocess_sample <- function(so_in, species, npcs_in) {
   }
 
   # process
-  so_1 <- NormalizeData(
+  so_1 <- Seurat::NormalizeData(
     so_in,
     normalization.method = "LogNormalize",
     scale.factor = 10000,
     assay = "RNA"
   )
-  so_2 <- ScaleData(so_1, assay = "RNA")
-  so_3 <- CellCycleScoring(
+  so_2 <- Seurat::ScaleData(so_1, assay = "RNA")
+  so_3 <- Seurat::CellCycleScoring(
     so_2,
     s.features = s.genes,
     g2m.features = g2m.genes,
     set.ident = TRUE
   )
-  so_4 <- SCTransform(so_3)
+  so_4 <- Seurat::SCTransform(so_3)
   so_out <- seurat_clustering(so_4, npcs_in)
   return(so_out)
 }

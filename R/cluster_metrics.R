@@ -26,7 +26,6 @@
 #'
 #' @export
 #'
-#' @import clusterSim
 cluster_metrics <- function(so,
                             cluster_list,
                             dims = 1:20,
