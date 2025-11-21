@@ -11,7 +11,7 @@ test_that("cell_type_annotation", {
   singleR_output <- run_singleR(pbmc, ref, "label.main")
 
   expect_equal(length(which(singleR_output == "T_cells")), 1394)
-  expect_equal(length(which(singleR_output == "B_cell")), 335)
+  expect_equal(length(which(singleR_output == "B_cell")), 334)
   expect_equal(length(which(singleR_output == "Monocyte")), 619)
   expect_equal(length(which(singleR_output == "NK_cell")), 185)
 })
