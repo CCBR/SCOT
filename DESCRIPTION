@@ -47,8 +47,8 @@ Suggests:
     ontologyIndex,
     R.utils,
     rmarkdown,
-    SeuratData,
     roxygen2,
+    SeuratData,
     SingleCellExperiment,
     testthat (>= 3.0.0),
     usethis
