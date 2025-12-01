@@ -13,9 +13,6 @@
 #' "DoubletFinder" (default), "scDblFinder", "consensus" removal of doublets,
 #' or the "union" of total doublets identified in both algorithms
 #'
-#' @import DoubletFinder
-#' @import scDblFinder
-#'
 #' @export
 #'
 #' @return A subsetted Seurat object with doublets removed
@@ -56,7 +53,7 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     so_in <- subset(so_in, cells = colnames(so_in)[which(so_in$doubletFinder_label == "Singlet")])
   } else if (doublet_finder_method == "scDblFinder") {
     sce <- Seurat::as.SingleCellExperiment(so_in)
-    sce_dbl <- scDblFinder(sce) %>% suppressWarnings()
+    sce_dbl <- scDblFinder::scDblFinder(sce) %>% suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
     so_in <- subset(so_in, cells = colnames(so_in)[which(so_in$scDblFinder_label == "singlet")])
   } else if (doublet_finder_method == "union") {
@@ -135,7 +132,7 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     so_in$doubletFinder_label <- dfso[[utils::tail(names(dfso@meta.data), 1)]]
 
     sce <- Seurat::as.SingleCellExperiment(so_in)
-    sce_dbl <- scDblFinder(sce) %>% suppressWarnings()
+    sce_dbl <- scDblFinder::scDblFinder(sce) %>% suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
     so_in <- subset(so_in, cells = colnames(so_in)[unique(c(
       which(so_in$doubletFinder_label == "Singlet"),
