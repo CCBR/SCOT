@@ -9,6 +9,7 @@ make_bubble_plot(
   features,
   palette = "RdBu",
   assay = "SCT",
+  scale = FALSE,
   ident = "seurat_clusters"
 )
 }
@@ -20,6 +21,8 @@ make_bubble_plot(
 \item{palette}{A color palette from ggplot2}
 
 \item{assay}{The counts assay to use for determining expression}
+
+\item{scale}{Boolean to scale average expression across identities}
 
 \item{ident}{The categorical identity to classify groups of cells}
 }

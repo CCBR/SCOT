@@ -10,6 +10,8 @@ fetch_celldex_ref(ref_name, cache = ".")
 \arguments{
 \item{ref_name}{Character string to be used for retrieving references from
 the celldex package}
+
+\item{cache}{Character string to identify cache download location}
 }
 \value{
 A celldex single cell object in SCE data structure
