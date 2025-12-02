@@ -13,7 +13,7 @@ test_that("cluster_count", {
 test_that("cluster_cell_annot_type_count", {
   pbmc <- suppressMessages(import_pbmc())
   ref <- fetch_celldex_ref("hpca")
-  Idents(pbmc) <- "seurat_clusters"
+  Seurat::Idents(pbmc) <- "seurat_clusters"
   set.seed(42)
   singleR_cluster <- run_singleR_cluster(
     so_in = pbmc,
