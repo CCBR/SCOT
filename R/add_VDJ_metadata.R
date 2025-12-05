@@ -7,9 +7,6 @@
 #' @param so A Seurat single cell RNA object
 #' @param vdj_file A path to a V(D)J annotation directory from CellRanger
 #'
-#' @import djvdj
-#' @import Seurat
-#'
 #' @export
 #'
 #' @return A Seurat object with V(D)J metadata
