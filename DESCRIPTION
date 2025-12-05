@@ -22,6 +22,7 @@ Imports:
     DropletUtils,
     ggplot2,
     ggpubr,
+    ggrepel,
     grDevices,
     harmony,
     magrittr,
@@ -47,12 +48,14 @@ Suggests:
     R.utils,
     rmarkdown,
     roxygen2,
+    SeuratData,
     SingleCellExperiment,
     testthat (>= 3.0.0),
     usethis
 Remotes:
     chris-mcginnis-ucsf/DoubletFinder,
     rnabioco/djvdj@*release,
+    SeuratData=satijalab/seurat-data,
     SeuratWrappers=satijalab/seurat-wrappers
 biocViews:
 Config/Needs/check: rcmdcheck, lintr, goodpractice
