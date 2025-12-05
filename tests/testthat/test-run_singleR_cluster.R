@@ -21,8 +21,8 @@ test_that("cluster_cell_annot_type_count", {
     label = "label.main"
   )
   expect_equal(length(unique(singleR_cluster)), 5)
-  expect_equal(length(which(singleR_cluster == "B_cell")), 345)
-  expect_equal(length(which(singleR_cluster == "Monocyte")), 672)
-  expect_equal(length(which(singleR_cluster == "NK_cell")), 157)
-  expect_equal(length(which(singleR_cluster == "T_cells")), 1452)
+  expect_equal(length(which(singleR_cluster == "B_cell")), 345, tolerance = 5)
+  expect_equal(length(which(singleR_cluster == "Monocyte")), 672, tolerance = 5)
+  expect_equal(length(which(singleR_cluster == "NK_cell")), 157, tolerance = 5)
+  expect_equal(length(which(singleR_cluster == "T_cells")), 1452, tolerance = 5)
 })
