@@ -54,7 +54,7 @@ run_batch_correction <- function(so_in,
   # TODO recommend using package::function syntax instead of importing entire packages
 
   # set assay to RNA to avoid double transform/normalization
-  SeuratData::DefaultAssay(so_in) <- "RNA"
+  SeuratObject::DefaultAssay(so_in) <- "RNA"
 
   # integration method for
   ### SCVI
@@ -70,7 +70,7 @@ run_batch_correction <- function(so_in,
 
     so_integrate <- Seurat::IntegrateLayers(
       object = so_pca,
-      method = scVIIntegration,
+      method = SeuratWrappers::scVIIntegration,
       new.reduction = "integrated.scvi",
       conda_env = conda_env,
       dims = 1:npcs
@@ -127,7 +127,7 @@ run_batch_correction <- function(so_in,
     so$clustAnnot_monaco_fine <- run_singleR_cluster(so, fetch_celldex_ref("monaco"), "label.fine")
     so$clustAnnot_monaco_ont <- run_singleR_cluster(so, fetch_celldex_ref("monaco"), "label.ont")
     so$clustAnnot_monaco_ont <- cell_ont$name[so$clustAnnot_monaco_ont]
-    so$clustAnnot_immu_cell_exp_main <- run_singleR_cluster(so,fetch_celldex_ref("dice"),"label.main")
+    so$clustAnnot_immu_cell_exp_main <- run_singleR_cluster(so, fetch_celldex_ref("dice"), "label.main")
     so$clustAnnot_immu_cell_exp_fine <- run_singleR_cluster(so, fetch_celldex_ref("dice"), "label.fine")
     so$clustAnnot_immu_cell_exp_ont <- run_singleR_cluster(so, fetch_celldex_ref("dice"), "label.ont")
     so$clustAnnot_immu_cell_exp_ont <- cell_ont$name[so$clustAnnot_immu_cell_exp_ont]

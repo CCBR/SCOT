@@ -32,7 +32,7 @@ run_hypergeometric_test <- function(selectedVect,
 
   pVal <- 1
   if (inter.size > 0) {
-    pVal <- phyper(
+    pVal <- stats::phyper(
       q = inter.size,
       m = ref.size,
       n = nonref.size,

@@ -39,7 +39,7 @@ cluster_metrics <- function(so,
     silhouette <- FALSE
   }
   if (silhouette == TRUE) {
-    distance <- dist(embed_mat)
+    distance <- stats::dist(embed_mat)
     cluster_scores <- cbind(cluster_scores, vector(length = length(cluster_list)))
     colnames(cluster_scores)[3] <- "Silhouette"
   }
