@@ -1,4 +1,4 @@
-# make a flexible bubble plot with Seurat::DotPlot
+# make_bubble_plot: Flexible dotplot
 
 Creates a bubble plot that shows average expression percent expression
 for genes in single cell categories
@@ -11,6 +11,7 @@ make_bubble_plot(
   features,
   palette = "RdBu",
   assay = "SCT",
+  scale = FALSE,
   ident = "seurat_clusters"
 )
 ```
@@ -32,6 +33,10 @@ make_bubble_plot(
 - assay:
 
   The counts assay to use for determining expression
+
+- scale:
+
+  Boolean to scale average expression across identities
 
 - ident:
 

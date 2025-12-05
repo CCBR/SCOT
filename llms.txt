@@ -46,11 +46,14 @@ guidelines](https://ccbr.github.io/SCOT/CONTRIBUTING.md).
 - [`convert_mtx_to_h5()`](https://ccbr.github.io/SCOT/reference/convert_mtx_to_h5.md)
   : convert_mtx_to_h5: Converts the triple .mtx files from single cell
   experiments to a .h5 counts file
+- [`fetch_celldex_ref()`](https://ccbr.github.io/SCOT/reference/fetch_celldex_ref.md)
+  : fetch_celldex_ref: Helper function to import annotation references
+  from celldex
 - [`filter_doublets()`](https://ccbr.github.io/SCOT/reference/filter_doublets.md)
   : filter_doublets: Identifies and removes doublets or multiplets in
   scRNA samples
 - [`make_bubble_plot()`](https://ccbr.github.io/SCOT/reference/make_bubble_plot.md)
-  : make a flexible bubble plot with Seurat::DotPlot
+  : make_bubble_plot: Flexible dotplot
 - [`make_volcano_plot()`](https://ccbr.github.io/SCOT/reference/make_volcano_plot.md)
   : make_volcano_plot: Optimized volcano plot for Seurat differential
   expression (FindMarkers) output
