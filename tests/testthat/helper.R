@@ -19,3 +19,16 @@ import_pbmc <- function() {
 
   return(pbmc)
 }
+
+load_plain_pbmc <- function(){
+  nFeature_RNA <- percent.mt <- NULL
+  if (grepl("pbmc3k", SeuratData::InstalledData()[1]) == FALSE) {
+    SeuratData::InstallData("pbmc3k")
+  }
+
+  # prepare test dataset
+  pbmc3k <- suppressWarnings(SeuratData::LoadData("pbmc3k"))
+  pbmc <- Seurat::UpdateSeuratObject(pbmc3k)
+  set.seed(42)
+  return(pbmc)
+}
