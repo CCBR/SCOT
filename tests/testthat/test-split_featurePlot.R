@@ -6,7 +6,7 @@ test_that("split_featurePlot exists and has correct signature", {
   source(file.path("..", "..", "R", "split_featurePlot.R"))
   expect_true(exists("split_featurePlot"))
   expect_true(is.function(split_featurePlot))
-  
+
   args <- names(formals(split_featurePlot))
   expected <- c(
     "so", "features", "split_ident", "label", "ncol", "nrow",
@@ -14,7 +14,7 @@ test_that("split_featurePlot exists and has correct signature", {
     "slot", "order", "reduction"
   )
   expect_equal(args, expected)
-  
+
   defaults <- formals(split_featurePlot)
   expect_equal(defaults$label, FALSE)
   expect_true(is.na(defaults$ncol))
@@ -63,9 +63,9 @@ test_that("split_featurePlot returns arranged plots with return_list", {
   skip_if_not_installed("ggplot2")
   skip_if_not_installed("ggpubr")
   skip_if_not_installed("Matrix")
-  
+
   source(file.path("..", "..", "R", "split_featurePlot.R"))
-  
+
   so <- make_mock_seurat(40, 30)
   features <- rownames(so)[1:2]
   res <- split_featurePlot(
@@ -94,7 +94,7 @@ test_that("split_featurePlot computes ncol/nrow when NA", {
   skip_if_not_installed("ggplot2")
   skip_if_not_installed("ggpubr")
   skip_if_not_installed("Matrix")
-  
+
   source(file.path("..", "..", "R", "split_featurePlot.R"))
   so <- make_mock_seurat(30, 10)
   features <- rownames(so)[1]
@@ -119,7 +119,7 @@ test_that("split_featurePlot respects provided nrow only", {
   skip_if_not_installed("ggplot2")
   skip_if_not_installed("ggpubr")
   skip_if_not_installed("Matrix")
-  
+
   source(file.path("..", "..", "R", "split_featurePlot.R"))
   so <- make_mock_seurat(20, 8)
   features <- rownames(so)[1]
@@ -142,13 +142,13 @@ test_that("split_featurePlot respects provided nrow only", {
 test_that("split_featurePlot errors on invalid inputs", {
   source(file.path("..", "..", "R", "split_featurePlot.R"))
   expect_error(split_featurePlot(NULL, features = "Gene1", split_ident = "group"))
-  
+
   # Invalid split_ident
   skip_if_not_installed("Seurat")
   skip_if_not_installed("Matrix")
   so <- make_mock_seurat(20, 8)
   expect_error(split_featurePlot(so, features = rownames(so)[1], split_ident = "bad_col"))
-  
+
   # Missing feature
   expect_error(split_featurePlot(so, features = "MissingGene", split_ident = "group"))
 })

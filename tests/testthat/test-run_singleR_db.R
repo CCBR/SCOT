@@ -56,7 +56,7 @@ test_that("run_singleR_db conceptual annotation columns", {
     "annot"
   )
   expect_true(all(grepl("^HPCA_|^BP_encode_|^monaco_|^immu_cell_exp_|^annot$", human_cols)))
-  
+
   # Mouse columns
   mouse_cols <- c(
     "immgen_main", "immgen_fine", "immgen_ont",

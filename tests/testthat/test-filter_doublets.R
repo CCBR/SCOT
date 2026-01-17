@@ -14,7 +14,7 @@ test_that("unknown method errors clearly", {
   counts <- matrix(rpois(60, lambda = 2), nrow = 12, ncol = 5,
                    dimnames = list(paste0("Gene", 1:12), paste0("Cell", 1:5)))
   so <- CreateSeuratObject(counts = counts)
-  expect_error(filter_doublets(so, doublet_finder_method = "bogus"), 
+  expect_error(filter_doublets(so, doublet_finder_method = "bogus"),
                regexp = "No valid method selected")
 })
 
