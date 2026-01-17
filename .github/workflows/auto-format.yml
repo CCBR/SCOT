@@ -51,6 +51,10 @@ jobs:
           # Create your CITATION.cff file
           cffr::cff_write(keys = mykeys)
 
+      - name: Document
+        shell: Rscript {0}
+        run: roxygen2::roxygenize()
+
       - name: format
         uses: pre-commit/action@v3.0.1
         continue-on-error: true

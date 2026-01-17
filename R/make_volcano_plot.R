@@ -8,15 +8,22 @@
 #' p_val, pct.1, pct.2 avg_log2FC and p_val_adj
 #' @param logfc Boolean to color genes meeting logfc threshold of 1.5
 #' @param pval Boolean to color genes meeting p-value threshold of 0.05
-#' @param significant Boolean to color genes that meet both above thresholds
+#' @param significant Boolean to color genes that meet both logfc and p-value
+#' thresholds
+#' @param label Numeric value of top n genes to label, or a character vector of
+#' genes to label. Set label to NULL to generate unlabeled plot
+#'
 #'
 #' @export
 #'
 #' @return Returns a volcano plot as a ggplot2 object
-make_volcano_plot <- function(de_table,
-                              significant = TRUE,
-                              logfc = TRUE,
-                              pval = TRUE) {
+make_volcano_plot <- function(
+  de_table,
+  significant = TRUE,
+  logfc = TRUE,
+  pval = TRUE,
+  label = 50
+) {
   log10_p <- -log10(de_table$p_val_adj)
   log10_p[which(de_table$p_val_adj == 0)] <- 500
   avg_log2FC <- de_table$avg_log2FC
@@ -26,29 +33,47 @@ make_volcano_plot <- function(de_table,
   if (logfc == TRUE) {
     significance[which(abs(de_table$avg_log2FC) > 1.5)] <- "avg_log2FC > 1.5"
   }
-  if (pval == TRUE) {
+  if (isTRUE(pval)) {
     significance[which(de_table$p_val_adj < 0.05)] <- "p_val_adj < 0.05"
   }
-  if (significant == TRUE) {
+  if (isTRUE(significant)) {
     significance[which(abs(de_table$avg_log2FC) > 1.5 &
       de_table$p_val_adj < 0.05)] <- "p_val_adj < 0.05 & avg_log2FC > 1.5"
   }
-
   df <- as.data.frame(cbind(avg_log2FC, log10_p, significance, gene))
   rownames(df) <- rownames(de_table)
   df[, 1] <- as.numeric(df[, 1])
   df[, 2] <- as.numeric(df[, 2])
-  df[, 3] <- factor(
-    df[, 3],
+  df[, 3] <- factor(df[, 3],
     levels = c(
-      "NotSignificant",
-      "avg_log2FC > 1.5",
-      "p_val_adj < 0.05",
-      "p_val_adj < 0.05 & avg_log2FC > 1.5"
+      "NotSignificant", "avg_log2FC > 1.5",
+      "p_val_adj < 0.05", "p_val_adj < 0.05 & avg_log2FC > 1.5"
     )
   )
+  data_subset <- NULL
+
+  if (is.numeric(label) && length(label) == 1) {
+    data_subset <- df[which(df$significance == "p_val_adj < 0.05 & avg_log2FC > 1.5"), ]
+    data_subset <- data_subset[1:label, ]
+  } else if (is.character(label)) {
+    data_subset <- df[label, ]
+  }
+
 
   volcano <- ggplot2::ggplot(df, ggplot2::aes(x = avg_log2FC, y = log10_p, col = significance)) +
-    ggplot2::geom_point()
-  return(volcano)
+    ggplot2::geom_point() +
+    #      geom_vline(xintercept = 0, color = "black", linewidth = 1.5)+
+    ggplot2::xlim(-ceiling(max(abs(df$avg_log2FC))), ceiling(max(abs(df$avg_log2FC))))
+
+  if (!is.null(data_subset)) {
+    volcano <- volcano +
+      ggrepel::geom_text_repel(
+        ggplot2::aes(label = gene),
+        data_subset,
+        color = "black",
+        max.overlaps = Inf
+      )
+
+    return(volcano)
+  }
 }

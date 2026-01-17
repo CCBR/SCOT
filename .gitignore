@@ -9,5 +9,7 @@ inst/doc
 /doc/
 /Meta/
 /README.html
-
+bucket
+status
 /.quarto/
+.vscode

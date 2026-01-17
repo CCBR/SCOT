@@ -2,13 +2,14 @@
 % Please edit documentation in R/make_bubble_plot.R
 \name{make_bubble_plot}
 \alias{make_bubble_plot}
-\title{make a flexible bubble plot with Seurat::DotPlot}
+\title{make_bubble_plot: Flexible dotplot}
 \usage{
 make_bubble_plot(
   so,
   features,
   palette = "RdBu",
   assay = "SCT",
+  scale = FALSE,
   ident = "seurat_clusters"
 )
 }
@@ -20,6 +21,8 @@ make_bubble_plot(
 \item{palette}{A color palette from ggplot2}
 
 \item{assay}{The counts assay to use for determining expression}
+
+\item{scale}{Boolean to scale average expression across identities}
 
 \item{ident}{The categorical identity to classify groups of cells}
 }
