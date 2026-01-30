@@ -1,8 +1,8 @@
 #' filter_cells: A wrapper for multiple scRNA filtering methods
-#' 
+#'
 #' @description Wrapper function to filter cells from a Seurat object using
 #' method of choice. Returns a Seurat object with filtering results
-#' 
+#'
 #' @param so Seurat object to filter
 #' @param method Filtering method to use: "miQC" (default), "manual", or "mads"
 #' @param mads Number of median absolute deviations to use for "mads" method (default 3)
@@ -12,7 +12,7 @@
 #' @param nFeature_RNA_min Minimum nFeature_RNA threshold for "manual" method (default 200)
 #' @param percent_mt_max Maximum percent_mt threshold for "manual" method (default 10)
 #' @param percent_mt_min Minimum percent_mt threshold for "manual" method (default 0)
-#' 
+#'
 #' @details This function filters cells from a Seurat object using one of three
 #' methods:
 #' - "miQC": Uses the miQC package to filter cells based on a probabilistic
@@ -21,12 +21,12 @@
 #' nFeature_RNA, and percent_mt
 #' - "mads": Filters cells based on median absolute deviations from the median for
 #' nCount_RNA, nFeature_RNA, and percent_mt
-#' 
+#'
 #' @return Returns a Seurat object with an additional metadata column "keep" indicating
 #' whether each cell is to be kept or discarded
-#' 
+#'
 #' @export
-#' 
+#'
 filter_cells <- function(so, method = "miQC",
   mads = 3,
   nCount_RNA_max = 50000, nCount_RNA_min = 1000,
