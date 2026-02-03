@@ -19,8 +19,6 @@
 #' gene set. These values can be added to the original Seurat object ex post
 #' facto.
 run_AUCell <- function(so, gene_sets) {
-  set.seed(42)
-
   # Retrieve normalized counts matrix
   expr <- Seurat::FetchData(
     so,

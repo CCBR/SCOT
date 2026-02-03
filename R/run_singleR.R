@@ -7,6 +7,7 @@
 #'   package
 #' @param label The label identity to be used. Must be a column header in the metadata of `ref_file`
 #'
+#'
 #' @export
 #'
 #' @return A vector of pruned cell type labels
