@@ -37,33 +37,45 @@ make_volcano_plot <- function(
     significance[which(de_table$p_val_adj < 0.05)] <- "p_val_adj < 0.05"
   }
   if (isTRUE(significant)) {
-    significance[which(abs(de_table$avg_log2FC) > 1.5 &
-      de_table$p_val_adj < 0.05)] <- "p_val_adj < 0.05 & avg_log2FC > 1.5"
+    significance[which(
+      abs(de_table$avg_log2FC) > 1.5 &
+        de_table$p_val_adj < 0.05
+    )] <- "p_val_adj < 0.05 & avg_log2FC > 1.5"
   }
   df <- as.data.frame(cbind(avg_log2FC, log10_p, significance, gene))
   rownames(df) <- rownames(de_table)
   df[, 1] <- as.numeric(df[, 1])
   df[, 2] <- as.numeric(df[, 2])
-  df[, 3] <- factor(df[, 3],
+  df[, 3] <- factor(
+    df[, 3],
     levels = c(
-      "NotSignificant", "avg_log2FC > 1.5",
-      "p_val_adj < 0.05", "p_val_adj < 0.05 & avg_log2FC > 1.5"
+      "NotSignificant",
+      "avg_log2FC > 1.5",
+      "p_val_adj < 0.05",
+      "p_val_adj < 0.05 & avg_log2FC > 1.5"
     )
   )
   data_subset <- NULL
 
   if (is.numeric(label) && length(label) == 1) {
-    data_subset <- df[which(df$significance == "p_val_adj < 0.05 & avg_log2FC > 1.5"), ]
+    data_subset <- df[
+      which(df$significance == "p_val_adj < 0.05 & avg_log2FC > 1.5"),
+    ]
     data_subset <- data_subset[1:label, ]
   } else if (is.character(label)) {
     data_subset <- df[label, ]
   }
 
-
-  volcano <- ggplot2::ggplot(df, ggplot2::aes(x = avg_log2FC, y = log10_p, col = significance)) +
+  volcano <- ggplot2::ggplot(
+    df,
+    ggplot2::aes(x = avg_log2FC, y = log10_p, col = significance)
+  ) +
     ggplot2::geom_point() +
     #      geom_vline(xintercept = 0, color = "black", linewidth = 1.5)+
-    ggplot2::xlim(-ceiling(max(abs(df$avg_log2FC))), ceiling(max(abs(df$avg_log2FC))))
+    ggplot2::xlim(
+      -ceiling(max(abs(df$avg_log2FC))),
+      ceiling(max(abs(df$avg_log2FC)))
+    )
 
   if (!is.null(data_subset)) {
     volcano <- volcano +
