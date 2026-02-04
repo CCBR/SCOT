@@ -17,6 +17,40 @@ SHELL ["/bin/bash", "-lc"]
 RUN mamba install -y -c conda-forge -c bioconda \
     r-base=${R_VERSION} \
     r-devtools \
+    bioconductor-annotationdbi \
+    bioconductor-aucell \
+    bioconductor-celldex \
+    bioconductor-dropletutils \
+    bioconductor-gseabase \
+    bioconductor-ontoProc \
+    bioconductor-org.hs.eg.db \
+    bioconductor-org.mm.eg.db \
+    bioconductor-orthology.eg.db \
+    bioconductor-scdblfinder \
+    bioconductor-singlecellexperiment \
+    bioconductor-singleR \
+    r-cffr \
+    r-clustersim \
+    r-dplyr \
+    r-ggplot2 \
+    r-ggpubr \
+    r-ggrepel \
+    r-goodpractice \
+    r-harmony \
+    r-knitr \
+    r-lintr \
+    r-magrittr \
+    r-rcmdcheck \
+    r-reshape2 \
+    r-rlang \
+    r-rliger \
+    r-rmarkdown \
+    r-roxygen2 \
+    r-r.utils \
+    r-seurat \
+    r-seuratobject \
+    r-testthat \
+    r-usethis \
   && conda clean -afy
 
 # install R package
