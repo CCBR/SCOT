@@ -61,6 +61,20 @@ references:
   year: '2026'
   doi: 10.18129/B9.bioc.AUCell
 - type: software
+  title: BiocGenerics
+  abstract: 'BiocGenerics: S4 generic functions used in Bioconductor'
+  notes: Imports
+  url: https://bioconductor.org/packages/BiocGenerics
+  repository: https://bioconductor.org/
+  authors:
+  - name: The Bioconductor Dev Team
+  - family-names: Pagès
+    given-names: Hervé
+    email: hpages.on.github@gmail.com
+    orcid: https://orcid.org/0009-0002-8272-4522
+  year: '2026'
+  doi: 10.18129/B9.bioc.BiocGenerics
+- type: software
   title: celldex
   abstract: 'celldex: Index of Reference Cell Type Datasets'
   notes: Imports
