@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y \
 
 # install conda packages
 RUN mamba install -y -c conda-forge -c bioconda \
+    hdf5 \
     r-base=${R_VERSION} \
     r-devtools \
     bioconductor-annotationdbi \
