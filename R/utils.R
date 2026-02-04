@@ -31,7 +31,11 @@ check_packages_installed <- function(...) {
 #' }
 abort_packages_not_installed <- function(...) {
   package_status <- check_packages_installed(...)
-  parent_fcn_name <- sub("\\(.*$", "\\(\\)", deparse(sys.calls()[[sys.nframe() - 1]]))
+  parent_fcn_name <- sub(
+    "\\(.*$",
+    "\\(\\)",
+    deparse(sys.calls()[[sys.nframe() - 1]])
+  )
   packages_not_installed <- Filter(isFALSE, package_status)
   if (length(packages_not_installed) > 0) {
     msg <- paste0(

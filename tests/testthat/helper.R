@@ -9,7 +9,8 @@ import_pbmc <- function() {
   pbmc <- Seurat::UpdateSeuratObject(pbmc3k)
   set.seed(42)
   pbmc[["percent.mt"]] <- Seurat::PercentageFeatureSet(pbmc, pattern = "^MT-")
-  pbmc <- subset(pbmc,
+  pbmc <- subset(
+    pbmc,
     subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 5
   )
   pbmc <- suppressWarnings(Seurat::SCTransform(pbmc, vars.to.regress = "percent.mt", verbose = FALSE))

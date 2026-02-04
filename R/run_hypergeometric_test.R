@@ -20,10 +20,12 @@
 #'
 #' @return Returns a vector with the relevant statistics used to generate the
 #' hypergeometric test
-run_hypergeometric_test <- function(selectedVect,
-                                    refVect,
-                                    worldSize,
-                                    lowerTail = FALSE) {
+run_hypergeometric_test <- function(
+  selectedVect,
+  refVect,
+  worldSize,
+  lowerTail = FALSE
+) {
   intersectList <- intersect(selectedVect, refVect)
   inter.size <- length(intersectList)
   ref.size <- length(refVect)
