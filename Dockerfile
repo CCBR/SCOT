@@ -15,17 +15,19 @@ SHELL ["/bin/bash", "-lc"]
 
 # install system dependencies
 RUN apt-get update && apt-get install -y \
-    libssl-dev \
+    build-essential \
     libcairo2-dev \
-    libhdf5-dev \
-    libfribidi-dev \
-    libxml2-dev \
     libcurl4-openssl-dev \
     libfontconfig1-dev \
-    libharfbuzz-dev \
     libfreetype6-dev \
-    pkg-config \
-    build-essential
+    libfribidi-dev \
+    libharfbuzz-dev \
+    libhdf5-dev \
+    libssl-dev \
+    libsz-dev \
+    libsz2 \
+    libxml2-dev \
+    pkg-config
 
 # install conda packages
 RUN mamba install -y -c conda-forge -c bioconda \
