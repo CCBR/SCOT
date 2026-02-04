@@ -15,12 +15,12 @@
 
 ## Citation
 
-Wong N, Sovacool K, Koparde V (2025). *SCOT: Single Cell Omics Toolbox*.
+Wong N, Sovacool K, Koparde V (2026). *SCOT: Single Cell Omics Toolbox*.
 R package version 0.0.0.9000.
 
     @Manual{,
       title = {SCOT: Single Cell Omics Toolbox},
       author = {Nathan Wong and Kelly Sovacool and Vishal Koparde},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.0.0.9000},
     }
