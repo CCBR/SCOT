@@ -24,7 +24,6 @@ RUN apt-get update && apt-get install -y \
     libharfbuzz-dev \
     libhdf5-dev \
     libssl-dev \
-    libsz-dev \
     libsz2 \
     libxml2-dev \
     pkg-config
