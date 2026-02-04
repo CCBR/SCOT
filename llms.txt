@@ -49,6 +49,8 @@ guidelines](https://ccbr.github.io/SCOT/CONTRIBUTING.md).
 - [`fetch_celldex_ref()`](https://ccbr.github.io/SCOT/reference/fetch_celldex_ref.md)
   : fetch_celldex_ref: Helper function to import annotation references
   from celldex
+- [`filter_cells()`](https://ccbr.github.io/SCOT/reference/filter_cells.md)
+  : filter_cells: A wrapper for multiple scRNA filtering methods
 - [`filter_doublets()`](https://ccbr.github.io/SCOT/reference/filter_doublets.md)
   : filter_doublets: Identifies and removes doublets or multiplets in
   scRNA samples
