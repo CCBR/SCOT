@@ -26,11 +26,13 @@
 #'
 #' @export
 #'
-cluster_metrics <- function(so,
-                            cluster_list,
-                            dims = 1:20,
-                            reduction = "pca",
-                            silhouette = TRUE) {
+cluster_metrics <- function(
+  so,
+  cluster_list,
+  dims = 1:20,
+  reduction = "pca",
+  silhouette = TRUE
+) {
   embed_mat <- SeuratObject::Embeddings(so, reduction = reduction)[, dims]
 
   cluster_scores <- matrix(ncol = 2, nrow = length(cluster_list))
@@ -40,7 +42,10 @@ cluster_metrics <- function(so,
   }
   if (silhouette == TRUE) {
     distance <- stats::dist(embed_mat)
-    cluster_scores <- cbind(cluster_scores, vector(length = length(cluster_list)))
+    cluster_scores <- cbind(
+      cluster_scores,
+      vector(length = length(cluster_list))
+    )
     colnames(cluster_scores)[3] <- "Silhouette"
   }
   rownames(cluster_scores) <- cluster_list
@@ -57,7 +62,6 @@ cluster_metrics <- function(so,
       cluster_scores[i, 3] <- sil_score
     }
   }
-
 
   return(cluster_scores)
 }

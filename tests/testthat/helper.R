@@ -9,11 +9,19 @@ import_pbmc <- function() {
   pbmc <- Seurat::UpdateSeuratObject(pbmc3k)
   set.seed(42)
   pbmc[["percent.mt"]] <- Seurat::PercentageFeatureSet(pbmc, pattern = "^MT-")
-  pbmc <- subset(pbmc,
+  pbmc <- subset(
+    pbmc,
     subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 5
   )
-  pbmc <- Seurat::SCTransform(pbmc, vars.to.regress = "percent.mt", verbose = FALSE)
-  pbmc <- Seurat::RunPCA(pbmc, features = Seurat::VariableFeatures(object = pbmc))
+  pbmc <- Seurat::SCTransform(
+    pbmc,
+    vars.to.regress = "percent.mt",
+    verbose = FALSE
+  )
+  pbmc <- Seurat::RunPCA(
+    pbmc,
+    features = Seurat::VariableFeatures(object = pbmc)
+  )
   pbmc <- Seurat::FindNeighbors(pbmc, dims = 1:30)
   pbmc <- Seurat::FindClusters(pbmc, resolution = 0.8, verbose = FALSE)
 
