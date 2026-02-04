@@ -16,6 +16,7 @@ SHELL ["/bin/bash", "-lc"]
 # install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
+    cmake \
     libcairo2-dev \
     libcurl4-openssl-dev \
     libfontconfig1-dev \
