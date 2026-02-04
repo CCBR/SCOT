@@ -43,7 +43,6 @@ RUN mamba install -y -c conda-forge -c bioconda \
     r-rcmdcheck \
     r-reshape2 \
     r-rlang \
-    r-rliger \
     r-rmarkdown \
     r-roxygen2 \
     r-r.utils \
