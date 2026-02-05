@@ -61,6 +61,20 @@ references:
   year: '2026'
   doi: 10.18129/B9.bioc.AUCell
 - type: software
+  title: BiocGenerics
+  abstract: 'BiocGenerics: S4 generic functions used in Bioconductor'
+  notes: Imports
+  url: https://bioconductor.org/packages/BiocGenerics
+  repository: https://bioconductor.org/
+  authors:
+  - name: The Bioconductor Dev Team
+  - family-names: Pagès
+    given-names: Hervé
+    email: hpages.on.github@gmail.com
+    orcid: https://orcid.org/0009-0002-8272-4522
+  year: '2026'
+  doi: 10.18129/B9.bioc.BiocGenerics
+- type: software
   title: celldex
   abstract: 'celldex: Index of Reference Cell Type Datasets'
   notes: Imports
@@ -156,6 +170,21 @@ references:
     given-names: Aaron
   year: '2026'
   doi: 10.18129/B9.bioc.DropletUtils
+- type: software
+  title: flexmix
+  abstract: 'flexmix: Flexible Mixture Modeling'
+  notes: Imports
+  repository: https://CRAN.R-project.org/package=flexmix
+  authors:
+  - family-names: Gruen
+    given-names: Bettina
+    email: Bettina.Gruen@R-project.org
+    orcid: https://orcid.org/0000-0001-7265-4773
+  - family-names: Leisch
+    given-names: Friedrich
+    orcid: https://orcid.org/0000-0001-7278-1983
+  year: '2026'
+  doi: 10.32614/CRAN.package.flexmix
 - type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
@@ -381,6 +410,21 @@ references:
     given-names: Evan
   year: '2026'
   doi: 10.32614/CRAN.package.rliger
+- type: software
+  title: Routliers
+  abstract: 'Routliers: Robust Outliers Detection'
+  notes: Imports
+  url: https://github.com/mdelacre/Routliers
+  repository: https://CRAN.R-project.org/package=Routliers
+  authors:
+  - family-names: Delacre
+    given-names: Marie
+    email: marie.delacre@ulb.ac.be
+  - family-names: Klein
+    given-names: Olivier
+    email: Klein.Olivier@ulb.ac.be
+  year: '2026'
+  doi: 10.32614/CRAN.package.Routliers
 - type: software
   title: scDblFinder
   abstract: 'scDblFinder: scDblFinder'

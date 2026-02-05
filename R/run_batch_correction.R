@@ -39,14 +39,16 @@
 #' @return A batch corrected Seurat object with updated UMAP projections and
 #' clusters
 #'
-run_batch_correction <- function(so_in,
-                                 npcs,
-                                 species,
-                                 resolution_list,
-                                 method_in,
-                                 reduction_in = c(0.2, 0.4, 0.5, 0.8, 1.0),
-                                 vars_to_regress = NULL,
-                                 conda_env = "") {
+run_batch_correction <- function(
+  so_in,
+  npcs,
+  species,
+  resolution_list,
+  method_in,
+  reduction_in = c(0.2, 0.4, 0.5, 0.8, 1.0),
+  vars_to_regress = NULL,
+  conda_env = ""
+) {
   # data variables must be initialized to silence the R CMD check note:
   #    'no visible binding for global variable'
   v_list <- NULL
@@ -103,7 +105,11 @@ run_batch_correction <- function(so_in,
   }
 
   # run neighbors, clusters
-  so <- Seurat::FindNeighbors(so_integrate, reduction = reduction_in, dims = 1:npcs)
+  so <- Seurat::FindNeighbors(
+    so_integrate,
+    reduction = reduction_in,
+    dims = 1:npcs
+  )
   for (res in resolution_list) {
     so <- Seurat::FindClusters(so, resolution = res, algorithm = 3)
   }
@@ -114,32 +120,108 @@ run_batch_correction <- function(so_in,
   # add cluster-based annotations
   cell_ont <- ontoProc::getOnto("cellOnto")
   if (species == "hg38" || species == "hg19") {
-    so$clustAnnot_HPCA_main <- run_singleR_cluster(so, fetch_celldex_ref("hpca"), "label.main")
-    so$clustAnnot_HPCA_fine <- run_singleR_cluster(so, fetch_celldex_ref("hpca"), "label.fine")
-    so$clustAnnot_HPCA_ont <- run_singleR_cluster(so, fetch_celldex_ref("hpca"), "label.ont")
+    so$clustAnnot_HPCA_main <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("hpca"),
+      "label.main"
+    )
+    so$clustAnnot_HPCA_fine <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("hpca"),
+      "label.fine"
+    )
+    so$clustAnnot_HPCA_ont <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("hpca"),
+      "label.ont"
+    )
     so$clustAnnot_HPCA_ont <- cell_ont$name[so$clustAnnot_HPCA_ont]
 
-    so$clustAnnot_BP_encode_main <- run_singleR_cluster(so, fetch_celldex_ref("BP_encode"), "label.main")
-    so$clustAnnot_BP_encode_fine <- run_singleR_cluster(so, fetch_celldex_ref("BP_encode"), "label.fine")
-    so$clustAnnot_BP_encode_ont <- run_singleR_cluster(so, fetch_celldex_ref("BP_encode"), "label.ont")
+    so$clustAnnot_BP_encode_main <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("BP_encode"),
+      "label.main"
+    )
+    so$clustAnnot_BP_encode_fine <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("BP_encode"),
+      "label.fine"
+    )
+    so$clustAnnot_BP_encode_ont <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("BP_encode"),
+      "label.ont"
+    )
     so$clustAnnot_BP_encode_ont <- cell_ont$name[so$clustAnnot_BP_encode_ont]
-    so$clustAnnot_monaco_main <- run_singleR_cluster(so, fetch_celldex_ref("monaco"), "label.main")
-    so$clustAnnot_monaco_fine <- run_singleR_cluster(so, fetch_celldex_ref("monaco"), "label.fine")
-    so$clustAnnot_monaco_ont <- run_singleR_cluster(so, fetch_celldex_ref("monaco"), "label.ont")
+    so$clustAnnot_monaco_main <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("monaco"),
+      "label.main"
+    )
+    so$clustAnnot_monaco_fine <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("monaco"),
+      "label.fine"
+    )
+    so$clustAnnot_monaco_ont <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("monaco"),
+      "label.ont"
+    )
     so$clustAnnot_monaco_ont <- cell_ont$name[so$clustAnnot_monaco_ont]
-    so$clustAnnot_immu_cell_exp_main <- run_singleR_cluster(so, fetch_celldex_ref("dice"), "label.main")
-    so$clustAnnot_immu_cell_exp_fine <- run_singleR_cluster(so, fetch_celldex_ref("dice"), "label.fine")
-    so$clustAnnot_immu_cell_exp_ont <- run_singleR_cluster(so, fetch_celldex_ref("dice"), "label.ont")
-    so$clustAnnot_immu_cell_exp_ont <- cell_ont$name[so$clustAnnot_immu_cell_exp_ont]
+    so$clustAnnot_immu_cell_exp_main <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("dice"),
+      "label.main"
+    )
+    so$clustAnnot_immu_cell_exp_fine <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("dice"),
+      "label.fine"
+    )
+    so$clustAnnot_immu_cell_exp_ont <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("dice"),
+      "label.ont"
+    )
+    so$clustAnnot_immu_cell_exp_ont <- cell_ont$name[
+      so$clustAnnot_immu_cell_exp_ont
+    ]
   } else if (species == "mm10") {
-    so$clustAnnot_immgen_main <- run_singleR_cluster(so, fetch_celldex_ref("immgen"), "label.main")
-    so$clustAnnot_immgen_fine <- run_singleR_cluster(so, fetch_celldex_ref("immgen"), "label.fine")
-    so$clustAnnot_immgen_ont <- run_singleR_cluster(so, fetch_celldex_ref("immgen"), "label.ont")
+    so$clustAnnot_immgen_main <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("immgen"),
+      "label.main"
+    )
+    so$clustAnnot_immgen_fine <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("immgen"),
+      "label.fine"
+    )
+    so$clustAnnot_immgen_ont <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("immgen"),
+      "label.ont"
+    )
     so$clustAnnot_immgen_ont <- cell_ont$name[so$clustAnnot_immgen_ont]
-    so$clustAnnot_mouseRNAseq_main <- run_singleR_cluster(so, fetch_celldex_ref("mouseRNAseq"), "label.main")
-    so$clustAnnot_mouseRNAseq_fine <- run_singleR_cluster(so, fetch_celldex_ref("mouseRNAseq"), "label.fine")
-    so$clustAnnot_mouseRNAseq_ont <- run_singleR_cluster(so, fetch_celldex_ref("mouseRNAseq"), "label.ont")
-    so$clustAnnot_mouseRNAseq_ont <- cell_ont$name[so$clustAnnot_mouseRNAseq_ont]
+    so$clustAnnot_mouseRNAseq_main <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("mouseRNAseq"),
+      "label.main"
+    )
+    so$clustAnnot_mouseRNAseq_fine <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("mouseRNAseq"),
+      "label.fine"
+    )
+    so$clustAnnot_mouseRNAseq_ont <- run_singleR_cluster(
+      so,
+      fetch_celldex_ref("mouseRNAseq"),
+      "label.ont"
+    )
+    so$clustAnnot_mouseRNAseq_ont <- cell_ont$name[
+      so$clustAnnot_mouseRNAseq_ont
+    ]
   }
   return(so)
 }

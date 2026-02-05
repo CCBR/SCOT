@@ -8,10 +8,10 @@
 [![R-CMD-check](https://github.com/CCBR/SCOT/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CCBR/SCOT/actions/workflows/R-CMD-check.yaml)
 [![CodeQL](https://github.com/CCBR/SCOT/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/CCBR/SCOT/actions/workflows/github-code-scanning/codeql)
 [![docker](https://img.shields.io/docker/v/nciccbr/scot?logo=docker&label=docker&color=blue)](https://hub.docker.com/r/nciccbr/scot)
+[![codecov](https://codecov.io/gh/CCBR/SCOT/graph/badge.svg?token=8VQ81R14PA)](https://codecov.io/gh/CCBR/SCOT)
 <!-- badges: end -->
 
 <!-- badges TODO
-[![codecov](https://codecov.io/gh/CCBR/SCOT/graph/badge.svg)](https://codecov.io/gh/CCBR/SCOT)
 [![version](https://img.shields.io/github/v/release/ccbr/scot)](https://github.com/CCBR/SCOT/releases/latest)
 [![DOI](https://zenodo.org/badge/DOI/TODO-ZENODO.svg)](https://doi.org/TODO-ZENODO)
 -->

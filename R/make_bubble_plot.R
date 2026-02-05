@@ -15,8 +15,12 @@
 #' @return A ggplot2 figure
 #'
 make_bubble_plot <- function(
-  so, features, palette = "RdBu", assay = "SCT",
-  scale = FALSE, ident = "seurat_clusters"
+  so,
+  features,
+  palette = "RdBu",
+  assay = "SCT",
+  scale = FALSE,
+  ident = "seurat_clusters"
 ) {
   pct.exp <- id <- features.plot <- NULL
   Group <- Gene <- PctExp <- AvgExp <- NULL
@@ -26,7 +30,11 @@ make_bubble_plot <- function(
   dotplot <- Seurat::DotPlot(so, features = features)
   pct_expression <- dplyr::select(dotplot$data, pct.exp, id, features.plot)
 
-  avg_expression <- Seurat::AverageExpression(so, assay = assay, features = features)[[assay]]
+  avg_expression <- Seurat::AverageExpression(
+    so,
+    assay = assay,
+    features = features
+  )[[assay]]
   avg_expression <- as.matrix(avg_expression)
   colnames(avg_expression) <- gsub("-", "_", colnames(avg_expression))
   if (isTRUE(scale)) {
@@ -43,13 +51,21 @@ make_bubble_plot <- function(
     )]
   }
 
-  bubble_plot <- ggplot2::ggplot(avg_expression_df, ggplot2::aes(
-    x = Group, y = Gene, size = PctExp, color = AvgExp
-  )) +
+  bubble_plot <- ggplot2::ggplot(
+    avg_expression_df,
+    ggplot2::aes(
+      x = Group,
+      y = Gene,
+      size = PctExp,
+      color = AvgExp
+    )
+  ) +
     ggplot2::geom_point() +
     ggplot2::scale_color_distiller(palette = palette) +
     ggplot2::theme_bw() +
-    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, vjust = 1, hjust = 1))
+    ggplot2::theme(
+      axis.text.x = ggplot2::element_text(angle = 45, vjust = 1, hjust = 1)
+    )
 
   return(bubble_plot)
 }
