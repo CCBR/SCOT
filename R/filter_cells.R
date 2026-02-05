@@ -27,41 +27,60 @@
 #'
 #' @export
 #'
-filter_cells <- function(so, method = "miQC",
+filter_cells <- function(
+  so,
+  method = "miQC",
   mads = 3,
-  nCount_RNA_max = 50000, nCount_RNA_min = 1000,
-  nFeature_RNA_max = 5000, nFeature_RNA_min = 200,
-  percent_mt_max = 10, percent_mt_min = 0) {
+  nCount_RNA_max = 50000,
+  nCount_RNA_min = 1000,
+  nFeature_RNA_max = 5000,
+  nFeature_RNA_min = 200,
+  percent_mt_max = 10,
+  percent_mt_min = 0
+) {
   nFeature_RNA <- NULL
-  so_filt <- BiocGenerics::subset(so, subset = nFeature_RNA > 200) #standard low cell read filter
+  so_filt <- BiocGenerics::subset(so, subset = nFeature_RNA > 200) # standard low cell read filter
   if (method == "miQC") {
     print("--filtering cells with miQC")
 
-    so_qc <- SeuratWrappers::RunMiQC(so_filt,
+    so_qc <- SeuratWrappers::RunMiQC(
+      so_filt,
       percent.mt = "percent.mt",
       nFeature_RNA = "nFeature_RNA",
       posterior.cutoff = 0.7,
       model.slot = "flexmix_model"
     )
     so_qc$keep <- so_qc$miQC.keep
-  } else if (method == "manual"){
+  } else if (method == "manual") {
     so_qc <- so_filt
     so_qc$keep <- "discard"
     so_qc$keep[which(
-      so_qc$nCount_RNA <= nCount_RNA_max & so_qc$nCount_RNA >= nCount_RNA_min &
-      so_qc$nFeature_RNA <= nFeature_RNA_max & so_qc$nFeature_RNA >= nFeature_RNA_min &
-      so_qc$percent.mt <= percent_mt_max & so_qc$percent.mt >= percent_mt_min
+      so_qc$nCount_RNA <= nCount_RNA_max &
+        so_qc$nCount_RNA >= nCount_RNA_min &
+        so_qc$nFeature_RNA <= nFeature_RNA_max &
+        so_qc$nFeature_RNA >= nFeature_RNA_min &
+        so_qc$percent.mt <= percent_mt_max &
+        so_qc$percent.mt >= percent_mt_min
     )] <- "keep"
   } else if (method == "mads") {
     so_qc <- so_filt
-    nCount_out <- Routliers::outliers_mad(so_qc$nCount_RNA, threshold = mads)$LL_CI_MAD
-    nFeature_out <- Routliers::outliers_mad(so_qc$nFeature_RNA, threshold = mads)$LL_CI_MAD
-    percent_mt_out <- Routliers::outliers_mad(so_qc$percent.mt, threshold = mads)$UL_CI_MAD
+    nCount_out <- Routliers::outliers_mad(
+      so_qc$nCount_RNA,
+      threshold = mads
+    )$LL_CI_MAD
+    nFeature_out <- Routliers::outliers_mad(
+      so_qc$nFeature_RNA,
+      threshold = mads
+    )$LL_CI_MAD
+    percent_mt_out <- Routliers::outliers_mad(
+      so_qc$percent.mt,
+      threshold = mads
+    )$UL_CI_MAD
     so_qc$keep <- "discard"
     so_qc$keep[which(
       so_qc$nCount_RNA >= nCount_out &
-      so_qc$nFeature_RNA >= nFeature_out &
-      so_qc$percent.mt <= percent_mt_out
+        so_qc$nFeature_RNA >= nFeature_out &
+        so_qc$percent.mt <= percent_mt_out
     )] <- "keep"
   }
 
