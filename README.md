@@ -36,7 +36,7 @@ remotes::install_github("CCBR/SCOT", dependencies = TRUE, ref = "v0.1.0")
 &#10;There is also a Docker container available at <https://hub.docker.com/r/nciccbr/scot>
 &#10;```sh
 singularity exec docker://nciccbr/scot:v0.1.0 R -s -e \
-  'cat("SCOT version:", installed.packages()["SCOT",][["Version"]])'
+  'cat("SCOT version:", utils::packageVersion("SCOT")'
 ```
 -->
 
