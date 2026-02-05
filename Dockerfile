@@ -16,7 +16,6 @@ SHELL ["/bin/bash", "-lc"]
 # install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
-    cmake \
     libcairo2-dev \
     libcurl4-openssl-dev \
     libfontconfig1-dev \
@@ -31,6 +30,7 @@ RUN apt-get update && apt-get install -y \
 
 # install conda packages
 RUN mamba install -y -c conda-forge -c bioconda \
+    cmake \
     hdf5 \
     r-base=${R_VERSION} \
     r-devtools \
