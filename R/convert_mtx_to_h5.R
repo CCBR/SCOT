@@ -18,10 +18,12 @@
 #' @param features_file Path to the features.tsv.gz file
 #'
 #' @export
-convert_mtx_to_h5 <- function(sample_name,
-                              mtx_file,
-                              features_file,
-                              barcodes_file) {
+convert_mtx_to_h5 <- function(
+  sample_name,
+  mtx_file,
+  features_file,
+  barcodes_file
+) {
   counts <- Seurat::ReadMtx(
     mtx = mtx_file,
     cells = barcodes_file,

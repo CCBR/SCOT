@@ -42,7 +42,7 @@ references:
     given-names: Seth
   - family-names: Li
     given-names: Nianhua
-  year: '2025'
+  year: '2026'
   doi: 10.18129/B9.bioc.AnnotationDbi
 - type: software
   title: AUCell
@@ -58,8 +58,22 @@ references:
     given-names: Stein Aerts. Laboratory of Computational Biology. VIB-KU Leuven Center
       for Brain & Disease Research.
   - name: Belgium.
-  year: '2025'
+  year: '2026'
   doi: 10.18129/B9.bioc.AUCell
+- type: software
+  title: BiocGenerics
+  abstract: 'BiocGenerics: S4 generic functions used in Bioconductor'
+  notes: Imports
+  url: https://bioconductor.org/packages/BiocGenerics
+  repository: https://bioconductor.org/
+  authors:
+  - name: The Bioconductor Dev Team
+  - family-names: Pagès
+    given-names: Hervé
+    email: hpages.on.github@gmail.com
+    orcid: https://orcid.org/0009-0002-8272-4522
+  year: '2026'
+  doi: 10.18129/B9.bioc.BiocGenerics
 - type: software
   title: celldex
   abstract: 'celldex: Index of Reference Cell Type Datasets'
@@ -81,7 +95,7 @@ references:
   - family-names: Dündar
     given-names: Friederike
     email: frd2007@med.cornell.edu
-  year: '2025'
+  year: '2026'
   doi: 10.18129/B9.bioc.celldex
 - type: software
   title: clusterSim
@@ -97,7 +111,7 @@ references:
     given-names: Andrzej
     email: andrzej.dudek@ue.wroc.pl
     orcid: https://orcid.org/0000-0002-4943-8703
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.clusterSim
 - type: software
   title: djvdj
@@ -110,7 +124,7 @@ references:
     given-names: Ryan
     email: ryan.sheridan@cuanschutz.edu
     orcid: https://orcid.org/0000-0003-4012-3147
-  year: '2025'
+  year: '2026'
 - type: software
   title: DoubletFinder
   abstract: 'DoubletFinder: DoubletFinder is a suite of tools for identifying doublets
@@ -120,7 +134,7 @@ references:
   - name: c)
   - name: person
   - name: c
-  year: '2025'
+  year: '2026'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -144,7 +158,7 @@ references:
     given-names: Davis
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.dplyr
 - type: software
   title: DropletUtils
@@ -154,8 +168,23 @@ references:
   authors:
   - family-names: Lun
     given-names: Aaron
-  year: '2025'
+  year: '2026'
   doi: 10.18129/B9.bioc.DropletUtils
+- type: software
+  title: flexmix
+  abstract: 'flexmix: Flexible Mixture Modeling'
+  notes: Imports
+  repository: https://CRAN.R-project.org/package=flexmix
+  authors:
+  - family-names: Gruen
+    given-names: Bettina
+    email: Bettina.Gruen@R-project.org
+    orcid: https://orcid.org/0000-0001-7265-4773
+  - family-names: Leisch
+    given-names: Friedrich
+    orcid: https://orcid.org/0000-0001-7278-1983
+  year: '2026'
+  doi: 10.32614/CRAN.package.flexmix
 - type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
@@ -194,7 +223,7 @@ references:
     given-names: Teun
     name-particle: van den
     orcid: https://orcid.org/0000-0002-9335-7468
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.ggplot2
 - type: software
   title: ggpubr
@@ -206,7 +235,7 @@ references:
   - family-names: Kassambara
     given-names: Alboukadel
     email: alboukadel.kassambara@gmail.com
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.ggpubr
 - type: software
   title: ggrepel
@@ -219,7 +248,7 @@ references:
     given-names: Kamil
     email: kslowikowski@gmail.com
     orcid: https://orcid.org/0000-0002-2843-6370
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.ggrepel
 - type: software
   title: grDevices
@@ -230,7 +259,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2025'
+  year: '2026'
 - type: software
   title: harmony
   abstract: 'harmony: Fast, Sensitive, and Accurate Integration of Single Cell Data'
@@ -269,7 +298,7 @@ references:
   - family-names: Raychaudhuri
     given-names: Soumya
     orcid: https://orcid.org/0000-0002-1901-8265
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.harmony
 - type: software
   title: magrittr
@@ -284,7 +313,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.magrittr
 - type: software
   title: ontoProc
@@ -297,7 +326,7 @@ references:
     given-names: Vincent
     email: stvjc@channing.harvard.edu
     orcid: https://orcid.org/0000-0003-4046-0063
-  year: '2025'
+  year: '2026'
   doi: 10.18129/B9.bioc.ontoProc
 - type: software
   title: org.Hs.eg.db
@@ -307,7 +336,7 @@ references:
   authors:
   - family-names: Carlson
     given-names: Marc
-  year: '2025'
+  year: '2026'
 - type: software
   title: org.Mm.eg.db
   abstract: 'org.Mm.eg.db: Genome wide annotation for Mouse'
@@ -316,7 +345,7 @@ references:
   authors:
   - family-names: Carlson
     given-names: Marc
-  year: '2025'
+  year: '2026'
 - type: software
   title: Orthology.eg.db
   abstract: 'Orthology.eg.db: Orthology mapping package'
@@ -325,7 +354,7 @@ references:
   authors:
   - family-names: Carlson
     given-names: Marc
-  year: '2025'
+  year: '2026'
 - type: software
   title: reshape2
   abstract: 'reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package'
@@ -336,7 +365,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.reshape2
 - type: software
   title: rlang
@@ -351,7 +380,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.rlang
 - type: software
   title: rliger
@@ -379,8 +408,23 @@ references:
     given-names: Velina
   - family-names: Macosko
     given-names: Evan
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.rliger
+- type: software
+  title: Routliers
+  abstract: 'Routliers: Robust Outliers Detection'
+  notes: Imports
+  url: https://github.com/mdelacre/Routliers
+  repository: https://CRAN.R-project.org/package=Routliers
+  authors:
+  - family-names: Delacre
+    given-names: Marie
+    email: marie.delacre@ulb.ac.be
+  - family-names: Klein
+    given-names: Olivier
+    email: Klein.Olivier@ulb.ac.be
+  year: '2026'
+  doi: 10.32614/CRAN.package.Routliers
 - type: software
   title: scDblFinder
   abstract: 'scDblFinder: scDblFinder'
@@ -392,7 +436,7 @@ references:
     given-names: Pierre-Luc
     email: pierre-luc.germain@hest.ethz.ch
     orcid: https://orcid.org/0000-0003-3418-4218
-  year: '2025'
+  year: '2026'
   doi: 10.18129/B9.bioc.scDblFinder
 - type: software
   title: Seurat
@@ -405,7 +449,7 @@ references:
     given-names: Rahul
     email: seurat@nygenome.org
     orcid: https://orcid.org/0000-0001-9448-8833
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.Seurat
 - type: software
   title: SeuratObject
@@ -446,7 +490,7 @@ references:
     given-names: Tim
     email: tstuart@nygenome.org
     orcid: https://orcid.org/0000-0002-3044-0897
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.SeuratObject
 - type: software
   title: SeuratWrappers
@@ -470,7 +514,7 @@ references:
     given-names: Tim
     email: tstuart@nygenome.org
     orcid: https://orcid.org/0000-0002-3044-0897
-  year: '2025'
+  year: '2026'
 - type: software
   title: SingleR
   abstract: 'SingleR: Reference-Based Single-Cell RNA-Seq Annotation'
@@ -481,7 +525,7 @@ references:
   - family-names: Aran
     given-names: Dvir
     email: dvir.aran@ucsf.edu
-  year: '2025'
+  year: '2026'
   doi: 10.18129/B9.bioc.SingleR
 - type: software
   title: stats
@@ -492,7 +536,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2025'
+  year: '2026'
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -502,7 +546,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2025'
+  year: '2026'
 - type: software
   title: cffr
   abstract: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
@@ -514,7 +558,7 @@ references:
     given-names: Diego
     email: diego.hernangomezherrero@gmail.com
     orcid: https://orcid.org/0000-0001-8457-4658
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.cffr
 - type: software
   title: GSEABase
@@ -528,7 +572,7 @@ references:
     given-names: Seth
   - family-names: Gentleman
     given-names: Robert
-  year: '2025'
+  year: '2026'
   doi: 10.18129/B9.bioc.GSEABase
 - type: software
   title: knitr
@@ -541,7 +585,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.knitr
 - type: software
   title: ontologyIndex
@@ -552,7 +596,7 @@ references:
   - family-names: Greene
     given-names: Daniel
     email: dg333@cam.ac.uk
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.ontologyIndex
 - type: software
   title: R.utils
@@ -564,7 +608,7 @@ references:
   - family-names: Bengtsson
     given-names: Henrik
     email: henrikb@braju.com
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.R.utils
 - type: software
   title: rmarkdown
@@ -608,7 +652,7 @@ references:
     given-names: Richard
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: roxygen2
@@ -629,7 +673,7 @@ references:
     email: csardi.gabor@gmail.com
   - family-names: Eugster
     given-names: Manuel
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.roxygen2
 - type: software
   title: SeuratData
@@ -649,7 +693,7 @@ references:
     given-names: Andrew
     email: abutler@nygenome.org
     orcid: https://orcid.org/0000-0003-3608-0463
-  year: '2025'
+  year: '2026'
 - type: software
   title: SingleCellExperiment
   abstract: 'SingleCellExperiment: S4 Classes for Single Cell Data'
@@ -662,7 +706,7 @@ references:
   - family-names: Risso
     given-names: Davide
     email: risso.davide@gmail.com
-  year: '2025'
+  year: '2026'
   doi: 10.18129/B9.bioc.SingleCellExperiment
 - type: software
   title: testthat
@@ -674,7 +718,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.testthat
   version: '>= 3.0.0'
 - type: software
@@ -700,5 +744,5 @@ references:
     given-names: Andy
     email: andy.teucher@posit.co
     orcid: https://orcid.org/0000-0002-7840-692X
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.usethis

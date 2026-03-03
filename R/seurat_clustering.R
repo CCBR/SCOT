@@ -14,10 +14,7 @@
 #'
 #' @return The updated Seurat single cell object with recalculated PCA,
 #' neighbors, UMAP and clusters
-seurat_clustering <- function(so_in,
-                              npcs_in,
-                              resolution = 0.8,
-                              algorithm = 3) {
+seurat_clustering <- function(so_in, npcs_in, resolution = 0.8, algorithm = 3) {
   so <- Seurat::RunPCA(
     object = so_in,
     features = Seurat::VariableFeatures(object = so_in),
@@ -25,7 +22,8 @@ seurat_clustering <- function(so_in,
     npcs = 50
   )
   so <- Seurat::FindNeighbors(so, dims = 1:npcs_in)
-  so <- Seurat::FindClusters(so,
+  so <- Seurat::FindClusters(
+    so,
     resolution = 0.8,
     algorithm = 3,
     verbose = TRUE
