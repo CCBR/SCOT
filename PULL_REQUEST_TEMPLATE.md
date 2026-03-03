@@ -21,3 +21,5 @@ reference the PR number. Follow the style described in
 <https://style.tidyverse.org/news.html>
 
 Run `devtools::check()` locally and fix all notes, warnings, and errors.
+
+`R-CMD-check` succeeds on the most recent user commit.
