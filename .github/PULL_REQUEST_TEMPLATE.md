@@ -22,3 +22,4 @@ when referring to the issue so it will be closed automatically when the PR is me
 - [ ] Update the docs if there are any API changes (roxygen2 comments, vignettes, readme, etc.).
 - [ ] Update `NEWS.md` with a short description of any user-facing changes and reference the PR number. Follow the style described in <https://style.tidyverse.org/news.html>
 - [ ] Run `devtools::check()` locally and fix all notes, warnings, and errors.
+- [ ] `R-CMD-check` succeeds on the most recent user commit.
