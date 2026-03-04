@@ -28,6 +28,17 @@ contact:
   email: nathan.wong@nih.gov
 references:
 - type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2026'
+  version: '>= 4.1.0'
+- type: software
   title: AnnotationDbi
   abstract: 'AnnotationDbi: Manipulation of SQLite-based annotations in Bioconductor'
   notes: Imports
@@ -560,6 +571,19 @@ references:
     orcid: https://orcid.org/0000-0001-8457-4658
   year: '2026'
   doi: 10.32614/CRAN.package.cffr
+- type: software
+  title: glmGamPoi
+  abstract: 'glmGamPoi: Fit a Gamma-Poisson Generalized Linear Model'
+  notes: Suggests
+  url: https://github.com/const-ae/glmGamPoi
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Ahlmann-Eltze
+    given-names: Constantin
+    email: artjom31415@googlemail.com
+    orcid: https://orcid.org/0000-0002-3762-068X
+  year: '2026'
+  doi: 10.18129/B9.bioc.glmGamPoi
 - type: software
   title: GSEABase
   abstract: 'GSEABase: Gene set enrichment data structures and methods'
