@@ -10,6 +10,7 @@ load_plain_pbmc <- function() {
 }
 
 load_processed_pbmc <- function() {
+  nFeature_RNA <- percent.mt <- NULL
   pbmc <- load_plain_pbmc()
   pbmc[["percent.mt"]] <- Seurat::PercentageFeatureSet(pbmc, pattern = "^MT-")
   pbmc <- subset(
@@ -42,8 +43,8 @@ get_random_counts <- function() {
   )
 
   # Assign column and row names to the matrix to label cells and genes.
-  colnames(counts) <- paste0("cell", seq(ncol(counts)))
-  row.names(counts) <- paste0("gene", seq(nrow(counts)))
+  colnames(counts) <- paste0("cell", seq_len(ncol(counts)))
+  row.names(counts) <- paste0("gene", seq_len(nrow(counts)))
 
   # Convert `counts` to a `dgCMatrix`.
   counts_sparse <- Seurat::as.sparse(counts)
@@ -60,8 +61,7 @@ get_test_data <- function(
   assay_version = getOption("Seurat.object.assay.version")
 ) {
   # Use the `assay_version` param to choose the correct assay builder.
-  create_assay <- switch(
-    assay_version,
+  create_assay <- switch(assay_version,
     v5 = SeuratObject::CreateAssay5Object,
     stop("`assay_version` should be 'v5'")
   )
