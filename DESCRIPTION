@@ -11,6 +11,8 @@ Authors@R: c(
   )
 Description: Toolbox for single cell RNA-seq.
 License: MIT + file LICENSE
+Depends:
+    R (>= 4.1.0)
 Imports:
     AnnotationDbi,
     AUCell,
@@ -45,6 +47,7 @@ Imports:
     utils
 Suggests:
     cffr,
+    glmGamPoi,
     GSEABase,
     knitr,
     ontologyIndex,
@@ -64,5 +67,6 @@ biocViews:
 Config/Needs/check: rcmdcheck, lintr, goodpractice
 Config/testthat/edition: 3
 Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
