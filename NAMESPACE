@@ -3,6 +3,7 @@
 export(":=")
 export(.data)
 export(add_VDJ_metadata)
+export(calc_prelim_stats)
 export(calc_sc_gsea_score)
 export(cluster_metrics)
 export(convert_human_gene_list)
