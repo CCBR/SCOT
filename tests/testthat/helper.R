@@ -30,6 +30,5 @@ load_plain_pbmc <- function(){
   # prepare test dataset
   pbmc3k <- suppressWarnings(SeuratData::LoadData("pbmc3k"))
   pbmc <- Seurat::UpdateSeuratObject(pbmc3k)
-  set.seed(42)
   return(pbmc)
 }
