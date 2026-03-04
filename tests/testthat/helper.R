@@ -22,7 +22,6 @@ import_pbmc <- function() {
 }
 
 load_plain_pbmc <- function(){
-  nFeature_RNA <- percent.mt <- NULL
   if (grepl("pbmc3k", SeuratData::InstalledData()[1]) == FALSE) {
     SeuratData::InstallData("pbmc3k")
   }
