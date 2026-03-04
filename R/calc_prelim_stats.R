@@ -14,11 +14,14 @@
 #'
 #' @export
 calc_prelim_stats <- function(so, sampleID = NULL) {
-  if (!is.null (sampleID)){
+  if (!is.null(sampleID)) {
     so$Sample <- sampleID
   }
   so[["percent.mt"]] <- Seurat::PercentageFeatureSet(so, pattern = "^MT-|^mt-")
-  so[["percent.RP"]] <- Seurat::PercentageFeatureSet(so, pattern = "^R[PL,pl]|R[PS,ps]")
+  so[["percent.RP"]] <- Seurat::PercentageFeatureSet(
+    so,
+    pattern = "^R[PL,pl]|R[PS,ps]"
+  )
 
   return(so)
 }
