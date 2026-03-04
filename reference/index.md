@@ -5,6 +5,9 @@
 - [`add_VDJ_metadata()`](https://ccbr.github.io/SCOT/reference/add_VDJ_metadata.md)
   : add_VDJ_metadata: Appends V(D)J alignments from CellRanger to an
   existing Seurat object
+- [`calc_prelim_stats()`](https://ccbr.github.io/SCOT/reference/calc_prelim_stats.md)
+  : calc_prelim_stats: Calculates initial statistics for a Seurat object
+  as required for downstream analysis
 - [`calc_sc_gsea_score()`](https://ccbr.github.io/SCOT/reference/calc_sc_gsea_score.md)
   : calc_sc_gsea_score: Calculates scores for pre-ranked GSEA
 - [`cluster_metrics()`](https://ccbr.github.io/SCOT/reference/cluster_metrics.md)
