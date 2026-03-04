@@ -61,7 +61,8 @@ get_test_data <- function(
   assay_version = getOption("Seurat.object.assay.version")
 ) {
   # Use the `assay_version` param to choose the correct assay builder.
-  create_assay <- switch(assay_version,
+  create_assay <- switch(
+    assay_version,
     v5 = SeuratObject::CreateAssay5Object,
     stop("`assay_version` should be 'v5'")
   )
