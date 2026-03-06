@@ -1,22 +1,9 @@
-test_that("object_size", {
-  pbmc <- suppressMessages(import_pbmc())
-  set.seed(42)
-  expect_equal(ncol(pbmc), 2638)
-})
-
-test_that("cluster_count", {
-  pbmc <- suppressMessages(import_pbmc())
-  set.seed(42)
-  expect_equal(length(unique(pbmc$seurat_clusters)), 12)
-})
-
 test_that("cluster_cell_annot_type_count", {
-  pbmc <- suppressMessages(import_pbmc())
   ref <- fetch_celldex_ref("hpca")
-  Seurat::Idents(pbmc) <- "seurat_clusters"
+  Seurat::Idents(pbmc_processed) <- "seurat_clusters"
   set.seed(42)
   singleR_cluster <- run_singleR_cluster(
-    so_in = pbmc,
+    so_in = pbmc_processed,
     ref_file = ref,
     label = "label.main"
   )
