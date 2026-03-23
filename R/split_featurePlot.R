@@ -25,19 +25,21 @@
 #' @export
 #'
 #' @return A list of ggplot2 plots
-split_featurePlot <- function(so,
-                              features,
-                              split_ident,
-                              label = FALSE,
-                              ncol = NA,
-                              nrow = NA,
-                              min.cutoff = NA,
-                              max.cutoff = NA,
-                              plot_image = FALSE,
-                              return_list = FALSE,
-                              slot = "scale.data",
-                              order = FALSE,
-                              reduction = NULL) {
+split_featurePlot <- function(
+  so,
+  features,
+  split_ident,
+  label = FALSE,
+  ncol = NA,
+  nrow = NA,
+  min.cutoff = NA,
+  max.cutoff = NA,
+  plot_image = FALSE,
+  return_list = FALSE,
+  slot = "scale.data",
+  order = FALSE,
+  reduction = NULL
+) {
   plot_list <- list()
   plot_output <- list()
   if (is.null(reduction)) {
@@ -59,7 +61,8 @@ split_featurePlot <- function(so,
         order = order,
         reduction = reduction
       ) +
-        ggplot2::xlim(range(embed[, 1])) + ggplot2::ylim(range(embed[, 2])) +
+        ggplot2::xlim(range(embed[, 1])) +
+        ggplot2::ylim(range(embed[, 2])) +
         ggplot2::ggtitle(ident)
     }
   }
@@ -83,7 +86,8 @@ split_featurePlot <- function(so,
       common.legend = TRUE,
       legend = "right"
     )
-    plot_print <- ggpubr::annotate_figure(plot_print,
+    plot_print <- ggpubr::annotate_figure(
+      plot_print,
       top = ggpubr::text_grob(feature, face = "bold", size = 14)
     )
     plot_output[[feature]] <- plot_print
@@ -92,7 +96,6 @@ split_featurePlot <- function(so,
       print(plot_print)
     }
   }
-
 
   if (return_list == TRUE) {
     return(plot_output)

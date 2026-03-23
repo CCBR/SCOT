@@ -12,10 +12,14 @@ convert_human_gene_list <- function(genes) {
   # data variables must be initialized to silence the R CMD check note:
   #    'no visible binding for global variable'
   gns <- NULL
-  gns <- genes
 
   # TODO: make this function generic enough to convert any genome to any other
-  egs <- AnnotationDbi::mapIds(org.Hs.eg.db::org.Hs.eg.db, gns, "ENTREZID", "SYMBOL")
+  egs <- AnnotationDbi::mapIds(
+    org.Hs.eg.db::org.Hs.eg.db,
+    gns,
+    "ENTREZID",
+    "SYMBOL"
+  )
   mapped <- AnnotationDbi::select(
     Orthology.eg.db::Orthology.eg.db,
     egs,

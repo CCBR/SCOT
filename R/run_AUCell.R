@@ -29,18 +29,30 @@ run_AUCell <- function(so, gene_sets) {
   expr_matrix <- t(expr)
   # Find intersection of gene names between gene sets and Seurat object
   gene_sets <- AUCell::subsetGeneSets(gene_sets, rownames(expr_matrix))
-  gene_sets <- AUCell::setGeneSetNames(gene_sets,
-    newNames = paste(names(gene_sets),
-      " (", AUCell::nGenes(gene_sets), "g)",
+  gene_sets <- AUCell::setGeneSetNames(
+    gene_sets,
+    newNames = paste(
+      names(gene_sets),
+      " (",
+      AUCell::nGenes(gene_sets),
+      "g)",
       sep = ""
     )
   )
 
   # Run AUCell rankings and calculations
-  cells_rankings <- AUCell::AUCell_buildRankings(expr_matrix, nCores = 4, plotStats = FALSE)
+  cells_rankings <- AUCell::AUCell_buildRankings(
+    expr_matrix,
+    nCores = 4,
+    plotStats = FALSE
+  )
   cells_AUC <- AUCell::AUCell_calcAUC(gene_sets, cells_rankings)
 
-  cells_assignment <- AUCell::AUCell_exploreThresholds(cells_AUC, plotHist = FALSE, assignCells = TRUE)
+  cells_assignment <- AUCell::AUCell_exploreThresholds(
+    cells_AUC,
+    plotHist = FALSE,
+    assignCells = TRUE
+  )
   # selectedThresholds <- getThresholdSelected(cells_assignment)
 
   # AUCell_plotTSNE(tSNE=obj@reductions$umap@cell.embeddings[,1:2],

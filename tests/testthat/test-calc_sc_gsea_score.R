@@ -1,7 +1,6 @@
 # Test for calc_sc_gsea_score function
 
 test_that("calc_sc_gsea_score computes scores correctly", {
-  
   # Create a mock differential expression table
   deTable <- data.frame(
     p_val = c(0.001, 0.05, 0.1, 0.0001),
@@ -31,7 +30,6 @@ test_that("calc_sc_gsea_score computes scores correctly", {
 })
 
 test_that("calc_sc_gsea_score handles zero p-values correctly", {
-  
   # Create table with zero p-values
   deTable <- data.frame(
     p_val = c(0, 0.05, 0),
@@ -47,15 +45,22 @@ test_that("calc_sc_gsea_score handles zero p-values correctly", {
   # For zero p-values, formula should be: sign(log2FC) * 500 * max(pct.1, pct.2) + log2FC
   # ZeroGene1: sign(2.0) * 500 * max(0.9, 0.1) + 2.0 = 1 * 500 * 0.9 + 2.0 = 452
   expected_zero1 <- 1 * 500 * max(0.9, 0.1) + 2.0
-  expect_equal(as.numeric(scores["ZeroGene1"]), expected_zero1, tolerance = 1e-10)
+  expect_equal(
+    as.numeric(scores["ZeroGene1"]),
+    expected_zero1,
+    tolerance = 1e-10
+  )
 
   # ZeroGene2: sign(-2.5) * 500 * max(0.7, 0.3) + (-2.5) = -1 * 500 * 0.7 + (-2.5) = -352.5
   expected_zero2 <- -1 * 500 * max(0.7, 0.3) + (-2.5)
-  expect_equal(as.numeric(scores["ZeroGene2"]), expected_zero2, tolerance = 1e-10)
+  expect_equal(
+    as.numeric(scores["ZeroGene2"]),
+    expected_zero2,
+    tolerance = 1e-10
+  )
 })
 
 test_that("calc_sc_gsea_score handles edge cases", {
-  
   # Test with minimal data - single gene
   deTable_minimal <- data.frame(
     p_val = 0.5,
@@ -97,11 +102,9 @@ test_that("calc_sc_gsea_score handles edge cases", {
   scores_na <- calc_sc_gsea_score(deTable_na)
   expect_true(!is.na(scores_na["Gene1"]))
   expect_true(is.na(scores_na["NA_Gene2"]))
-
 })
 
 test_that("calc_sc_gsea_score validates input structure", {
-
   # Test with missing required columns
   incomplete_table <- data.frame(
     p_val = c(0.01, 0.05),
@@ -120,7 +123,6 @@ test_that("calc_sc_gsea_score validates input structure", {
 })
 
 test_that("calc_sc_gsea_score handles various p-value ranges", {
-  
   # Test with very small and large p-values
   deTable <- data.frame(
     p_val = c(1e-10, 0.99, 1e-300, 0.5),
@@ -139,13 +141,12 @@ test_that("calc_sc_gsea_score handles various p-value ranges", {
 })
 
 test_that("calc_sc_gsea_score percentage weighting works correctly", {
-  
   # Test that higher percentages result in higher absolute scores
   deTable <- data.frame(
-    p_val = c(0.01, 0.01),  # Same p-value
-    avg_log2FC = c(2.0, 2.0),  # Same fold change
-    pct.1 = c(0.9, 0.3),  # Different pct.1
-    pct.2 = c(0.1, 0.2),  # Different pct.2
+    p_val = c(0.01, 0.01), # Same p-value
+    avg_log2FC = c(2.0, 2.0), # Same fold change
+    pct.1 = c(0.9, 0.3), # Different pct.1
+    pct.2 = c(0.1, 0.2), # Different pct.2
     p_val_adj = c(0.05, 0.05),
     row.names = c("HighPct", "LowPct")
   )
@@ -157,11 +158,10 @@ test_that("calc_sc_gsea_score percentage weighting works correctly", {
 })
 
 test_that("calc_sc_gsea_score sign handling works correctly", {
-  
   # Test positive and negative fold changes
   deTable <- data.frame(
     p_val = c(0.01, 0.01),
-    avg_log2FC = c(2.0, -2.0),  # Opposite signs
+    avg_log2FC = c(2.0, -2.0), # Opposite signs
     pct.1 = c(0.8, 0.8),
     pct.2 = c(0.2, 0.2),
     p_val_adj = c(0.05, 0.05),
@@ -175,5 +175,9 @@ test_that("calc_sc_gsea_score sign handling works correctly", {
   # Negative fold change should result in negative score component from sign
   expect_true(scores["Negative"] < 0)
   # Magnitudes should be similar (same p-val and pct values)
-  expect_equal(abs(as.numeric(scores["Positive"])), abs(as.numeric(scores["Negative"])), tolerance = 1.0)
+  expect_equal(
+    abs(as.numeric(scores["Positive"])),
+    abs(as.numeric(scores["Negative"])),
+    tolerance = 1.0
+  )
 })

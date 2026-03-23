@@ -50,12 +50,18 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
       sct = TRUE
     )
     so_in$doubletFinder_label <- dfso[[utils::tail(names(dfso@meta.data), 1)]]
-    so_in <- subset(so_in, cells = colnames(so_in)[which(so_in$doubletFinder_label == "Singlet")])
+    so_in <- subset(
+      so_in,
+      cells = colnames(so_in)[which(so_in$doubletFinder_label == "Singlet")]
+    )
   } else if (doublet_finder_method == "scDblFinder") {
     sce <- Seurat::as.SingleCellExperiment(so_in)
     sce_dbl <- scDblFinder::scDblFinder(sce) |> suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
-    so_in <- subset(so_in, cells = colnames(so_in)[which(so_in$scDblFinder_label == "singlet")])
+    so_in <- subset(
+      so_in,
+      cells = colnames(so_in)[which(so_in$scDblFinder_label == "singlet")]
+    )
   } else if (doublet_finder_method == "union") {
     # sweep_res_list <- paramSweep(so_in, PCs = 1:10, sct = TRUE)
     # sweep_stats <- summarizeSweep(sweep_res_list, GT = FALSE)
@@ -93,10 +99,13 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     sce <- Seurat::as.SingleCellExperiment(so_in)
     sce_dbl <- scDblFinder::scDblFinder(sce) |> suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
-    so_in <- subset(so_in, cells = colnames(so_in)[intersect(
-      which(so_in$doubletFinder_label == "Singlet"),
-      which(so_in$scDblFinder_label == "singlet")
-    )])
+    so_in <- subset(
+      so_in,
+      cells = colnames(so_in)[intersect(
+        which(so_in$doubletFinder_label == "Singlet"),
+        which(so_in$scDblFinder_label == "singlet")
+      )]
+    )
   } else if (doublet_finder_method == "consensus") {
     # sweep_res_list <- paramSweep(so_in, PCs = 1:10, sct = TRUE)
     # sweep_stats <- summarizeSweep(sweep_res_list, GT = FALSE)
@@ -134,10 +143,13 @@ filter_doublets <- function(so_in, doublet_finder_method = "DoubletFinder") {
     sce <- Seurat::as.SingleCellExperiment(so_in)
     sce_dbl <- scDblFinder::scDblFinder(sce) |> suppressWarnings()
     so_in$scDblFinder_label <- sce_dbl$scDblFinder.class
-    so_in <- subset(so_in, cells = colnames(so_in)[unique(c(
-      which(so_in$doubletFinder_label == "Singlet"),
-      which(so_in$scDblFinder_label == "singlet")
-    ))])
+    so_in <- subset(
+      so_in,
+      cells = colnames(so_in)[unique(c(
+        which(so_in$doubletFinder_label == "Singlet"),
+        which(so_in$scDblFinder_label == "singlet")
+      ))]
+    )
   } else {
     stop("No valid method selected.")
   }

@@ -14,4 +14,6 @@ rlang::.data
 # https://community.rstudio.com/t/how-should-a-meta-package-handle-this-note-all-declared-imports-should-be-used/23400/3
 #' @importFrom harmony RunHarmony
 #' @importFrom rliger createLiger
+#' @importFrom flexmix flexmix
+#' @importFrom magrittr %>%
 NULL
