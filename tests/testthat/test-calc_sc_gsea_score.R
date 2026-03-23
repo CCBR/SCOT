@@ -1,9 +1,7 @@
 # Test for calc_sc_gsea_score function
 
 test_that("calc_sc_gsea_score computes scores correctly", {
-  # Source function for testing
-  source(file.path("..", "..", "R", "calc_sc_gsea_score.R"))
-
+  
   # Create a mock differential expression table
   deTable <- data.frame(
     p_val = c(0.001, 0.05, 0.1, 0.0001),
@@ -33,9 +31,7 @@ test_that("calc_sc_gsea_score computes scores correctly", {
 })
 
 test_that("calc_sc_gsea_score handles zero p-values correctly", {
-  # Source function for testing
-  source(file.path("..", "..", "R", "calc_sc_gsea_score.R"))
-
+  
   # Create table with zero p-values
   deTable <- data.frame(
     p_val = c(0, 0.05, 0),
@@ -59,10 +55,8 @@ test_that("calc_sc_gsea_score handles zero p-values correctly", {
 })
 
 test_that("calc_sc_gsea_score handles edge cases", {
-  # Source function for testing
-  source(file.path("..", "..", "R", "calc_sc_gsea_score.R"))
-
-  # Test with minimal data
+  
+  # Test with minimal data - single gene
   deTable_minimal <- data.frame(
     p_val = 0.5,
     avg_log2FC = 1.0,
@@ -90,11 +84,23 @@ test_that("calc_sc_gsea_score handles edge cases", {
   expect_length(scores_zero_fc, 2)
   # When log2FC is 0, sign should be 0, so the first part becomes 0, leaving only avg_log2FC
   expect_equal(as.numeric(scores_zero_fc["ZeroFC1"]), 0, tolerance = 1e-10)
+
+  # Test with NA values - should result in NA scores
+  deTable_na <- data.frame(
+    p_val = c(0.01, NA),
+    avg_log2FC = c(1.5, 2.0),
+    pct.1 = c(0.7, 0.8),
+    pct.2 = c(0.3, 0.2),
+    p_val_adj = c(0.05, NA),
+    row.names = c("Gene1", "NA_Gene2")
+  )
+  scores_na <- calc_sc_gsea_score(deTable_na)
+  expect_true(!is.na(scores_na["Gene1"]))
+  expect_true(is.na(scores_na["NA_Gene2"]))
+
 })
 
 test_that("calc_sc_gsea_score validates input structure", {
-  # Source function for testing
-  source(file.path("..", "..", "R", "calc_sc_gsea_score.R"))
 
   # Test with missing required columns
   incomplete_table <- data.frame(
@@ -114,9 +120,7 @@ test_that("calc_sc_gsea_score validates input structure", {
 })
 
 test_that("calc_sc_gsea_score handles various p-value ranges", {
-  # Source function for testing
-  source(file.path("..", "..", "R", "calc_sc_gsea_score.R"))
-
+  
   # Test with very small and large p-values
   deTable <- data.frame(
     p_val = c(1e-10, 0.99, 1e-300, 0.5),
@@ -135,9 +139,7 @@ test_that("calc_sc_gsea_score handles various p-value ranges", {
 })
 
 test_that("calc_sc_gsea_score percentage weighting works correctly", {
-  # Source function for testing
-  source(file.path("..", "..", "R", "calc_sc_gsea_score.R"))
-
+  
   # Test that higher percentages result in higher absolute scores
   deTable <- data.frame(
     p_val = c(0.01, 0.01),  # Same p-value
@@ -155,9 +157,7 @@ test_that("calc_sc_gsea_score percentage weighting works correctly", {
 })
 
 test_that("calc_sc_gsea_score sign handling works correctly", {
-  # Source function for testing
-  source(file.path("..", "..", "R", "calc_sc_gsea_score.R"))
-
+  
   # Test positive and negative fold changes
   deTable <- data.frame(
     p_val = c(0.01, 0.01),

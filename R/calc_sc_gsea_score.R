@@ -26,13 +26,19 @@
 #'
 #' @return Returns a named vector of GSEA scores for genes
 calc_sc_gsea_score <- function(deTable) {
+
   gseaScoreVect <- sign(deTable$avg_log2FC) *
     -log10(deTable$p_val) *
     pmax(deTable$pct.1, deTable$pct.2) +
     deTable$avg_log2FC
+  
+  # pmax compares pct.1 and pct.2 for each gene and returns the maximum value
   gseaScoreVect[which(deTable$p_val == 0)] <- (
     sign(deTable$avg_log2FC) * 500 * pmax(deTable$pct.1, deTable$pct.2) + deTable$avg_log2FC
   )[which(deTable$p_val == 0)]
+
   names(gseaScoreVect) <- rownames(deTable)
+
   return(gseaScoreVect)
+
 }
