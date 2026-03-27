@@ -1,0 +1,26 @@
+---
+title: "Introduction to SCOT"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(SCOT)
+MOSuite::multiOmicDataSet(
+  sample_metadata = data.frame(sample_id = 'a'),
+  anno_dat = data.frame(),
+  counts_lst = list('raw' = data.frame(gene_id = 'b', a = 1)),
+  analyses_lst = list()
+)
+```

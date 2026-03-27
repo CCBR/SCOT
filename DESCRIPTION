@@ -58,6 +58,8 @@ Suggests:
     SingleCellExperiment,
     testthat (>= 3.0.0),
     usethis
+VignetteBuilder:
+    knitr
 Remotes:
     chris-mcginnis-ucsf/DoubletFinder,
     rnabioco/djvdj@*release,
