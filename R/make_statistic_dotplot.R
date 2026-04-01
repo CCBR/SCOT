@@ -24,7 +24,9 @@ make_statistic_dotplot <- function(
   palette = "RdYlBu"
 ) {
   # Create the plot using dynamic column names
-  if (!is.list(palette)) {
+  if (
+    !is.list(palette) && (palette %in% rownames(RColorBrewer::brewer.pal.info))
+  ) {
     dotplot <- ggplot2::ggplot(
       data,
       ggplot2::aes(
