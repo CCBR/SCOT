@@ -2,7 +2,7 @@
 
 test_that("calc_sc_gsea_score computes scores correctly", {
   # Create a mock differential expression table
-  deTable <- data.frame(
+  de_table <- data.frame(
     p_val = c(0.001, 0.05, 0.1, 0.0001),
     avg_log2FC = c(2.5, -1.2, 0.8, -3.1),
     pct.1 = c(0.8, 0.3, 0.6, 0.9),
@@ -12,26 +12,27 @@ test_that("calc_sc_gsea_score computes scores correctly", {
   )
 
   # Calculate scores
-  scores <- calc_sc_gsea_score(deTable)
+  gsea_score_vect <- calc_sc_gsea_score(de_table)
 
   # Test basic properties
-  expect_type(scores, "double")
-  expect_equal(length(scores), nrow(deTable))
-  expect_equal(names(scores), rownames(deTable))
+  expect_type(gsea_score_vect, "double")
+  expect_equal(length(gsea_score_vect), nrow(de_table))
+  expect_equal(names(gsea_score_vect), rownames(de_table))
 
-  # Test that scores are named correctly
-  expect_true(all(names(scores) %in% rownames(deTable)))
-
-  # Test formula components - manually calculate expected values for verification
-  # For Gene1: sign(2.5) * -log10(0.001) * max(0.8, 0.2) + 2.5
-  # = 1 * 3 * 0.8 + 2.5 = 4.9
-  expected_gene1 <- 1 * (-log10(0.001)) * max(0.8, 0.2) + 2.5
-  expect_equal(as.numeric(scores["Gene1"]), expected_gene1, tolerance = 1e-10)
+  expect_equal(
+    gsea_score_vect,
+    c(
+      Gene1 = 4.9,
+      Gene2 = -2.11072099696479,
+      Gene3 = 1.4,
+      Gene4 = -6.7
+    )
+  )
 })
 
 test_that("calc_sc_gsea_score handles zero p-values correctly", {
   # Create table with zero p-values
-  deTable <- data.frame(
+  de_table <- data.frame(
     p_val = c(0, 0.05, 0),
     avg_log2FC = c(2.0, -1.5, -2.5),
     pct.1 = c(0.9, 0.4, 0.7),
@@ -40,29 +41,21 @@ test_that("calc_sc_gsea_score handles zero p-values correctly", {
     row.names = c("ZeroGene1", "NonZeroGene", "ZeroGene2")
   )
 
-  scores <- calc_sc_gsea_score(deTable)
+  gsea_score_vect <- calc_sc_gsea_score(de_table)
 
-  # For zero p-values, formula should be: sign(log2FC) * 500 * max(pct.1, pct.2) + log2FC
-  # ZeroGene1: sign(2.0) * 500 * max(0.9, 0.1) + 2.0 = 1 * 500 * 0.9 + 2.0 = 452
-  expected_zero1 <- 1 * 500 * max(0.9, 0.1) + 2.0
   expect_equal(
-    as.numeric(scores["ZeroGene1"]),
-    expected_zero1,
-    tolerance = 1e-10
-  )
-
-  # ZeroGene2: sign(-2.5) * 500 * max(0.7, 0.3) + (-2.5) = -1 * 500 * 0.7 + (-2.5) = -352.5
-  expected_zero2 <- -1 * 500 * max(0.7, 0.3) + (-2.5)
-  expect_equal(
-    as.numeric(scores["ZeroGene2"]),
-    expected_zero2,
-    tolerance = 1e-10
+    gsea_score_vect,
+    c(
+      ZeroGene1 = 452,
+      NonZeroGene = -2.28061799739839,
+      ZeroGene2 = -352.5
+    )
   )
 })
 
 test_that("calc_sc_gsea_score handles edge cases", {
   # Test with minimal data - single gene
-  deTable_minimal <- data.frame(
+  de_table_minimal <- data.frame(
     p_val = 0.5,
     avg_log2FC = 1.0,
     pct.1 = 0.5,
@@ -71,12 +64,11 @@ test_that("calc_sc_gsea_score handles edge cases", {
     row.names = "SingleGene"
   )
 
-  scores_minimal <- calc_sc_gsea_score(deTable_minimal)
-  expect_length(scores_minimal, 1)
-  expect_equal(names(scores_minimal), "SingleGene")
+  gsea_score_vect_minimal <- calc_sc_gsea_score(de_table_minimal)
+  expect_equal(gsea_score_vect_minimal, c(SingleGene = 1.15051499783199))
 
   # Test with zero fold change
-  deTable_zero_fc <- data.frame(
+  de_table_zero_fc <- data.frame(
     p_val = c(0.01, 0.05),
     avg_log2FC = c(0, 0),
     pct.1 = c(0.6, 0.4),
@@ -85,13 +77,11 @@ test_that("calc_sc_gsea_score handles edge cases", {
     row.names = c("ZeroFC1", "ZeroFC2")
   )
 
-  scores_zero_fc <- calc_sc_gsea_score(deTable_zero_fc)
-  expect_length(scores_zero_fc, 2)
-  # When log2FC is 0, sign should be 0, so the first part becomes 0, leaving only avg_log2FC
-  expect_equal(as.numeric(scores_zero_fc["ZeroFC1"]), 0, tolerance = 1e-10)
+  gsea_score_vect_zero_fc <- calc_sc_gsea_score(de_table_zero_fc)
+  expect_equal(gsea_score_vect_zero_fc, c(ZeroFC1 = 0, ZeroFC2 = 0))
 
   # Test with NA values - should result in NA scores
-  deTable_na <- data.frame(
+  de_table_na <- data.frame(
     p_val = c(0.01, NA),
     avg_log2FC = c(1.5, 2.0),
     pct.1 = c(0.7, 0.8),
@@ -99,9 +89,9 @@ test_that("calc_sc_gsea_score handles edge cases", {
     p_val_adj = c(0.05, NA),
     row.names = c("Gene1", "NA_Gene2")
   )
-  scores_na <- calc_sc_gsea_score(deTable_na)
-  expect_true(!is.na(scores_na["Gene1"]))
-  expect_true(is.na(scores_na["NA_Gene2"]))
+
+  gsea_score_vect_na <- calc_sc_gsea_score(de_table_na)
+  expect_equal(gsea_score_vect_na, c(Gene1 = 2.9, NA_Gene2 = NA_real_))
 })
 
 test_that("calc_sc_gsea_score validates input structure", {
@@ -113,18 +103,41 @@ test_that("calc_sc_gsea_score validates input structure", {
     row.names = c("Gene1", "Gene2")
   )
 
-  expect_error(calc_sc_gsea_score(incomplete_table))
+  expect_error(
+    calc_sc_gsea_score(incomplete_table),
+    regexp = "same length as the vector"
+  )
 
   # Test with NULL input
-  expect_error(calc_sc_gsea_score(NULL))
+  expect_error(
+    calc_sc_gsea_score(NULL),
+    regexp = "non-numeric argument"
+  )
 
   # Test with non-data.frame input
-  expect_error(calc_sc_gsea_score("not_a_dataframe"))
+  expect_error(
+    calc_sc_gsea_score("not_a_dataframe"),
+    regexp = "\\$ operator is invalid"
+  )
+
+  # Test with non-numeric p-value column
+  bad_numeric_cols <- data.frame(
+    p_val = c("bad", "value"),
+    avg_log2FC = c(1.0, -0.5),
+    pct.1 = c(0.3, 0.5),
+    pct.2 = c(0.2, 0.4),
+    p_val_adj = c(0.05, 0.10),
+    row.names = c("Gene1", "Gene2")
+  )
+  expect_error(
+    calc_sc_gsea_score(bad_numeric_cols),
+    regexp = "non-numeric argument"
+  )
 })
 
 test_that("calc_sc_gsea_score handles various p-value ranges", {
   # Test with very small and large p-values
-  deTable <- data.frame(
+  de_table <- data.frame(
     p_val = c(1e-10, 0.99, 1e-300, 0.5),
     avg_log2FC = c(3.0, -1.0, 2.5, -0.5),
     pct.1 = c(0.8, 0.2, 0.9, 0.4),
@@ -133,16 +146,22 @@ test_that("calc_sc_gsea_score handles various p-value ranges", {
     row.names = c("VerySmallP", "LargeP", "TinyP", "MediumP")
   )
 
-  scores <- calc_sc_gsea_score(deTable)
+  gsea_score_vect <- calc_sc_gsea_score(de_table)
 
-  # Very small p-values should result in large scores (more significant)
-  expect_true(abs(scores["VerySmallP"]) > abs(scores["LargeP"]))
-  expect_true(abs(scores["TinyP"]) > abs(scores["MediumP"]))
+  expect_equal(
+    gsea_score_vect,
+    c(
+      VerySmallP = 11,
+      LargeP = -1.00349184432578,
+      TinyP = 272.5,
+      MediumP = -0.680617997398389
+    )
+  )
 })
 
 test_that("calc_sc_gsea_score percentage weighting works correctly", {
   # Test that higher percentages result in higher absolute scores
-  deTable <- data.frame(
+  de_table <- data.frame(
     p_val = c(0.01, 0.01), # Same p-value
     avg_log2FC = c(2.0, 2.0), # Same fold change
     pct.1 = c(0.9, 0.3), # Different pct.1
@@ -151,15 +170,14 @@ test_that("calc_sc_gsea_score percentage weighting works correctly", {
     row.names = c("HighPct", "LowPct")
   )
 
-  scores <- calc_sc_gsea_score(deTable)
+  gsea_score_vect <- calc_sc_gsea_score(de_table)
 
-  # HighPct should have higher score due to max(0.9, 0.1) = 0.9 vs max(0.3, 0.2) = 0.3
-  expect_true(scores["HighPct"] > scores["LowPct"])
+  expect_equal(gsea_score_vect, c(HighPct = 3.8, LowPct = 2.6))
 })
 
 test_that("calc_sc_gsea_score sign handling works correctly", {
   # Test positive and negative fold changes
-  deTable <- data.frame(
+  de_table <- data.frame(
     p_val = c(0.01, 0.01),
     avg_log2FC = c(2.0, -2.0), # Opposite signs
     pct.1 = c(0.8, 0.8),
@@ -168,16 +186,33 @@ test_that("calc_sc_gsea_score sign handling works correctly", {
     row.names = c("Positive", "Negative")
   )
 
-  scores <- calc_sc_gsea_score(deTable)
+  gsea_score_vect <- calc_sc_gsea_score(de_table)
 
-  # Positive fold change should result in positive score component from sign
-  expect_true(scores["Positive"] > 0)
-  # Negative fold change should result in negative score component from sign
-  expect_true(scores["Negative"] < 0)
-  # Magnitudes should be similar (same p-val and pct values)
-  expect_equal(
-    abs(as.numeric(scores["Positive"])),
-    abs(as.numeric(scores["Negative"])),
-    tolerance = 1.0
+  expect_equal(gsea_score_vect, c(Positive = 3.6, Negative = -3.6))
+})
+
+test_that("calc_sc_gsea_score preserves provided row names", {
+  de_table_empty_rowname <- data.frame(
+    p_val = c(0.01, 0.05),
+    avg_log2FC = c(1.0, -1.0),
+    pct.1 = c(0.5, 0.4),
+    pct.2 = c(0.2, 0.6),
+    p_val_adj = c(0.05, 0.1),
+    row.names = c("", "Gene2")
   )
+
+  gsea_score_vect_empty <- calc_sc_gsea_score(de_table_empty_rowname)
+  expect_equal(names(gsea_score_vect_empty), c("", "Gene2"))
+
+  de_table_dup_rowname <- data.frame(
+    p_val = c(0.02, 0.03),
+    avg_log2FC = c(0.9, -1.2),
+    pct.1 = c(0.7, 0.4),
+    pct.2 = c(0.3, 0.6),
+    p_val_adj = c(0.08, 0.1)
+  )
+  attr(de_table_dup_rowname, "row.names") <- c("DupGene", "DupGene")
+
+  gsea_score_vect_dup <- calc_sc_gsea_score(de_table_dup_rowname)
+  expect_equal(names(gsea_score_vect_dup), c("DupGene", "DupGene"))
 })

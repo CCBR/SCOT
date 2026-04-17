@@ -18,25 +18,26 @@
 #' This formula should preserve the ranking as indicated by magnitude of fold
 #' change,while also diminishing the significance of lowly-expressed genes.
 #'
-#' @param deTable A differential expression table generated from the Seurat
+#' @param de_table A differential expression table generated from the Seurat
 #' FindMarkers function. Contains the column headers `p_val`, `avg_log2FC`,
 #' `pct.1`, `pct.2`, and `p_val_adj`
 #'
 #' @export
 #'
 #' @return Returns a named vector of GSEA scores for genes
-calc_sc_gsea_score <- function(deTable) {
-  gseaScoreVect <- sign(deTable$avg_log2FC) *
-    -log10(deTable$p_val) *
-    pmax(deTable$pct.1, deTable$pct.2) +
-    deTable$avg_log2FC
+calc_sc_gsea_score <- function(de_table) {
+  gsea_score_vect <- sign(de_table$avg_log2FC) *
+    -log10(de_table$p_val) *
+    pmax(de_table$pct.1, de_table$pct.2) +
+    de_table$avg_log2FC
 
-  gseaScoreVect[which(deTable$p_val == 0)] <- (sign(deTable$avg_log2FC) *
+  # pmax compares pct.1 and pct.2 for each gene and returns the maximum value
+  gsea_score_vect[which(de_table$p_val == 0)] <- (sign(de_table$avg_log2FC) *
     500 *
-    pmax(deTable$pct.1, deTable$pct.2) +
-    deTable$avg_log2FC)[which(deTable$p_val == 0)]
+    pmax(de_table$pct.1, de_table$pct.2) +
+    de_table$avg_log2FC)[which(de_table$p_val == 0)]
 
-  names(gseaScoreVect) <- rownames(deTable)
+  names(gsea_score_vect) <- rownames(de_table)
 
-  return(gseaScoreVect)
+  return(gsea_score_vect)
 }
