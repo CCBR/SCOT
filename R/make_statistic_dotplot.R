@@ -23,6 +23,9 @@ make_statistic_dotplot <- function(
   color,
   palette = "RdYlBu"
 ) {
+  #identify range limits for color
+  maxAbs <- NULL
+  maxAbs <- max(abs(data[[color]]))
   # Create the plot using dynamic column names
   if (
     !is.list(palette) && (palette %in% rownames(RColorBrewer::brewer.pal.info))
@@ -37,7 +40,10 @@ make_statistic_dotplot <- function(
       )
     ) +
       ggplot2::geom_point() + # Add points (customize as needed)
-      ggplot2::scale_color_distiller(palette = palette) + # Apply color palette
+      ggplot2::scale_color_distiller(
+        palette = palette,
+        limits = c(-maxAbs, maxAbs)
+      ) + # Apply color palette
       ggplot2::theme_minimal() # Basic theme (customize as needed)
   } else {
     colPalette <- unlist(palette) #Turns palette into character string
@@ -66,7 +72,11 @@ make_statistic_dotplot <- function(
         )
       ) +
         ggplot2::geom_point() + # Add points (customize as needed)
-        ggplot2::scale_color_gradient(low = lowCol, high = highCol) + # Apply color palette
+        ggplot2::scale_color_gradient(
+          low = lowCol,
+          high = highCol,
+          limits = c(-maxAbs, maxAbs)
+        ) + # Apply color palette
         ggplot2::theme_minimal() # Basic theme (customize as needed)
     } else {
       dotplot <- ggplot2::ggplot(
@@ -82,7 +92,8 @@ make_statistic_dotplot <- function(
         ggplot2::scale_color_gradient2(
           low = lowCol,
           mid = midCol,
-          high = highCol
+          high = highCol,
+          limits = c(-maxAbs, maxAbs)
         ) + # Apply color palette
         ggplot2::theme_minimal() # Basic theme (customize as needed)
     }
