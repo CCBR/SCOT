@@ -24,6 +24,8 @@ test_that("conda_env defaults to empty string", {
 
 # ── input validation: species parameter ───────────────────────────────────────
 test_that("run_batch_correction with hg38 on BRCA data produces expected output structure", {
+  skip_if_not_installed("celldex")
+  skip_if_not_installed("ontoProc")
   # Load BRCA test data
   brca <- selectData("wu_et_al_BRCA")
 
@@ -53,6 +55,8 @@ test_that("run_batch_correction with hg38 on BRCA data produces expected output 
 
 # ── input validation: method_in parameter ────────────────────────────────────
 test_that("run_batch_correction with BRCA data runs successfully with valid parameters", {
+  skip_if_not_installed("celldex")
+  skip_if_not_installed("ontoProc")
   brca <- selectData("wu_et_al_BRCA")
 
   # Verify the Seurat object has required assays and metadata

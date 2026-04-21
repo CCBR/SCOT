@@ -2,7 +2,6 @@
 if (!requireNamespace("org.Hs.eg.db", quietly = TRUE)) {
   skip("org.Hs.eg.db not installed; skipping convert_human_gene_list tests")
 }
-
 test_that("convert_human_gene_list returns character vector", {
   out <- convert_human_gene_list(c("TP53", "EGFR", "CD3D"))
   expect_type(out, "character")
