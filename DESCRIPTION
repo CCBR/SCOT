@@ -44,6 +44,7 @@ Imports:
     SeuratWrappers,
     SingleR,
     stats,
+    stringr,
     utils
 Suggests:
     cffr,
