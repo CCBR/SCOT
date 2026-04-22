@@ -4,10 +4,10 @@
 \alias{calc_sc_gsea_score}
 \title{calc_sc_gsea_score: Calculates scores for pre-ranked GSEA}
 \usage{
-calc_sc_gsea_score(deTable)
+calc_sc_gsea_score(de_table)
 }
 \arguments{
-\item{deTable}{A differential expression table generated from the Seurat
+\item{de_table}{A differential expression table generated from the Seurat
 FindMarkers function. Contains the column headers \code{p_val}, \code{avg_log2FC},
 \code{pct.1}, \code{pct.2}, and \code{p_val_adj}}
 }
