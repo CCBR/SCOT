@@ -15,18 +15,16 @@
 #' @return The updated Seurat single cell object with recalculated PCA,
 #' neighbors, UMAP and clusters
 seurat_clustering <- function(so_in, npcs_in, resolution = 0.8, algorithm = 3) {
-  # Validate npcs_in
-  if (!is.numeric(npcs_in) || npcs_in <= 0 || npcs_in != as.integer(npcs_in)) {
+  # Input validation
+  if (!is.numeric(npcs_in) || npcs_in != as.integer(npcs_in) || npcs_in <= 0) {
     stop("npcs_in must be a positive integer")
   }
 
-  # Validate resolution
   if (!is.numeric(resolution) || resolution <= 0) {
     stop("resolution must be a positive numeric value")
   }
 
-  # Validate algorithm
-  if (!algorithm %in% c(1, 2, 3)) {
+  if (!is.numeric(algorithm) || !(algorithm %in% c(1, 2, 3))) {
     stop("algorithm must be 1 (Louvain), 2 (Leiden), or 3 (SLM)")
   }
 
