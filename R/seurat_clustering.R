@@ -15,6 +15,25 @@
 #' @return The updated Seurat single cell object with recalculated PCA,
 #' neighbors, UMAP and clusters
 seurat_clustering <- function(so_in, npcs_in, resolution = 0.8, algorithm = 3) {
+  # Input validation
+  if (!is.numeric(npcs_in) || npcs_in != as.integer(npcs_in) || npcs_in <= 0) {
+    abort_packages_not_installed(
+      "npcs_in must be a positive integer"
+    )
+  }
+
+  if (!is.numeric(resolution) || resolution <= 0) {
+    abort_packages_not_installed(
+      "resolution must be a positive numeric value"
+    )
+  }
+
+  if (!is.numeric(algorithm) || !(algorithm %in% c(1, 2, 3))) {
+    abort_packages_not_installed(
+      "algorithm must be 1 (Louvain), 2 (Leiden), or 3 (SLM)"
+    )
+  }
+
   so <- Seurat::RunPCA(
     object = so_in,
     features = Seurat::VariableFeatures(object = so_in),
@@ -24,8 +43,8 @@ seurat_clustering <- function(so_in, npcs_in, resolution = 0.8, algorithm = 3) {
   so <- Seurat::FindNeighbors(so, dims = 1:npcs_in)
   so <- Seurat::FindClusters(
     so,
-    resolution = 0.8,
-    algorithm = 3,
+    resolution = resolution,
+    algorithm = algorithm,
     verbose = TRUE
   )
   so <- Seurat::RunUMAP(so, dims = 1:npcs_in, n.components = 3)
