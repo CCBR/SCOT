@@ -64,7 +64,7 @@ Remotes:
     SeuratData=satijalab/seurat-data,
     SeuratWrappers=satijalab/seurat-wrappers
 biocViews:
-Config/Needs/check: rcmdcheck, lintr, goodpractice
+Config/Needs/check: rcmdcheck, lintr
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
