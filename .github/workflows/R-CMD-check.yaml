@@ -72,7 +72,6 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           needs: lint
-          dependencies: "hard"
 
       - name: Lint
         if: always()
