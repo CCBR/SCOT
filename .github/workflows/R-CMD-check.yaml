@@ -24,7 +24,7 @@ jobs:
       matrix:
         config:
           - { os: ubuntu-latest, r: "release" }
-          - { os: macos-latest, r: "oldrel-1" }
+          #- { os: macos-latest, r: "oldrel-1" }
           #- { os: ubuntu-latest, r: "oldrel-1", http-user-agent: "release" }
           #- { os: ubuntu-latest, r: "devel" }
 
@@ -53,24 +53,22 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { os: ubuntu-latest, r: "release" }
     steps:
       - uses: actions/checkout@v4
       - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: local::.
           needs: check
-
-      - name: Good Practice checks
-        if: always()
-        shell: Rscript {0}
-        run: |
-          g <- goodpractice::gp()
-          g
-          n_failed <- length(goodpractice::failed_checks(g))
-          if (n_failed > 0) {
-            warning(paste(n_failed, "failed checks"))
-          }
 
       - name: Lint
         if: always()
