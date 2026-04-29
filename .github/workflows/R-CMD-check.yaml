@@ -59,7 +59,8 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: local::.
-          needs: check
+          needs: lint
+          dependencies: '"hard"'
 
       - name: Good Practice checks
         if: always()
