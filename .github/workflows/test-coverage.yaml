@@ -5,8 +5,18 @@ name: test-coverage
 on:
   push:
     branches: [main, master]
+    paths:
+      - "R/**"
+      - "tests/**"
+      - "DESCRIPTION"
+      - "NAMESPACE"
   pull_request:
     branches: [main, master]
+    paths:
+      - "R/**"
+      - "tests/**"
+      - "DESCRIPTION"
+      - "NAMESPACE"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
