@@ -61,10 +61,6 @@ jobs:
         shell: Rscript {0}
         run: roxygen2::roxygenize()
 
-      - name: Pre-commit hooks
-        uses: pre-commit/action@v3.0.1
-        continue-on-error: true
-
       - name: commit & push
         run: |
           git add .
