@@ -60,7 +60,6 @@ Suggests:
     usethis
 Remotes:
     chris-mcginnis-ucsf/DoubletFinder,
-    rnabioco/djvdj@*release,
     SeuratData=satijalab/seurat-data,
     SeuratWrappers=satijalab/seurat-wrappers
 biocViews:
