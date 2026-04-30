@@ -27,7 +27,7 @@
 #' @return Returns a named vector of GSEA scores for genes
 calc_sc_gsea_score <- function(de_table) {
   # Check if input is a data.frame
-  if (!inherits(de_table, 'data.frame')) {
+  if (!inherits(de_table, "data.frame")) {
     stop(glue::glue("de_table is not a data.frame"))
   }
 
