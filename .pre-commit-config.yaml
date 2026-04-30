@@ -5,11 +5,14 @@ exclude: |
       ^assets/|
       ^docs/.*.html|
       ^inst/extdata|
-      ^man/
+      ^man/|
+      ^tests/testthat/_snaps/|
+      ^CITATION.cff|
+      ^renv*
    )
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v1.2.3
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
         args: ["--maxkb=12000"]
@@ -17,17 +20,17 @@ repos:
       - id: trailing-whitespace
   # spell check
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.4
+    rev: v2.4.2
     hooks:
       - id: codespell
-        args: ["--ignore-words-list=entrace"]
+        args: ["-I=.github/WORDLIST.txt"]
   # R formatting
   - repo: https://github.com/posit-dev/air-pre-commit
-    rev: 0.8.2
+    rev: 0.9.0
     hooks:
       - id: air-format
   - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.1.3
+    rev: v0.4.3.9021
     hooks:
       - id: parsable-R
       - id: readme-rmd-rendered
@@ -37,7 +40,7 @@ repos:
         verbose: true
   # enforce commit format
   - repo: https://github.com/compilerla/conventional-pre-commit
-    rev: v2.3.0
+    rev: v4.4.0
     hooks:
       - id: conventional-pre-commit
         stages: [commit-msg]
