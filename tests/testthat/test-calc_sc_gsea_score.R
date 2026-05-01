@@ -95,43 +95,47 @@ test_that("calc_sc_gsea_score handles edge cases", {
 })
 
 test_that("calc_sc_gsea_score validates input structure", {
-  # Test with missing required columns
+  # Test with missing required columns (missing pct.1, pct.2, p_val_adj)
   incomplete_table <- data.frame(
     p_val = c(0.01, 0.05),
     avg_log2FC = c(1.0, -0.5),
-    # Missing pct.1 and pct.2
     row.names = c("Gene1", "Gene2")
   )
 
   expect_error(
     calc_sc_gsea_score(incomplete_table),
-    regexp = "same length as the vector"
+    regexp = "de_table is missing required columns"
   )
 
-  # Test with NULL input
+  # Test with NULL input (not a data.frame)
   expect_error(
     calc_sc_gsea_score(NULL),
-    regexp = "non-numeric argument"
+    regexp = "de_table is not a data.frame"
   )
 
-  # Test with non-data.frame input
+  # Test with non-data.frame input (string)
   expect_error(
     calc_sc_gsea_score("not_a_dataframe"),
-    regexp = "\\$ operator is invalid"
+    regexp = "de_table is not a data.frame"
   )
 
-  # Test with non-numeric p-value column
-  bad_numeric_cols <- data.frame(
-    p_val = c("bad", "value"),
+  # Test with non-data.frame input (vector)
+  expect_error(
+    calc_sc_gsea_score(c(1, 2, 3)),
+    regexp = "de_table is not a data.frame"
+  )
+
+  # Test with missing single required column
+  missing_pct2 <- data.frame(
+    p_val = c(0.01, 0.05),
     avg_log2FC = c(1.0, -0.5),
     pct.1 = c(0.3, 0.5),
-    pct.2 = c(0.2, 0.4),
     p_val_adj = c(0.05, 0.10),
     row.names = c("Gene1", "Gene2")
   )
   expect_error(
-    calc_sc_gsea_score(bad_numeric_cols),
-    regexp = "non-numeric argument"
+    calc_sc_gsea_score(missing_pct2),
+    regexp = "de_table is missing required columns.*pct.2"
   )
 })
 

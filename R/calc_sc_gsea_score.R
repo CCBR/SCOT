@@ -26,6 +26,21 @@
 #'
 #' @return Returns a named vector of GSEA scores for genes
 calc_sc_gsea_score <- function(de_table) {
+  # Check if input is a data.frame
+  if (!inherits(de_table, "data.frame")) {
+    stop(glue::glue("de_table is not a data.frame"))
+  }
+
+  # Check for required columns
+  required_cols <- c("p_val", "avg_log2FC", "pct.1", "pct.2", "p_val_adj")
+  missing_cols <- setdiff(required_cols, colnames(de_table))
+
+  if (length(missing_cols) > 0) {
+    stop(glue::glue(
+      "de_table is missing required columns: {paste(missing_cols, collapse = ', ')}"
+    ))
+  }
+
   gsea_score_vect <- sign(de_table$avg_log2FC) *
     -log10(de_table$p_val) *
     pmax(de_table$pct.1, de_table$pct.2) +

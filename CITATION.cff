@@ -2,7 +2,7 @@
 # CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
 # --------------------------------------------
-
+ 
 cff-version: 1.2.0
 message: 'To cite package "SCOT" in publications use:'
 type: software
@@ -34,9 +34,10 @@ references:
   authors:
   - name: R Core Team
   institution:
-    name: R Foundation for Statistical Computing
+    name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
     address: Vienna, Austria
   year: '2026'
+  doi: 10.32614/R.manuals
   version: '>= 4.1.0'
 - type: software
   title: AnnotationDbi
@@ -262,30 +263,39 @@ references:
   year: '2026'
   doi: 10.32614/CRAN.package.ggrepel
 - type: software
+  title: glue
+  abstract: 'glue: Interpreted String Literals'
+  notes: Imports
+  url: https://glue.tidyverse.org/
+  repository: https://CRAN.R-project.org/package=glue
+  authors:
+  - family-names: Hester
+    given-names: Jim
+    orcid: https://orcid.org/0000-0002-2739-7082
+  - family-names: Bryan
+    given-names: Jennifer
+    email: jenny@posit.co
+    orcid: https://orcid.org/0000-0002-6983-2759
+  year: '2026'
+  doi: 10.32614/CRAN.package.glue
+- type: software
   title: grDevices
   abstract: 'R: A Language and Environment for Statistical Computing'
   notes: Imports
   authors:
   - name: R Core Team
   institution:
-    name: R Foundation for Statistical Computing
+    name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
     address: Vienna, Austria
   year: '2026'
+  doi: 10.32614/R.manuals
 - type: software
   title: harmony
   abstract: 'harmony: Fast, Sensitive, and Accurate Integration of Single Cell Data'
   notes: Imports
-  url: https://github.com/immunogenomics/harmony
+  url: https://pati-ni.github.io/harmony/
   repository: https://CRAN.R-project.org/package=harmony
   authors:
-  - family-names: Korsunsky
-    given-names: Ilya
-    email: ilya.korsunsky@gmail.com
-    orcid: https://orcid.org/0000-0003-4848-3948
-  - family-names: Hemberg
-    given-names: Martin
-    email: mhemberg@bwh.harvard.edu
-    orcid: https://orcid.org/0000-0001-8895-5239
   - family-names: Patikas
     given-names: Nikolaos
     email: nik.patik@gmail.com
@@ -294,6 +304,14 @@ references:
     given-names: Hongcheng
     email: hongchengyaonk@gmail.com
     orcid: https://orcid.org/0000-0002-0743-4835
+  - family-names: Korsunsky
+    given-names: Ilya
+    email: ilya.korsunsky@gmail.com
+    orcid: https://orcid.org/0000-0003-4848-3948
+  - family-names: Hemberg
+    given-names: Martin
+    email: mhemberg@bwh.harvard.edu
+    orcid: https://orcid.org/0000-0001-8895-5239
   - family-names: Millard
     given-names: Nghia
     email: nmillard@g.harvard.edu
@@ -545,9 +563,10 @@ references:
   authors:
   - name: R Core Team
   institution:
-    name: R Foundation for Statistical Computing
+    name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
     address: Vienna, Austria
   year: '2026'
+  doi: 10.32614/R.manuals
 - type: software
   title: stringr
   abstract: 'stringr: Simple, Consistent Wrappers for Common String Operations'
@@ -567,9 +586,10 @@ references:
   authors:
   - name: R Core Team
   institution:
-    name: R Foundation for Statistical Computing
+    name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
     address: Vienna, Austria
   year: '2026'
+  doi: 10.32614/R.manuals
 - type: software
   title: cffr
   abstract: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
@@ -782,3 +802,4 @@ references:
     orcid: https://orcid.org/0000-0002-7840-692X
   year: '2026'
   doi: 10.32614/CRAN.package.usethis
+
