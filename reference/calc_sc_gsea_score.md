@@ -6,12 +6,12 @@ submitted to GSEA
 ## Usage
 
 ``` r
-calc_sc_gsea_score(deTable)
+calc_sc_gsea_score(de_table)
 ```
 
 ## Arguments
 
-- deTable:
+- de_table:
 
   A differential expression table generated from the Seurat FindMarkers
   function. Contains the column headers `p_val`, `avg_log2FC`, `pct.1`,
