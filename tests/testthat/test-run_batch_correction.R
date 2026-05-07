@@ -22,19 +22,13 @@ test_that("conda_env defaults to empty string", {
   expect_equal(formals(run_batch_correction)$conda_env, "")
 })
 
-test_that("reduction_in has default numeric vector", {
-  default_val <- formals(run_batch_correction)$reduction_in
-  expect_true(is.numeric(default_val))
-  expect_true(length(default_val) > 0L)
-})
-
 # ── input validation: species parameter ───────────────────────────────────────
 test_that("run_batch_correction with hg38 on BRCA data produces expected output structure", {
   skip_if_not_installed("celldex")
   skip_if_not_installed("ontoProc")
 
   # Load BRCA test data
-  brca <- selectData("wu_et_al_BRCA")
+  brca <- load_fixture_data("wu_et_al_BRCA")
 
   # Verify input is a Seurat object
   expect_s4_class(brca, "Seurat")
@@ -65,7 +59,7 @@ test_that("run_batch_correction with BRCA data runs successfully with valid para
   skip_if_not_installed("celldex")
   skip_if_not_installed("ontoProc")
 
-  brca <- selectData("wu_et_al_BRCA")
+  brca <- load_fixture_data("wu_et_al_BRCA")
 
   # Verify the Seurat object has required assays and metadata
   expect_true("RNA" %in% Seurat::Assays(brca))

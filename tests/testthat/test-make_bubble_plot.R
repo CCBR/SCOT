@@ -1,17 +1,17 @@
-brca_data <- selectData("wu_et_al_BRCA")
+brca_data <- load_fixture_data("wu_et_al_BRCA")
 brca_genes <- head(rownames(brca_data), 5)
 so_bubble <- brca_data
 
 # set up custom ident for bubble plot testing
 so_bubble$unit_test_ident <- rep(c("A", "B"), length.out = ncol(so_bubble))
 
-test_that("bubble plot is successful for (BRCA)", {
-  bubble_plot <- make_bubble_plot(
-    so = so_bubble,
-    features = brca_genes,
-    ident = "unit_test_ident"
-  )
+bubble_plot <- make_bubble_plot(
+  so = so_bubble,
+  features = brca_genes,
+  ident = "unit_test_ident"
+)
 
+test_that("bubble plot is successful for (BRCA)", {
   expect_true(inherits(bubble_plot, "ggplot"))
   expect_true(is.data.frame(bubble_plot$data))
   expect_true(all(
