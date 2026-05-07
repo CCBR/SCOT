@@ -7,7 +7,7 @@ test_that("seurat_clustering has expected signature and defaults", {
 })
 
 test_that("clustering metric is consistent for (BRCA)", {
-  brca.data = selectData("wu_et_al_BRCA")
+  brca.data = load_fixture_data("wu_et_al_BRCA")
   input_cells <- colnames(brca.data)
 
   set.seed(42)
@@ -64,7 +64,7 @@ test_that("resolution and algorithm arguments are forwarded to FindClusters", {
 })
 
 test_that("invalid inputs error clearly", {
-  brca.data <- selectData("wu_et_al_BRCA")
+  brca.data <- load_fixture_data("wu_et_al_BRCA")
 
   expect_error(
     seurat_clustering(brca.data, npcs_in = 0),

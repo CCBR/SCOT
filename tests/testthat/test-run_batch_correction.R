@@ -27,7 +27,7 @@ test_that("run_batch_correction with hg38 on BRCA data produces expected output 
   skip_if_not_installed("celldex")
   skip_if_not_installed("ontoProc")
   # Load BRCA test data
-  brca <- selectData("wu_et_al_BRCA")
+  brca <- load_fixture_data("wu_et_al_BRCA")
 
   # Verify input is a Seurat object
   expect_s4_class(brca, "Seurat")
@@ -57,7 +57,7 @@ test_that("run_batch_correction with hg38 on BRCA data produces expected output 
 test_that("run_batch_correction with BRCA data runs successfully with valid parameters", {
   skip_if_not_installed("celldex")
   skip_if_not_installed("ontoProc")
-  brca <- selectData("wu_et_al_BRCA")
+  brca <- load_fixture_data("wu_et_al_BRCA")
 
   # Verify the Seurat object has required assays and metadata
   expect_true("RNA" %in% Seurat::Assays(brca))
