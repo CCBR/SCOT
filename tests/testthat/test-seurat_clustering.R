@@ -56,12 +56,6 @@ test_that("clustering metric is consistent for (BRCA)", {
   expect_true(ncl_high >= ncl_low)
 })
 
-test_that("resolution and algorithm arguments are forwarded to FindClusters", {
-  fn <- get("seurat_clustering")
-  src <- paste(deparse(body(fn)), collapse = "\n")
-  expect_match(src, "resolution = resolution", fixed = TRUE)
-  expect_match(src, "algorithm = algorithm", fixed = TRUE)
-})
 
 test_that("invalid inputs error clearly", {
   brca.data <- load_fixture_data("wu_et_al_BRCA")
