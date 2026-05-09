@@ -42,11 +42,6 @@ split_featurePlot <- function(
 ) {
   plot_list <- list()
   plot_output <- list()
-  if (is.null(reduction)) {
-    embed <- so@reductions[[SeuratObject::DefaultDimReduc(so)]]@cell.embeddings
-  } else {
-    embed <- Seurat::Embeddings(so, reduction = reduction)
-  }
 
   # TODO refactor with map or lapply
   for (feature in features) {
@@ -61,8 +56,6 @@ split_featurePlot <- function(
         order = order,
         reduction = reduction
       ) +
-        ggplot2::xlim(range(embed[, 1])) +
-        ggplot2::ylim(range(embed[, 2])) +
         ggplot2::ggtitle(ident)
     }
   }
