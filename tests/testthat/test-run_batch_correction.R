@@ -1,138 +1,76 @@
-# ── function signature ─────────────────────────────────────────────────────────
-test_that("run_batch_correction has expected formal arguments", {
-  args <- names(formals(run_batch_correction))
-  for (arg in c(
-    "so_in",
-    "npcs",
-    "species",
-    "resolution_list",
-    "method_in",
-    "vars_to_regress",
-    "conda_env"
-  )) {
-    expect_true(arg %in% args, info = arg)
-  }
-})
+# Create simulated Seurat object for testing
 
-test_that("vars_to_regress defaults to NULL", {
-  expect_null(formals(run_batch_correction)$vars_to_regress)
-})
+# Create a minimal count matrix with genes and cells
+set.seed(42)
+n_features <- 100
+n_cells <- 150
 
-test_that("conda_env defaults to empty string", {
-  expect_equal(formals(run_batch_correction)$conda_env, "")
-})
+# Generate count matrix with realistic values
+counts <- matrix(
+  rpois(n_features * n_cells, lambda = 5),
+  nrow = n_features,
+  ncol = n_cells
+)
+rownames(counts) <- paste0("GENE_", seq_len(n_features))
+colnames(counts) <- paste0("CELL_", seq_len(n_cells))
 
-# ── input validation: species parameter ───────────────────────────────────────
-test_that("run_batch_correction with hg38 on BRCA data produces expected output structure", {
-  skip_if_not_installed("celldex")
-  skip_if_not_installed("ontoProc")
-  # Load BRCA test data
-  brca <- load_fixture_data("wu_et_al_BRCA")
+# Create Seurat object
+test_seurat <- SeuratObject::CreateSeuratObject(counts = counts)
 
-  # Verify input is a Seurat object
-  expect_s4_class(brca, "Seurat")
+# Add metadata for batch correction (no NA/NaN values)
+test_seurat@meta.data$batch <- factor(
+  rep(c("batch1", "batch2"), length.out = ncol(test_seurat))
+)
+test_seurat@meta.data$nFeature_RNA <- colSums(counts > 0)
+test_seurat@meta.data$nCount_RNA <- colSums(counts)
+test_seurat@meta.data$percent_mt <- runif(ncol(test_seurat), min = 0, max = 10)
 
-  # Verify that after running with hg38, expected annotation columns exist
-  # (This is a structure validation; full run would follow same pattern)
-  expected_human_cols <- c(
-    "clustAnnot_HPCA_main",
-    "clustAnnot_HPCA_fine",
-    "clustAnnot_HPCA_ont",
-    "clustAnnot_BP_encode_main",
-    "clustAnnot_BP_encode_fine",
-    "clustAnnot_BP_encode_ont",
-    "clustAnnot_monaco_main",
-    "clustAnnot_monaco_fine",
-    "clustAnnot_monaco_ont",
-    "clustAnnot_immu_cell_exp_main",
-    "clustAnnot_immu_cell_exp_fine",
-    "clustAnnot_immu_cell_exp_ont"
+# Set identities to batch for harmony integration
+SeuratObject::Idents(test_seurat) <- test_seurat@meta.data$batch
+
+test_that("run_batch_correction returns a Seurat object", {
+  corrected_result <- run_batch_correction(
+    so_in = test_seurat,
+    npcs = 3,
+    resolution_list = c(0.5, 1.0),
+    species = "hg38",
+    method_in = "RPCAIntegration"
   )
 
-  # Verify all expected columns start with "clustAnnot_"
-  expect_true(all(startsWith(expected_human_cols, "clustAnnot_")))
+  expect_s4_class(corrected_result, "Seurat")
+  expect_true(ncol(corrected_result) > 0)
+  expect_true(nrow(corrected_result) > 0)
 })
 
-# ── input validation: method_in parameter ────────────────────────────────────
-test_that("run_batch_correction with BRCA data runs successfully with valid parameters", {
-  skip_if_not_installed("celldex")
-  skip_if_not_installed("ontoProc")
-  brca <- load_fixture_data("wu_et_al_BRCA")
-
-  # Verify the Seurat object has required assays and metadata
-  expect_true("RNA" %in% Seurat::Assays(brca))
-
-  # Valid methods to be used: "scVIIntegration", "LIGER", "harmony", "rpca", "cca"
-  valid_methods <- c("scVIIntegration", "LIGER", "harmony", "rpca", "cca")
-  expect_true(length(valid_methods) > 0L)
-})
-
-# ── annotation metadata column naming convention ───────────────────────────────
-test_that("human species produces expected clustAnnot columns", {
-  # When species is "hg38" or "hg19", the function should add these columns:
-  expected_cols <- c(
-    "clustAnnot_HPCA_main",
-    "clustAnnot_HPCA_fine",
-    "clustAnnot_HPCA_ont",
-    "clustAnnot_BP_encode_main",
-    "clustAnnot_BP_encode_fine",
-    "clustAnnot_BP_encode_ont",
-    "clustAnnot_monaco_main",
-    "clustAnnot_monaco_fine",
-    "clustAnnot_monaco_ont",
-    "clustAnnot_immu_cell_exp_main",
-    "clustAnnot_immu_cell_exp_fine",
-    "clustAnnot_immu_cell_exp_ont"
+test_that("run_batch_correction errors on invalid species", {
+  expect_error(
+    run_batch_correction(
+      so_in = test_seurat,
+      species = "invalid_species",
+      method_in = "LIGER"
+    ),
+    regexp = "species|invalid|not supported"
   )
-  expect_equal(length(expected_cols), 12L)
-  expect_true(all(startsWith(expected_cols, "clustAnnot_")))
-  expect_true(all(grepl("_main$|_fine$|_ont$", expected_cols)))
 })
 
-test_that("mouse species produces expected clustAnnot columns", {
-  # When species is "mm10", the function should add these columns:
-  expected_cols <- c(
-    "clustAnnot_immgen_main",
-    "clustAnnot_immgen_fine",
-    "clustAnnot_immgen_ont",
-    "clustAnnot_mouseRNAseq_main",
-    "clustAnnot_mouseRNAseq_fine",
-    "clustAnnot_mouseRNAseq_ont"
+test_that("run_batch_correction errors on invalid method", {
+  expect_error(
+    run_batch_correction(
+      so_in = test_seurat,
+      species = "hg38",
+      method_in = "invalid_method"
+    ),
+    regexp = "method|invalid|not supported"
   )
-  expect_equal(length(expected_cols), 6L)
-  expect_true(all(startsWith(expected_cols, "clustAnnot_")))
-  expect_true(all(grepl("_main$|_fine$|_ont$", expected_cols)))
 })
 
-# ── expected human clustAnnot column names follow the naming convention ────────
-test_that("expected human clustAnnot column names follow the naming convention", {
-  cols <- c(
-    "clustAnnot_HPCA_main",
-    "clustAnnot_HPCA_fine",
-    "clustAnnot_HPCA_ont",
-    "clustAnnot_BP_encode_main",
-    "clustAnnot_BP_encode_fine",
-    "clustAnnot_BP_encode_ont",
-    "clustAnnot_monaco_main",
-    "clustAnnot_monaco_fine",
-    "clustAnnot_monaco_ont",
-    "clustAnnot_immu_cell_exp_main",
-    "clustAnnot_immu_cell_exp_fine",
-    "clustAnnot_immu_cell_exp_ont"
+test_that("run_batch_correction errors on NULL Seurat object", {
+  expect_error(
+    run_batch_correction(
+      so_in = NULL,
+      species = "hg38",
+      method_in = "RPCAIntegration"
+    ),
+    regexp = "Seurat|NULL|NULL object"
   )
-  expect_equal(length(cols), 12L)
-  expect_true(all(startsWith(cols, "clustAnnot_")))
-})
-
-test_that("expected mouse clustAnnot column names follow the naming convention", {
-  cols <- c(
-    "clustAnnot_immgen_main",
-    "clustAnnot_immgen_fine",
-    "clustAnnot_immgen_ont",
-    "clustAnnot_mouseRNAseq_main",
-    "clustAnnot_mouseRNAseq_fine",
-    "clustAnnot_mouseRNAseq_ont"
-  )
-  expect_equal(length(cols), 6L)
-  expect_true(all(startsWith(cols, "clustAnnot_")))
 })

@@ -8,9 +8,9 @@ run_batch_correction(
   so_in,
   npcs,
   species,
-  resolution_list,
+  resolution_list = c(0.5, 1),
   method_in,
-  reduction_in = c(0.2, 0.4, 0.5, 0.8, 1),
+  reduction_in = "integrated",
   vars_to_regress = NULL,
   conda_env = ""
 )
@@ -31,7 +31,8 @@ clustering. Smaller resolutions produce fewer clusters (Default)}
 \item{method_in}{A character string to indicate which batch correction method
 to use}
 
-\item{reduction_in}{A character string for naming the PCA produced}
+\item{reduction_in}{A character string for naming the reduction produced by
+batch correction (default: "integrated")}
 
 \item{vars_to_regress}{A character vector for variables to regress out when
 running SCTransform normalization and batch correction}

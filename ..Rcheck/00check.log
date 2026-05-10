@@ -6,6 +6,7 @@
     GNU Fortran (GCC) 14.2.0
 * running under: macOS Tahoe 26.4.1
 * using session charset: UTF-8
+* using options ‘--no-examples --no-tests --no-manual --no-vignettes’
 * checking for file ‘./DESCRIPTION’ ... ERROR
 Required fields missing or empty:
   ‘Author’ ‘Maintainer’

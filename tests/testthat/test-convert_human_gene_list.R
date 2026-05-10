@@ -1,16 +1,12 @@
-# Load required annotation database
-if (!requireNamespace("org.Hs.eg.db", quietly = TRUE)) {
-  skip("org.Hs.eg.db not installed; skipping convert_human_gene_list tests")
-}
 test_that("convert_human_gene_list returns character vector", {
-  out <- convert_human_gene_list(c("TP53", "EGFR", "CD3D"))
-  expect_type(out, "character")
+  converted_result <- convert_human_gene_list(c("TP53", "EGFR", "CD3D"))
+  expect_type(converted_result, "character")
 })
 
 test_that("known human genes map to expected mouse symbols", {
-  out <- convert_human_gene_list(c("TP53", "EGFR"))
-  expect_true("Trp53" %in% out)
-  expect_true("Egfr" %in% out)
+  converted_result <- convert_human_gene_list(c("TP53", "EGFR"))
+  expect_true("Trp53" %in% converted_result)
+  expect_true("Egfr" %in% converted_result)
 })
 
 test_that("non-character input raises an error", {
@@ -20,8 +16,8 @@ test_that("non-character input raises an error", {
 })
 
 test_that("empty character vector returns empty character vector", {
-  out <- convert_human_gene_list(character(0))
-  expect_identical(out, character(0))
+  converted_result <- convert_human_gene_list(character(0))
+  expect_identical(converted_result, character(0))
 })
 
 test_that("unrecognised gene symbols raise a valid-keys error", {
@@ -32,12 +28,12 @@ test_that("unrecognised gene symbols raise a valid-keys error", {
 })
 
 test_that("mixed known and unknown genes return character vector with Trp53 present", {
-  out <- convert_human_gene_list(c("TP53", "NOT_A_GENE"))
-  expect_type(out, "character")
-  expect_true("Trp53" %in% out)
+  converted_result <- convert_human_gene_list(c("TP53", "NOT_A_GENE"))
+  expect_type(converted_result, "character")
+  expect_true("Trp53" %in% converted_result)
 })
 
-test_that("duplicate inputs produce deterministic output", {
+test_that("duplicate inputs produce same output", {
   genes <- c("TP53", "TP53", "EGFR")
   expect_identical(
     convert_human_gene_list(genes),
@@ -69,16 +65,16 @@ test_that("human genes from BRCA fixture convert to mouse title-case symbols", {
     "KRAS"
   )
 
-  converted_genes <- convert_human_gene_list(brca_genes)
+  converted_result <- convert_human_gene_list(brca_genes)
 
-  expect_type(converted_genes, "character")
+  expect_type(converted_result, "character")
 
   # Genes starting with a letter must be in title case
-  alpha_genes <- converted_genes[grepl("^[A-Za-z]", converted_genes)]
+  alpha_genes <- converted_result[grepl("^[A-Za-z]", converted_result)]
   expect_true(all(alpha_genes == stringr::str_to_title(alpha_genes)))
 
   # Genes starting with a digit must be all lowercase
-  num_genes <- converted_genes[grepl("^[0-9]", converted_genes)]
+  num_genes <- converted_result[grepl("^[0-9]", converted_result)]
   if (length(num_genes) > 0) {
     expect_true(all(grepl("^[0-9][a-z0-9]*$", num_genes)))
   }

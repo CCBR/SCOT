@@ -28,7 +28,8 @@
 #' clustering. Smaller resolutions produce fewer clusters (Default)
 #' @param method_in A character string to indicate which batch correction method
 #' to use
-#' @param reduction_in A character string for naming the PCA produced
+#' @param reduction_in A character string for naming the reduction produced by
+#' batch correction (default: "integrated")
 #' @param vars_to_regress A character vector for variables to regress out when
 #' running SCTransform normalization and batch correction
 #' @param conda_env A character string for indicating which conda environment
@@ -43,15 +44,45 @@ run_batch_correction <- function(
   so_in,
   npcs,
   species,
-  resolution_list,
+  resolution_list = c(0.5, 1.0),
   method_in,
-  reduction_in = c(0.2, 0.4, 0.5, 0.8, 1.0),
+  reduction_in = "integrated",
   vars_to_regress = NULL,
   conda_env = ""
 ) {
   # data variables must be initialized to silence the R CMD check note:
   #    'no visible binding for global variable'
   v_list <- NULL
+
+  if (is.null(so_in) || !inherits(so_in, "Seurat")) {
+    stop("so_in must be a non-NULL Seurat object")
+  }
+
+  valid_species <- c("hg38", "hg19", "mm10")
+  if (!species %in% valid_species) {
+    stop(paste(
+      "species not supported:",
+      species,
+      "- must be one of:",
+      paste(valid_species, collapse = ", ")
+    ))
+  }
+
+  valid_methods <- c(
+    "scVIIntegration",
+    "LIGER",
+    "RPCAIntegration",
+    "CCAIntegration",
+    "HarmonyIntegration"
+  )
+  if (!method_in %in% valid_methods) {
+    stop(paste(
+      "method_in not supported:",
+      method_in,
+      "- must be one of:",
+      paste(valid_methods, collapse = ", ")
+    ))
+  }
 
   # TODO recommend using package::function syntax instead of importing entire packages
 
@@ -90,17 +121,35 @@ run_batch_correction <- function(
     message("--running SCT")
 
     # vars.to.regress is NULL by default
-    so_transform <- Seurat::SCTransform(so_in, vars.to.regress = v_list)
+    # split RNA layers by batch before SCTransform (Seurat v5 integration workflow)
+    split_col <- if ("batch" %in% colnames(so_in@meta.data)) {
+      so_in$batch
+    } else {
+      SeuratObject::Idents(so_in)
+    }
+    so_split <- so_in
+    so_split[["RNA"]] <- split(so_split[["RNA"]], f = split_col)
+    so_transform <- Seurat::SCTransform(so_split, vars.to.regress = v_list)
 
     # runPCA
     so_pca <- Seurat::RunPCA(so_transform)
 
+    # resolve method string to function from Seurat namespace
+    method_fn <- tryCatch(
+      utils::getFromNamespace(method_in, "Seurat"),
+      error = function(e) stop(paste("method_in not supported:", method_in))
+    )
+
+    # k.weight must be < smallest batch size
+    batch_sizes <- table(split_col)
+    k_weight <- min(30L, min(batch_sizes) - 1L)
     so_integrate <- Seurat::IntegrateLayers(
       object = so_pca,
-      method = get(method_in),
+      method = method_fn,
       normalization.method = "SCT",
       verbose = FALSE,
-      new.reduction = reduction_in
+      new.reduction = reduction_in,
+      k.weight = k_weight
     )
   }
 
@@ -120,108 +169,119 @@ run_batch_correction <- function(
   # add cluster-based annotations
   cell_ont <- ontoProc::getOnto("cellOnto")
   if (species == "hg38" || species == "hg19") {
-    so$clustAnnot_HPCA_main <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("hpca"),
-      "label.main"
-    )
-    so$clustAnnot_HPCA_fine <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("hpca"),
-      "label.fine"
-    )
-    so$clustAnnot_HPCA_ont <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("hpca"),
-      "label.ont"
-    )
-    so$clustAnnot_HPCA_ont <- cell_ont$name[so$clustAnnot_HPCA_ont]
+    .safe_annotate <- function(so, ref_name, label) {
+      tryCatch(
+        run_singleR_cluster(so, fetch_celldex_ref(ref_name), label),
+        error = function(e) {
+          warning(
+            "run_singleR_cluster failed for ref=",
+            ref_name,
+            ", label=",
+            label,
+            ": ",
+            conditionMessage(e)
+          )
+          rep(NA_character_, ncol(so))
+        }
+      )
+    }
 
-    so$clustAnnot_BP_encode_main <- run_singleR_cluster(
+    so$clustAnnot_HPCA_main <- .safe_annotate(so, "hpca", "label.main")
+    so$clustAnnot_HPCA_fine <- .safe_annotate(so, "hpca", "label.fine")
+    so$clustAnnot_HPCA_ont <- .safe_annotate(so, "hpca", "label.ont")
+    ont_vals <- so$clustAnnot_HPCA_ont
+    so$clustAnnot_HPCA_ont <- ifelse(
+      is.na(ont_vals),
+      NA_character_,
+      cell_ont$name[ont_vals]
+    )
+
+    so$clustAnnot_BP_encode_main <- .safe_annotate(
       so,
-      fetch_celldex_ref("BP_encode"),
+      "BP_encode",
       "label.main"
     )
-    so$clustAnnot_BP_encode_fine <- run_singleR_cluster(
+    so$clustAnnot_BP_encode_fine <- .safe_annotate(
       so,
-      fetch_celldex_ref("BP_encode"),
+      "BP_encode",
       "label.fine"
     )
-    so$clustAnnot_BP_encode_ont <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("BP_encode"),
-      "label.ont"
+    so$clustAnnot_BP_encode_ont <- .safe_annotate(so, "BP_encode", "label.ont")
+    ont_vals <- so$clustAnnot_BP_encode_ont
+    so$clustAnnot_BP_encode_ont <- ifelse(
+      is.na(ont_vals),
+      NA_character_,
+      cell_ont$name[ont_vals]
     )
-    so$clustAnnot_BP_encode_ont <- cell_ont$name[so$clustAnnot_BP_encode_ont]
-    so$clustAnnot_monaco_main <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("monaco"),
-      "label.main"
+
+    so$clustAnnot_monaco_main <- .safe_annotate(so, "monaco", "label.main")
+    so$clustAnnot_monaco_fine <- .safe_annotate(so, "monaco", "label.fine")
+    so$clustAnnot_monaco_ont <- .safe_annotate(so, "monaco", "label.ont")
+    ont_vals <- so$clustAnnot_monaco_ont
+    so$clustAnnot_monaco_ont <- ifelse(
+      is.na(ont_vals),
+      NA_character_,
+      cell_ont$name[ont_vals]
     )
-    so$clustAnnot_monaco_fine <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("monaco"),
-      "label.fine"
+
+    so$clustAnnot_immu_cell_exp_main <- .safe_annotate(so, "dice", "label.main")
+    so$clustAnnot_immu_cell_exp_fine <- .safe_annotate(so, "dice", "label.fine")
+    so$clustAnnot_immu_cell_exp_ont <- .safe_annotate(so, "dice", "label.ont")
+    ont_vals <- so$clustAnnot_immu_cell_exp_ont
+    so$clustAnnot_immu_cell_exp_ont <- ifelse(
+      is.na(ont_vals),
+      NA_character_,
+      cell_ont$name[ont_vals]
     )
-    so$clustAnnot_monaco_ont <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("monaco"),
-      "label.ont"
-    )
-    so$clustAnnot_monaco_ont <- cell_ont$name[so$clustAnnot_monaco_ont]
-    so$clustAnnot_immu_cell_exp_main <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("dice"),
-      "label.main"
-    )
-    so$clustAnnot_immu_cell_exp_fine <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("dice"),
-      "label.fine"
-    )
-    so$clustAnnot_immu_cell_exp_ont <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("dice"),
-      "label.ont"
-    )
-    so$clustAnnot_immu_cell_exp_ont <- cell_ont$name[
-      so$clustAnnot_immu_cell_exp_ont
-    ]
   } else if (species == "mm10") {
-    so$clustAnnot_immgen_main <- run_singleR_cluster(
+    .safe_annotate <- function(so, ref_name, label) {
+      tryCatch(
+        run_singleR_cluster(so, fetch_celldex_ref(ref_name), label),
+        error = function(e) {
+          warning(
+            "run_singleR_cluster failed for ref=",
+            ref_name,
+            ", label=",
+            label,
+            ": ",
+            conditionMessage(e)
+          )
+          rep(NA_character_, ncol(so))
+        }
+      )
+    }
+
+    so$clustAnnot_immgen_main <- .safe_annotate(so, "immgen", "label.main")
+    so$clustAnnot_immgen_fine <- .safe_annotate(so, "immgen", "label.fine")
+    so$clustAnnot_immgen_ont <- .safe_annotate(so, "immgen", "label.ont")
+    ont_vals <- so$clustAnnot_immgen_ont
+    so$clustAnnot_immgen_ont <- ifelse(
+      is.na(ont_vals),
+      NA_character_,
+      cell_ont$name[ont_vals]
+    )
+
+    so$clustAnnot_mouseRNAseq_main <- .safe_annotate(
       so,
-      fetch_celldex_ref("immgen"),
+      "mouseRNAseq",
       "label.main"
     )
-    so$clustAnnot_immgen_fine <- run_singleR_cluster(
+    so$clustAnnot_mouseRNAseq_fine <- .safe_annotate(
       so,
-      fetch_celldex_ref("immgen"),
+      "mouseRNAseq",
       "label.fine"
     )
-    so$clustAnnot_immgen_ont <- run_singleR_cluster(
+    so$clustAnnot_mouseRNAseq_ont <- .safe_annotate(
       so,
-      fetch_celldex_ref("immgen"),
+      "mouseRNAseq",
       "label.ont"
     )
-    so$clustAnnot_immgen_ont <- cell_ont$name[so$clustAnnot_immgen_ont]
-    so$clustAnnot_mouseRNAseq_main <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("mouseRNAseq"),
-      "label.main"
+    ont_vals <- so$clustAnnot_mouseRNAseq_ont
+    so$clustAnnot_mouseRNAseq_ont <- ifelse(
+      is.na(ont_vals),
+      NA_character_,
+      cell_ont$name[ont_vals]
     )
-    so$clustAnnot_mouseRNAseq_fine <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("mouseRNAseq"),
-      "label.fine"
-    )
-    so$clustAnnot_mouseRNAseq_ont <- run_singleR_cluster(
-      so,
-      fetch_celldex_ref("mouseRNAseq"),
-      "label.ont"
-    )
-    so$clustAnnot_mouseRNAseq_ont <- cell_ont$name[
-      so$clustAnnot_mouseRNAseq_ont
-    ]
   }
   return(so)
 }

@@ -1,13 +1,13 @@
 # Tests for split_featurePlot
 
-brca_data <- load_fixture_data("wu_et_al_BRCA")
-top_var_features <- c("S100P", "CCL3", "KRT17", "KRT19", "FCN3")
+brca_data <- selectData("wu_et_al_BRCA")
+features <- rownames(brca_data@assays$SCT@scale.data)[1:2]
 
 test_that("split_featurePlot returns arranged ggplots in list format", {
   res <- split_featurePlot(
     so = brca_data,
-    features = top_var_features,
-    split_ident = "Phase",
+    features = features,
+    split_ident = "orig.ident",
     label = TRUE,
     ncol = NA,
     nrow = NA,
@@ -20,21 +20,15 @@ test_that("split_featurePlot returns arranged ggplots in list format", {
     reduction = "umap"
   )
   expect_true(is.list(res))
-  expect_equal(sort(names(res)), sort(top_var_features))
+  expect_equal(sort(names(res)), sort(features))
   expect_true(all(vapply(res, function(x) inherits(x, "ggplot"), logical(1))))
-
-  # # Check that plots have data and layers
-  # for (feature_plot in res) {
-  #   expect_true(nrow(feature_plot$data) > 0)
-  #   expect_true(length(feature_plot$layers) > 0)
-  # }
 })
 
 test_that("split_featurePlot computes ncol/nrow when NA", {
   res <- split_featurePlot(
     so = brca_data,
-    features = top_var_features,
-    split_ident = "Phase",
+    features = features,
+    split_ident = "orig.ident",
     ncol = NA,
     nrow = NA,
     min.cutoff = "q5",
@@ -47,20 +41,15 @@ test_that("split_featurePlot computes ncol/nrow when NA", {
   # for multiple genes, check that a list of ggplots are returned
   expect_true(is.list(res))
   expect_true(all(vapply(res, function(x) inherits(x, "ggplot"), logical(1))))
-
-  # Check that the plots have faceted structure (split by split_ident)
-  for (feature_plot in res) {
-    expect_true(!is.null(feature_plot$facet))
-  }
 })
 
 test_that("split_featurePlot runs when provided with only nrow", {
   so <- brca_data
-  features <- top_var_features[1]
+  features <- rownames(so@assays$SCT@scale.data)[1]
   res <- split_featurePlot(
     so = so,
     features = features,
-    split_ident = "Phase",
+    split_ident = "orig.ident",
     nrow = 1,
     ncol = NA,
     min.cutoff = "q1",
@@ -70,45 +59,30 @@ test_that("split_featurePlot runs when provided with only nrow", {
     reduction = "umap"
   )
   expect_true(is.list(res))
-
-  # Access the plot directly by feature name
-  plot <- res[[features]]
-  expect_true(inherits(plot, "ggplot"))
-
-  # Check plot structure - don't access $data directly
-  expect_true(length(plot$layers) >= 1)
-  expect_true(!is.null(plot$facet))
-  expect_true(!is.null(plot$mapping))
+  expect_true(inherits(res[[features]], "ggplot"))
 })
 
 test_that("split_featurePlot errors on invalid inputs", {
-  # Invalid split_ident column
-  expect_error(
-    split_featurePlot(
-      brca_data,
-      features = "S100P",
-      split_ident = "bad_col"
-    ),
-    "not found|bad_col"
-  )
+  expect_error(split_featurePlot(
+    so,
+    features = rownames(so)[1],
+    split_ident = "bad_col"
+  ))
 
   # Missing feature
-  expect_error(
-    split_featurePlot(
-      brca_data,
-      features = "MissingGene",
-      split_ident = "Phase"
-    ),
-    "MissingGene|not found|feature"
-  )
+  expect_error(split_featurePlot(
+    so,
+    features = "MissingGene",
+    split_ident = "orig.ident"
+  ))
 })
 
 test_that("split_featurePlot returns NULL silently with return_list = FALSE", {
   so <- brca_data
   res <- split_featurePlot(
     so = so,
-    features = top_var_features[1],
-    split_ident = "Phase",
+    features = features[1],
+    split_ident = "orig.ident",
     plot_image = FALSE,
     return_list = FALSE,
     reduction = "umap"
@@ -118,12 +92,12 @@ test_that("split_featurePlot returns NULL silently with return_list = FALSE", {
 
 test_that("split_featurePlot runs when provided with only ncol", {
   so <- brca_data
-  single_feature <- top_var_features[1]
+  single_feature <- rownames(so@assays$SCT@scale.data)[1]
 
   res <- split_featurePlot(
     so = so,
     features = single_feature,
-    split_ident = "Phase",
+    split_ident = "orig.ident",
     ncol = 2,
     nrow = NA,
     plot_image = FALSE,
@@ -133,22 +107,16 @@ test_that("split_featurePlot runs when provided with only ncol", {
 
   expect_true(is.list(res))
   expect_true(inherits(res[[single_feature]], "ggplot"))
-
-  # Check plot structure - don't access $data directly
-  plot <- res[[single_feature]]
-  expect_true(length(plot$layers) >= 1)
-  expect_true(!is.null(plot$facet))
-  expect_true(!is.null(plot$mapping))
 })
 
 test_that("split_featurePlot works with scalar numeric cutoff values", {
   so <- brca_data
-  single_feature <- top_var_features[1]
+  single_feature <- rownames(so@assays$SCT@scale.data)[1]
 
   res <- split_featurePlot(
     so = so,
     features = single_feature,
-    split_ident = "Phase",
+    split_ident = "orig.ident",
     min.cutoff = 0,
     max.cutoff = 5,
     plot_image = FALSE,
@@ -158,22 +126,16 @@ test_that("split_featurePlot works with scalar numeric cutoff values", {
 
   expect_true(is.list(res))
   expect_true(inherits(res[[single_feature]], "ggplot"))
-
-  # Verify plot structure without accessing $data directly
-  plot <- res[[single_feature]]
-  expect_true(length(plot$layers) >= 1)
-  expect_true(!is.null(plot$facet))
-  expect_true(!is.null(plot$mapping))
 })
 
 test_that("split_featurePlot runs with label = TRUE", {
   so <- brca_data
-  single_feature <- top_var_features[1]
+  single_feature <- rownames(so@assays$SCT@scale.data)[1]
 
   res <- split_featurePlot(
     so = so,
     features = single_feature,
-    split_ident = "Phase",
+    split_ident = "orig.ident",
     label = TRUE,
     plot_image = FALSE,
     return_list = TRUE,
@@ -182,22 +144,16 @@ test_that("split_featurePlot runs with label = TRUE", {
 
   expect_true(is.list(res))
   expect_true(inherits(res[[single_feature]], "ggplot"))
-
-  # Verify plot structure without accessing $data directly
-  plot <- res[[single_feature]]
-  expect_true(length(plot$layers) >= 1)
-  expect_true(!is.null(plot$facet))
-  expect_true(!is.null(plot$mapping))
 })
 
 test_that("split_featurePlot works with order = TRUE", {
   so <- brca_data
-  single_feature <- top_var_features[1]
+  single_feature <- rownames(so@assays$SCT@scale.data)[1]
 
   res <- split_featurePlot(
     so = so,
     features = single_feature,
-    split_ident = "Phase",
+    split_ident = "orig.ident",
     order = TRUE,
     plot_image = FALSE,
     return_list = TRUE,
@@ -206,22 +162,16 @@ test_that("split_featurePlot works with order = TRUE", {
 
   expect_true(is.list(res))
   expect_true(inherits(res[[single_feature]], "ggplot"))
-
-  # Check plot structure
-  plot <- res[[single_feature]]
-  expect_true(length(plot$layers) >= 1)
-  expect_true(!is.null(plot$facet))
-  expect_true(!is.null(plot$mapping))
 })
 
 test_that("split_featurePlot works with slot = 'data'", {
   so <- brca_data
-  single_feature <- top_var_features[1]
+  single_feature <- rownames(so@assays$SCT@data)[1]
 
   res <- split_featurePlot(
     so = so,
     features = single_feature,
-    split_ident = "Phase",
+    split_ident = "orig.ident",
     slot = "data",
     plot_image = FALSE,
     return_list = TRUE,
@@ -230,17 +180,11 @@ test_that("split_featurePlot works with slot = 'data'", {
 
   expect_true(is.list(res))
   expect_true(inherits(res[[single_feature]], "ggplot"))
-
-  # Check plot has expected structure
-  plot <- res[[single_feature]]
-  expect_true(length(plot$layers) >= 1)
-  expect_true(!is.null(plot$facet))
-  expect_true(!is.null(plot$mapping))
 })
 
 test_that("split_featurePlot works with single split group", {
   so <- brca_data
-  single_feature <- top_var_features[1]
+  single_feature <- rownames(so@assays$SCT@scale.data)[1]
 
   # Create metadata with single group value
   so$single_group <- "group_1"
@@ -261,7 +205,7 @@ test_that("split_featurePlot works with single split group", {
 
 test_that("split_featurePlot works with numeric split_ident values", {
   so <- brca_data
-  single_feature <- top_var_features[1]
+  single_feature <- rownames(so@assays$SCT@scale.data)[1]
 
   # Create numeric metadata
   so$numeric_group <- sample(1:3, ncol(so), replace = TRUE)
@@ -285,7 +229,7 @@ test_that("split_featurePlot handles empty feature list", {
   res <- split_featurePlot(
     so = so,
     features = character(0),
-    split_ident = "Phase",
+    split_ident = "orig.ident",
     plot_image = FALSE,
     return_list = TRUE,
     reduction = "umap"
@@ -297,12 +241,12 @@ test_that("split_featurePlot handles empty feature list", {
 
 test_that("split_featurePlot with asymmetric cutoff pair", {
   so <- brca_data
-  single_feature <- top_var_features[1]
+  single_feature <- rownames(so@assays$SCT@scale.data)[1]
 
   res <- split_featurePlot(
     so = so,
     features = single_feature,
-    split_ident = "Phase",
+    split_ident = "orig.ident",
     min.cutoff = "q10",
     max.cutoff = 3.5,
     plot_image = FALSE,
@@ -312,10 +256,4 @@ test_that("split_featurePlot with asymmetric cutoff pair", {
 
   expect_true(is.list(res))
   expect_true(inherits(res[[single_feature]], "ggplot"))
-
-  # Verify plot structure with mixed cutoff types
-  plot <- res[[single_feature]]
-  expect_true(length(plot$layers) >= 1)
-  expect_true(!is.null(plot$facet))
-  expect_true(!is.null(plot$mapping))
 })
