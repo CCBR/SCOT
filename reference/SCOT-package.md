@@ -14,6 +14,8 @@ See the website for more information, documentation, and examples:
 
 Authors:
 
+- Nathan Wong <nathan.wong@nih.gov>
+
 - Kelly Sovacool <kelly.sovacool@nih.gov>
   ([ORCID](https://orcid.org/0000-0003-3283-829X))
 

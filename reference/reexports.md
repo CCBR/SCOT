@@ -5,5 +5,5 @@ to see their documentation.
 
 - rlang:
 
-  [`:=`](https://rlang.r-lib.org/reference/dyn-dots.html),
+  [`:=()`](https://rlang.r-lib.org/reference/dyn-dots.html),
   [`.data`](https://rlang.r-lib.org/reference/dot-data.html)
