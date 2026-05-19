@@ -60,6 +60,7 @@ Suggests:
     testthat (>= 3.0.0),
     usethis
 Remotes:
+    mdelacre/Routliers,
     chris-mcginnis-ucsf/DoubletFinder,
     rnabioco/djvdj@*release,
     SeuratData=satijalab/seurat-data,
