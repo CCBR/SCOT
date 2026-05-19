@@ -68,7 +68,7 @@ Remotes:
 biocViews:
 Config/Needs/autoformat: cffr, rmarkdown, roxygen2
 Config/Needs/check: rcmdcheck
-Config/Needs/lint: lintr
+Config/Needs/lint: lintr, pkgload
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true

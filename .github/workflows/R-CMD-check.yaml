@@ -76,7 +76,9 @@ jobs:
       - name: Lint
         if: always()
         shell: Rscript {0}
-        run: lintr::lint_package()
+        run: |
+          pkgload::load_all()
+          lintr::lint_package()
         env:
           LINTR_ERROR_ON_LINT: true
 
