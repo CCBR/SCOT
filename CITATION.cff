@@ -33,8 +33,10 @@ references:
   url: https://www.R-project.org/
   authors:
   - name: R Core Team
+    website: https://ror.org/02zz1nj61
   institution:
-    name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
+    name: R Foundation for Statistical Computing
+    website: https://ror.org/05qewa988
     address: Vienna, Austria
   year: '2026'
   doi: 10.32614/R.manuals
@@ -284,8 +286,10 @@ references:
   notes: Imports
   authors:
   - name: R Core Team
+    website: https://ror.org/02zz1nj61
   institution:
-    name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
+    name: R Foundation for Statistical Computing
+    website: https://ror.org/05qewa988
     address: Vienna, Austria
   year: '2026'
   doi: 10.32614/R.manuals
@@ -444,16 +448,14 @@ references:
   abstract: 'Routliers: Robust Outliers Detection'
   notes: Imports
   url: https://github.com/mdelacre/Routliers
-  repository: https://CRAN.R-project.org/package=Routliers
   authors:
-  - family-names: Delacre
-    given-names: Marie
-    email: marie.delacre@ulb.ac.be
   - family-names: Klein
     given-names: Olivier
     email: Klein.Olivier@ulb.ac.be
+  - family-names: Delacre
+    given-names: Marie
+    email: marie.delacre@ulb.ac.be
   year: '2026'
-  doi: 10.32614/CRAN.package.Routliers
 - type: software
   title: scDblFinder
   abstract: 'scDblFinder: scDblFinder'
@@ -562,8 +564,10 @@ references:
   notes: Imports
   authors:
   - name: R Core Team
+    website: https://ror.org/02zz1nj61
   institution:
-    name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
+    name: R Foundation for Statistical Computing
+    website: https://ror.org/05qewa988
     address: Vienna, Austria
   year: '2026'
   doi: 10.32614/R.manuals
@@ -573,8 +577,10 @@ references:
   notes: Imports
   authors:
   - name: R Core Team
+    website: https://ror.org/02zz1nj61
   institution:
-    name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
+    name: R Foundation for Statistical Computing
+    website: https://ror.org/05qewa988
     address: Vienna, Austria
   year: '2026'
   doi: 10.32614/R.manuals
