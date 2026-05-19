@@ -60,6 +60,7 @@ Suggests:
     testthat (>= 3.0.0),
     usethis
 Remotes:
+    mdelacre/Routliers,
     chris-mcginnis-ucsf/DoubletFinder,
     rnabioco/djvdj@*release,
     SeuratData=satijalab/seurat-data,
@@ -67,9 +68,9 @@ Remotes:
 biocViews:
 Config/Needs/autoformat: cffr, rmarkdown, roxygen2
 Config/Needs/check: rcmdcheck
-Config/Needs/lint: lintr
+Config/Needs/lint: lintr, pkgload
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0
