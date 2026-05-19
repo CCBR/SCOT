@@ -50,7 +50,6 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           needs: check
-          dependencies: '"hard"'
 
       - uses: r-lib/actions/check-r-package@v2
         with:
@@ -77,7 +76,9 @@ jobs:
       - name: Lint
         if: always()
         shell: Rscript {0}
-        run: lintr::lint_package()
+        run: |
+          pkgload::load_all()
+          lintr::lint_package()
         env:
           LINTR_ERROR_ON_LINT: true
 
