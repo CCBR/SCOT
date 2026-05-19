@@ -32,15 +32,6 @@ load_processed_pbmc <- function() {
   return(pbmc)
 }
 
-load_fixture_data <- function(dataset) {
-  if (dataset == "wu_et_al_BRCA") {
-    return(readRDS(testthat::test_path(
-      "fixtures",
-      "BRCA_Combine_and_Renormalize_SO_downsample_1mb.rds"
-    )))
-  }
-}
-
 #' Returns a random counts matrix.
 #' Source: https://github.com/satijalab/seurat/blob/main/tests/testthat/test_dimensional_reduction.R
 get_random_counts <- function() {

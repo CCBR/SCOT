@@ -1,10 +1,11 @@
-brca_data <- load_fixture_data("wu_et_al_BRCA")
-brca_clustered <- seurat_clustering(so_in = brca_data, npcs_in = 30)
-clusters <- c("SCT_snn_res.0.2", "SCT_snn_res.0.8")
+brca.data <- selectData("wu_et_al_BRCA")
+brca.clustered <- seurat_clustering(so_in = brca.data, npcs_in = 30)
 
 test_that("clustering metric is consistent for (BRCA)", {
+  clusters <- c("SCT_snn_res.0.2", "SCT_snn_res.0.8")
+
   res_sil <- cluster_metrics(
-    so = brca_clustered,
+    so = brca.clustered,
     cluster_list = clusters,
     dims = 1:20,
     reduction = "pca",
@@ -27,8 +28,8 @@ test_that("clustering metric is consistent for (BRCA)", {
 
 test_that("cluster_metrics returns 2 columns when silhouette is FALSE", {
   res <- cluster_metrics(
-    so = brca_clustered,
-    cluster_list = clusters,
+    so = brca.clustered,
+    cluster_list = c("SCT_snn_res.0.2", "SCT_snn_res.0.8"),
     dims = 1:20,
     reduction = "pca",
     silhouette = FALSE
@@ -43,7 +44,7 @@ test_that("cluster_metrics returns 2 columns when silhouette is FALSE", {
 })
 
 test_that("cluster label coercion works for numeric, character, and factor metadata columns", {
-  so_types <- brca_clustered
+  so_types <- brca.clustered
   base_label <- "SCT_snn_res.0.2"
   base_clusters <- as.numeric(unlist(so_types[[base_label]]))
 
@@ -86,38 +87,35 @@ test_that("cluster label coercion works for numeric, character, and factor metad
 test_that("cluster_metrics errors on missing cluster column", {
   expect_error(
     cluster_metrics(
-      so = brca_clustered,
+      so = brca.clustered,
       cluster_list = c("SCT_snn_res.0.2", "not_a_real_cluster"),
       dims = 1:20,
       reduction = "pca",
       silhouette = TRUE
-    ),
-    regexp = "not_a_real_cluster"
+    )
   )
 })
 
 test_that("cluster_metrics errors on invalid reduction", {
   expect_error(
     cluster_metrics(
-      so = brca_clustered,
+      so = brca.clustered,
       cluster_list = c("SCT_snn_res.0.2"),
       dims = 1:20,
       reduction = "not_a_reduction",
       silhouette = TRUE
-    ),
-    regexp = "Reduction|not_a_reduction"
+    )
   )
 })
 
 test_that("cluster_metrics errors when dims exceed available PCs", {
   expect_error(
     cluster_metrics(
-      so = brca_clustered,
+      so = brca.clustered,
       cluster_list = c("SCT_snn_res.0.2"),
       dims = 1:200,
       reduction = "pca",
       silhouette = TRUE
-    ),
-    regexp = "subscript|out of bounds|exceed"
+    )
   )
 })

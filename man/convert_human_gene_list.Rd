@@ -4,7 +4,7 @@
 \alias{convert_human_gene_list}
 \title{convert_human_gene_list}
 \usage{
-convert_human_gene_list(genes = NULL)
+convert_human_gene_list(genes)
 }
 \arguments{
 \item{genes}{Character vector of human genes}
