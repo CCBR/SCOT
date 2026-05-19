@@ -1,0 +1,27 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "familyName": "Wong",
+      "givenName": "Nathan"
+    },
+    {
+      "@id": "https://orcid.org/0000-0003-3283-829X",
+      "@type": "Person",
+      "familyName": "Sovacool",
+      "givenName": "Kelly"
+    },
+    {
+      "@id": "https://orcid.org/0000-0001-8978-8495",
+      "@type": "Person",
+      "familyName": "Koparde",
+      "givenName": "Vishal"
+    }
+  ],
+  "description": "Toolbox for single cell RNA-seq.",
+  "license": "https://spdx.org/licenses/MIT",
+  "name": "SCOT: Single Cell Omics Toolbox",
+  "version": "0.0.0.9000"
+}
