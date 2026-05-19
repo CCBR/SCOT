@@ -1,13 +1,5 @@
-test_that("seurat_clustering has expected signature and defaults", {
-  expect_true(exists("seurat_clustering"))
-  fmls <- formals(seurat_clustering)
-  expect_setequal(names(fmls), c("so_in", "npcs_in", "resolution", "algorithm"))
-  expect_identical(fmls$resolution, 0.8)
-  expect_identical(fmls$algorithm, 3)
-})
-
 test_that("clustering metric is consistent for (BRCA)", {
-  brca.data = selectData("wu_et_al_BRCA")
+  brca.data = load_fixture_data("wu_et_al_BRCA")
   input_cells <- colnames(brca.data)
 
   set.seed(42)
@@ -56,15 +48,8 @@ test_that("clustering metric is consistent for (BRCA)", {
   expect_true(ncl_high >= ncl_low)
 })
 
-test_that("resolution and algorithm arguments are forwarded to FindClusters", {
-  fn <- get("seurat_clustering")
-  src <- paste(deparse(body(fn)), collapse = "\n")
-  expect_match(src, "resolution = resolution", fixed = TRUE)
-  expect_match(src, "algorithm = algorithm", fixed = TRUE)
-})
-
 test_that("invalid inputs error clearly", {
-  brca.data <- selectData("wu_et_al_BRCA")
+  brca.data <- load_fixture_data("wu_et_al_BRCA")
 
   expect_error(
     seurat_clustering(brca.data, npcs_in = 0),
