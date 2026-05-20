@@ -11,9 +11,10 @@
 convert_human_gene_list <- function(genes) {
   # data variables must be initialized to silence the R CMD check note:
   #    'no visible binding for global variable'
-  gns <- NULL
+  gns <- genes
 
   # TODO: make this function generic enough to convert any genome to any other
+  # Follow-up (2026 May 19): Generic function for species is likely to utilize biomaRt more than AnnotationDbi
   egs <- AnnotationDbi::mapIds(
     org.Hs.eg.db::org.Hs.eg.db,
     gns,
