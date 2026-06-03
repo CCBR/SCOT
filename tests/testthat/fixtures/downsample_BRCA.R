@@ -4,7 +4,6 @@
 # while preserving the structure needed for comprehensive testing.
 # Target: ~1MB on disk
 
-
 # Load the current fixture
 brca <- readRDS(
   test_path(
