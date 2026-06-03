@@ -26,14 +26,12 @@ test_that("clustering metric is consistent for (BRCA)", {
   # Nearest-neighbor graph exists
   expect_true(length(brca.clustered@graphs) >= 1)
 
-  set.seed(1)
   low_res <- seurat_clustering(
     brca.clustered,
     npcs_in = 10,
     resolution = 0.2,
     algorithm = 1
   )
-  set.seed(2)
   high_res <- seurat_clustering(
     brca.clustered,
     npcs_in = 10,
