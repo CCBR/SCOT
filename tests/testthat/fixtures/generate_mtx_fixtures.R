@@ -1,8 +1,4 @@
 # Script to generate simulated MTX fixture files for testing convert_mtx_to_h5
-# Run this script from the fixtures directory to create test data
-setwd(
-  "/Users/bianjh/Documents/Projects/Development/SCOT/tests/testthat/fixtures"
-)
 
 library(Matrix)
 
