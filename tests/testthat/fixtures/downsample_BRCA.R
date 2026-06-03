@@ -4,8 +4,6 @@
 # while preserving the structure needed for comprehensive testing.
 # Target: ~1MB on disk
 
-library(SeuratObject)
-library(Seurat)
 
 # Load the current fixture
 brca <- readRDS(
