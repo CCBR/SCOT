@@ -1,9 +1,9 @@
 test_that("clustering metric is consistent for (BRCA)", {
-  brca.data = load_fixture_data("wu_et_al_BRCA")
+  brca.data <- load_fixture_data("wu_et_al_BRCA")
   input_cells <- colnames(brca.data)
 
   set.seed(42)
-  brca.clustered = seurat_clustering(so_in = brca.data, npcs_in = 30)
+  brca.clustered <- seurat_clustering(so_in = brca.data, npcs_in = 30)
 
   expect_s4_class(brca.clustered, "Seurat")
 
