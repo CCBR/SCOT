@@ -26,8 +26,8 @@ seurat_clustering <- function(so_in, npcs_in, resolution = 0.8, algorithm = 3) {
   }
 
   # Validate algorithm
-  if (!algorithm %in% c(1, 2, 3)) {
-    stop("algorithm must be 1 (Louvain), 2 (Leiden), or 3 (SLM)")
+  if (!algorithm %in% seq(1, 4)) {
+    stop("algorithm must be supported by Seurat::FindClusters")
   }
 
   so <- Seurat::RunPCA(
