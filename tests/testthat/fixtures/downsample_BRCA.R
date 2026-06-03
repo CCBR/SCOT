@@ -9,7 +9,9 @@ library(Seurat)
 
 # Load the current fixture
 brca <- readRDS(
-  "tests/testthat/fixtures/BRCA_Combine_and_Renormalize_SO_downsample.rds"
+  test_path(
+    "fixtures", "BRCA_Combine_and_Renormalize_SO_downsample.rds"
+  )
 )
 
 brca <- subset(
