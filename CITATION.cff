@@ -448,16 +448,14 @@ references:
   abstract: 'Routliers: Robust Outliers Detection'
   notes: Imports
   url: https://github.com/mdelacre/Routliers
-  repository: https://CRAN.R-project.org/package=Routliers
   authors:
-  - family-names: Delacre
-    given-names: Marie
-    email: marie.delacre@ulb.ac.be
   - family-names: Klein
     given-names: Olivier
     email: Klein.Olivier@ulb.ac.be
+  - family-names: Delacre
+    given-names: Marie
+    email: marie.delacre@ulb.ac.be
   year: '2026'
-  doi: 10.32614/CRAN.package.Routliers
 - type: software
   title: scDblFinder
   abstract: 'scDblFinder: scDblFinder'
