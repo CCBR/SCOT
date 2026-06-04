@@ -27,6 +27,9 @@ if ("SCT" %in% names(brca@assays)) {
 # compress
 saveRDS(
   brca,
-  "tests/testthat/fixtures/BRCA_Combine_and_Renormalize_SO_downsample_1mb.rds",
+  test_path(
+    "fixtures",
+    "BRCA_Combine_and_Renormalize_SO_downsample_1mb.rds"
+  ),
   compress = "xz"
 )

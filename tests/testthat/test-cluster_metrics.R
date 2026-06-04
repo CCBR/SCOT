@@ -92,7 +92,8 @@ test_that("cluster_metrics errors on missing cluster column", {
       dims = 1:20,
       reduction = "pca",
       silhouette = TRUE
-    )
+    ),
+    "'not_a_real_cluster' not found in this Seurat object"
   )
 })
 
@@ -104,7 +105,8 @@ test_that("cluster_metrics errors on invalid reduction", {
       dims = 1:20,
       reduction = "not_a_reduction",
       silhouette = TRUE
-    )
+    ),
+    "'not_a_reduction' not found in this Seurat object"
   )
 })
 
@@ -116,6 +118,7 @@ test_that("cluster_metrics errors when dims exceed available PCs", {
       dims = 1:200,
       reduction = "pca",
       silhouette = TRUE
-    )
+    ),
+    regexp = "subscript out of bounds"
   )
 })

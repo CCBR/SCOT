@@ -62,7 +62,7 @@ test_that("invalid inputs error clearly", {
     regexp = "resolution"
   )
   expect_error(
-    seurat_clustering(brca.data, npcs_in = 5, algorithm = 4),
+    seurat_clustering(brca.data, npcs_in = 5, algorithm = 4000),
     regexp = "algorithm"
   )
 })
