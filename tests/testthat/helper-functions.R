@@ -98,3 +98,49 @@ get_test_data <- function(
 
   return(test_data)
 }
+
+load_mouse_bm <- function() {
+  set.seed(42)
+  init_data <- scRNAseq::fetchDataset(
+    name = "grun-bone_marrow-2016",
+    version = "2023-12-14"
+  )
+  #Conversion from gene__chrN annotation
+  gene_names <- make.names(gsub("_.*", "", rownames(init_data)), unique = T)
+  SummarizedExperiment::assay(init_data, "counts") <-
+    as(SummarizedExperiment::assay(init_data, "counts"), "dgCMatrix")
+
+  seurat_object <- Seurat::CreateSeuratObject(
+    counts = init_data@assays@data$counts
+  )
+
+  rownames(seurat_object) <- gene_names
+
+  return(seurat_object)
+}
+
+load_mouse_processed_bm <- function() {
+  mm_bm <- load_mouse_bm()
+
+  mm_bm[["percent.mt"]] <- Seurat::PercentageFeatureSet(
+    mm_bm,
+    pattern = "^mt-"
+  )
+  mm_bm <- subset(
+    mm_bm,
+    subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 5
+  )
+  mm_bm <- suppressWarnings(Seurat::SCTransform(
+    mm_bm,
+    #vars.to.regress = "percent.mt",
+    verbose = FALSE
+  ))
+  mm_bm <- Seurat::RunPCA(
+    mm_bm,
+    features = Seurat::VariableFeatures(object = mm_bm)
+  )
+  mm_bm <- Seurat::FindNeighbors(mm_bm, dims = 1:30)
+  mm_bm <- Seurat::FindClusters(mm_bm, resolution = 0.8, verbose = FALSE)
+
+  return(mm_bm)
+}

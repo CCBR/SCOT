@@ -22,7 +22,7 @@ run_singleR_db <- function(so_in, species) {
   # fetch_singleR_references() #Populates references into R environment
 
   cell_ont <- ontoProc::getOnto("cellOnto")
-  if (species == "hg38" || species == "hg19") {
+  if (species %in% c("hg38", "hg19", "human", "hsa")) {
     so_in$HPCA_main <- run_singleR(
       so_in,
       fetch_celldex_ref("hpca"),
@@ -91,7 +91,7 @@ run_singleR_db <- function(so_in, species) {
     )
     so_in$immu_cell_exp_ont <- as.vector(cell_ont$name[so_in$immu_cell_exp_ont])
     so_in$annot <- so_in$HPCA_main
-  } else if (species == "mm10") {
+  } else if (species %in% c("mm10", "mm9", "mouse", "mmu")) {
     so_in$immgen_main <- run_singleR(
       so_in,
       fetch_celldex_ref("immgen"),
@@ -127,6 +127,8 @@ run_singleR_db <- function(so_in, species) {
     so_in$mouseRNAseq_ont <- as.vector(cell_ont$name[so_in$mouseRNAseq_ont])
 
     so_in$annot <- so_in$immgen_main
+  } else {
+    stop("No valid mouse or human genome or species label submitted")
   }
   return(so_in)
 }
