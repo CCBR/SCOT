@@ -298,7 +298,6 @@ references:
   abstract: 'harmony: Fast, Sensitive, and Accurate Integration of Single Cell Data'
   notes: Imports
   url: https://pati-ni.github.io/harmony/
-  repository: https://CRAN.R-project.org/package=harmony
   authors:
   - family-names: Patikas
     given-names: Nikolaos
@@ -332,7 +331,6 @@ references:
     given-names: Soumya
     orcid: https://orcid.org/0000-0002-1901-8265
   year: '2026'
-  doi: 10.32614/CRAN.package.harmony
 - type: software
   title: magrittr
   abstract: 'magrittr: A Forward-Pipe Operator for R'
