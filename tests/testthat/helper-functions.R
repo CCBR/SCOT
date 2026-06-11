@@ -132,7 +132,6 @@ load_mouse_processed_bm <- function() {
   )
   mm_bm <- suppressWarnings(Seurat::SCTransform(
     mm_bm,
-    #vars.to.regress = "percent.mt",
     verbose = FALSE
   ))
   mm_bm <- Seurat::RunPCA(
