@@ -2,7 +2,7 @@ pandoc: 3.8.3
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2026-06-03T21:25Z
+last_built: 2026-06-11T16:53Z
 urls:
   reference: https://ccbr.github.io/SCOT/reference
   article: https://ccbr.github.io/SCOT/articles
