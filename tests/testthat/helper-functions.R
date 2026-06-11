@@ -106,7 +106,7 @@ load_mouse_bm <- function() {
     version = "2023-12-14"
   )
   #Conversion from gene__chrN annotation
-  gene_names <- make.names(gsub("_.*", "", rownames(init_data)), unique = T)
+  gene_names <- make.names(gsub("_.*", "", rownames(init_data)), unique = TRUE)
   SummarizedExperiment::assay(init_data, "counts") <-
     as(SummarizedExperiment::assay(init_data, "counts"), "dgCMatrix")
 
