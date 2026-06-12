@@ -45,7 +45,6 @@ calc_sc_gsea_score <- function(de_table) {
     -log10(de_table$p_val) *
     pmax(de_table$pct.1, de_table$pct.2) +
     de_table$avg_log2FC
-
   # pmax compares pct.1 and pct.2 for each gene and returns the maximum value
   gsea_score_vect[which(de_table$p_val == 0)] <- (sign(de_table$avg_log2FC) *
     500 *

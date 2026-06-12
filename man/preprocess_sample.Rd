@@ -4,7 +4,7 @@
 \alias{preprocess_sample}
 \title{preprocess_sample: Performs an initial preprocess on a Seurat object}
 \usage{
-preprocess_sample(so_in, species, npcs_in)
+preprocess_sample(so_in, species, npcs_in, replace = FALSE, num_ctrl = 100)
 }
 \arguments{
 \item{so_in}{A Seurat single cell object with RNA counts}
@@ -13,6 +13,14 @@ preprocess_sample(so_in, species, npcs_in)
 
 \item{npcs_in}{Number of principal components to use for dimensionality
 reduction}
+
+\item{replace}{Logical indicating whether to sample with replacement for
+background gene selection in cell cycle scoring (default: FALSE). Note: this
+parameter is retained for compatibility but currently has no effect, as
+replacement is determined by the \code{ctrl} computation below.}
+
+\item{num_ctrl}{Number of control genes to use for cell cycle scoring
+background correction (default: 100)}
 }
 \value{
 A Seurat single cell object with normalized read counts

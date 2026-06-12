@@ -19,26 +19,52 @@
 #' gene set. These values can be added to the original Seurat object ex post
 #' facto.
 run_AUCell <- function(so, gene_sets) {
-  # Retrieve normalized counts matrix
-  expr <- Seurat::FetchData(
+  if (!inherits(so, "Seurat")) {
+    rlang::abort("`so` must be a valid Seurat object.")
+  }
+
+  if (!is.list(gene_sets) || length(gene_sets) == 0) {
+    rlang::abort("`gene_sets` must be a non-empty list of gene vectors.")
+  }
+
+  if (is.null(names(gene_sets)) || any(names(gene_sets) == "")) {
+    rlang::abort("`gene_sets` must be a named list.")
+  }
+
+  if (!"SCT" %in% names(so@assays)) {
+    rlang::abort("Seurat object must contain an `SCT` assay.")
+  }
+
+  expr_matrix <- SeuratObject::GetAssayData(
     so,
-    vars = rownames(so@assays$SCT@data),
-    slot = "SCT",
+    assay = "SCT",
     layer = "data"
   )
-  expr_matrix <- t(expr)
-  # Find intersection of gene names between gene sets and Seurat object
-  gene_sets <- AUCell::subsetGeneSets(gene_sets, rownames(expr_matrix))
-  gene_sets <- AUCell::setGeneSetNames(
-    gene_sets,
-    newNames = paste(
-      names(gene_sets),
-      " (",
-      AUCell::nGenes(gene_sets),
-      "g)",
-      sep = ""
+
+  if (nrow(expr_matrix) == 0 || ncol(expr_matrix) == 0) {
+    rlang::abort("Expression matrix is empty.")
+  }
+
+  gene_sets <- GSEABase::GeneSetCollection(
+    lapply(
+      seq_along(gene_sets),
+      function(index) {
+        GSEABase::GeneSet(
+          geneIds = as.character(gene_sets[[index]]),
+          setName = names(gene_sets)[index]
+        )
+      }
     )
   )
+
+  # Find intersection of gene names between gene sets and Seurat object
+  gene_sets <- AUCell::subsetGeneSets(gene_sets, rownames(expr_matrix))
+
+  if (length(gene_sets) == 0) {
+    rlang::abort(
+      "No genes from `gene_sets` were found in the expression matrix."
+    )
+  }
 
   # Run AUCell rankings and calculations
   cells_rankings <- AUCell::AUCell_buildRankings(
@@ -53,12 +79,26 @@ run_AUCell <- function(so, gene_sets) {
     plotHist = FALSE,
     assignCells = TRUE
   )
+
+  cells_assignment <- lapply(
+    cells_assignment,
+    function(single_assignment) {
+      selected_cells <- single_assignment$assignment
+      assignment_vector <- colnames(expr_matrix) %in% selected_cells
+      names(assignment_vector) <- colnames(expr_matrix)
+      single_assignment$assignment <- assignment_vector
+      single_assignment
+    }
+  )
   # selectedThresholds <- getThresholdSelected(cells_assignment)
 
   # AUCell_plotTSNE(tSNE=obj@reductions$umap@cell.embeddings[,1:2],
   #  exprMat=exprMatrix,plots = c("AUC","binaryAUC"),#, "binaryAUC", "AUC","expression"),
   #  cellsAUC=cells_AUC[1:4,])
 
-  aucell_output <- list(scores = cells_AUC, assignment = cells_assignment)
+  aucell_output <- list(
+    scores = as.matrix(AUCell::getAUC(cells_AUC)),
+    assignment = cells_assignment
+  )
   return(aucell_output)
 }
