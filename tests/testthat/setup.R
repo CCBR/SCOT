@@ -1,3 +1,5 @@
 set.seed(42)
 pbmc_plain <- load_plain_pbmc()
 pbmc_processed <- load_processed_pbmc()
+mouse_bm_plain <- load_mouse_bm()
+mouse_bm_processed <- load_mouse_processed_bm()

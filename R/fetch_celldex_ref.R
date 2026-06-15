@@ -20,7 +20,7 @@ fetch_celldex_ref <- function(ref_name, cache = ".") {
       "hpca",
       version = "2024-02-26",
       realize.assays = TRUE,
-      cache = "./"
+      cache = cache
     ),
     "blueprint_encode" = ,
     "BP_encode" = ,
@@ -30,14 +30,14 @@ fetch_celldex_ref <- function(ref_name, cache = ".") {
       "blueprint_encode",
       "2024-02-26",
       realize.assays = TRUE,
-      cache = "./"
+      cache = cache
     ),
     "monaco" = ,
     "MonacoImmuneData" = celldex::fetchReference(
       "monaco_immune",
       "2024-02-26",
       realize.assays = TRUE,
-      cache = "./"
+      cache = cache
     ),
     "immu_cell_exp" = ,
     "DatabaseImmuneCellExpressionData" = ,
@@ -45,7 +45,7 @@ fetch_celldex_ref <- function(ref_name, cache = ".") {
       "dice",
       "2024-02-26",
       realize.assays = TRUE,
-      cache = "./"
+      cache = cache
     ),
     "hematopoietic" = ,
     "NovershternHematopoieticData" = ,
@@ -54,7 +54,7 @@ fetch_celldex_ref <- function(ref_name, cache = ".") {
       "novershtern_hematopoietic",
       "2024-02-26",
       realize.assays = TRUE,
-      cache = "./"
+      cache = cache
     ),
     "immgen" = ,
     "ImmGenData" = celldex::fetchReference(
@@ -68,7 +68,7 @@ fetch_celldex_ref <- function(ref_name, cache = ".") {
       "mouse_rnaseq",
       "2024-02-26",
       realize.assays = TRUE,
-      cache = "./"
+      cache = cache
     )
   )
   return(ref)

@@ -21,11 +21,11 @@
 #' @return A Seurat single cell object with normalized read counts
 preprocess_sample <- function(so_in, species, npcs_in) {
   if (species == "hg38" || species == "hg19") {
-    print("--proccesing human data")
+    print("--processing human data")
     s.genes <- Seurat::cc.genes$s.genes
     g2m.genes <- Seurat::cc.genes$g2m.genes
   } else if (species == "mm10") {
-    print("--proccesing mouse data")
+    print("--processing mouse data")
     s.genes <- convert_human_gene_list(Seurat::cc.genes$s.genes)
     g2m.genes <- convert_human_gene_list(Seurat::cc.genes$g2m.genes)
   }

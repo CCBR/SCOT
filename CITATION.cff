@@ -298,6 +298,7 @@ references:
   abstract: 'harmony: Fast, Sensitive, and Accurate Integration of Single Cell Data'
   notes: Imports
   url: https://pati-ni.github.io/harmony/
+  repository: https://CRAN.R-project.org/package=harmony
   authors:
   - family-names: Patikas
     given-names: Nikolaos
@@ -331,6 +332,7 @@ references:
     given-names: Soumya
     orcid: https://orcid.org/0000-0002-1901-8265
   year: '2026'
+  doi: 10.32614/CRAN.package.harmony
 - type: software
   title: magrittr
   abstract: 'magrittr: A Forward-Pipe Operator for R'
@@ -468,6 +470,19 @@ references:
   year: '2026'
   doi: 10.18129/B9.bioc.scDblFinder
 - type: software
+  title: scRNAseq
+  abstract: 'scRNAseq: Collection of Public Single-Cell RNA-Seq Datasets'
+  notes: Imports
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Risso
+    given-names: Davide
+    email: risso.davide@gmail.com
+  - family-names: Cole
+    given-names: Michael
+  year: '2026'
+  doi: 10.18129/B9.bioc.scRNAseq
+- type: software
   title: Seurat
   abstract: 'Seurat: Tools for Single Cell Genomics'
   notes: Imports
@@ -569,6 +584,24 @@ references:
     address: Vienna, Austria
   year: '2026'
   doi: 10.32614/R.manuals
+- type: software
+  title: SummarizedExperiment
+  abstract: 'SummarizedExperiment: A container (S4 class) for matrix-like assays'
+  notes: Imports
+  url: https://bioconductor.org/packages/SummarizedExperiment
+  repository: https://bioconductor.org/
+  authors:
+  - family-names: Morgan
+    given-names: Martin
+  - family-names: Obenchain
+    given-names: Valerie
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Pagès
+    given-names: Hervé
+    email: hpages.on.github@gmail.com
+  year: '2026'
+  doi: 10.18129/B9.bioc.SummarizedExperiment
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
