@@ -121,7 +121,7 @@ load_mouse_bm <- function() {
 
 load_mouse_processed_bm <- function() {
   mm_bm <- load_mouse_bm()
-
+  nFeature_RNA <- percent.mt <- NULL
   mm_bm[["percent.mt"]] <- Seurat::PercentageFeatureSet(
     mm_bm,
     pattern = "^mt-"
