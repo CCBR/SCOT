@@ -86,6 +86,7 @@ make_volcano_plot <- function(
         max.overlaps = Inf
       )
 
-    return(volcano)
   }
+  return(volcano)
+
 }
