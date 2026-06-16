@@ -85,8 +85,6 @@ make_volcano_plot <- function(
         color = "black",
         max.overlaps = Inf
       )
-
   }
   return(volcano)
-
 }
