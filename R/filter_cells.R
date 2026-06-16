@@ -40,6 +40,7 @@ filter_cells <- function(
 ) {
   nFeature_RNA <- NULL
   so_filt <- BiocGenerics::subset(so, subset = nFeature_RNA > 200) # standard low cell read filter
+  so_qc <- so_filt
   if (grepl(pattern = "miQC", x = method, ignore.case = TRUE)) {
     print("--filtering cells with miQC")
 
@@ -52,7 +53,6 @@ filter_cells <- function(
     )
     so_qc$keep <- so_qc$miQC.keep
   } else if (grepl(pattern = "manual", x = method, ignore.case = TRUE)) {
-    so_qc <- so_filt
     so_qc$keep <- "discard"
     so_qc$keep[which(
       so_qc$nCount_RNA <= nCount_RNA_max &
@@ -63,7 +63,6 @@ filter_cells <- function(
         so_qc$percent.mt >= percent_mt_min
     )] <- "keep"
   } else if (grepl(pattern = "mads", x = method, ignore.case = TRUE)) {
-    so_qc <- so_filt
     nCount_out <- Routliers::outliers_mad(
       so_qc$nCount_RNA,
       threshold = mads
@@ -82,6 +81,11 @@ filter_cells <- function(
         so_qc$nFeature_RNA >= nFeature_out &
         so_qc$percent.mt <= percent_mt_out
     )] <- "keep"
+  } else {
+    warning(
+      "No valid filtering method selected. All cells with nFeature_RNA > 200 retained"
+    )
+    so_qc$keep <- "keep"
   }
 
   return(so_qc)

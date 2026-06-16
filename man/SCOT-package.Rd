@@ -17,7 +17,6 @@ See the website for more information, documentation, and examples:
 
 Authors:
 \itemize{
-  \item Nathan Wong \email{nathan.wong@nih.gov}
   \item Kelly Sovacool \email{kelly.sovacool@nih.gov} (\href{https://orcid.org/0000-0003-3283-829X}{ORCID})
   \item Vishal Koparde \email{vishal.koparde@nih.gov} (\href{https://orcid.org/0000-0001-8978-8495}{ORCID})
 }
