@@ -8,4 +8,4 @@ ifnb_sub <- subset(
   features = Seurat::VariableFeatures(ifnb)[1:500]
 )
 
-saveRDS(ifnb_sub, file = "tests/testthat/fixtures/ifnb_sub.rds")
+saveRDS(ifnb_sub, file = test_path("fixtures", "ifnb_sub.rds"))
