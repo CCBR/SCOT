@@ -7,8 +7,10 @@
 # Load the current fixture
 brca <- readRDS(
   test_path(
-    "fixtures",
-    "BRCA_Combine_and_Renormalize_SO_downsample.rds"
+# Load the current fixture
+brca <- readRDS(
+  test_path(
+    "fixtures", "BRCA_Combine_and_Renormalize_SO_downsample.rds"
   )
 )
 
