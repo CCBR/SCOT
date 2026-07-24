@@ -1,7 +1,7 @@
-# --------------------------------------------
-# CITATION file created with {cffr} R package
+# ------------------------------------------------
+# CITATION.cff file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# --------------------------------------------
+# ------------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "SCOT" in publications use:'
@@ -298,6 +298,7 @@ references:
   abstract: 'harmony: Fast, Sensitive, and Accurate Integration of Single Cell Data'
   notes: Imports
   url: https://pati-ni.github.io/harmony/
+  repository: https://CRAN.R-project.org/package=harmony
   authors:
   - family-names: Patikas
     given-names: Nikolaos
@@ -331,6 +332,7 @@ references:
     given-names: Soumya
     orcid: https://orcid.org/0000-0002-1901-8265
   year: '2026'
+  doi: 10.32614/CRAN.package.harmony
 - type: software
   title: magrittr
   abstract: 'magrittr: A Forward-Pipe Operator for R'
@@ -584,7 +586,7 @@ references:
   doi: 10.32614/R.manuals
 - type: software
   title: cffr
-  abstract: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
+  abstract: 'cffr: Generate Citation File Format (''CFF'') Metadata for R Packages'
   notes: Suggests
   url: https://docs.ropensci.org/cffr/
   repository: https://CRAN.R-project.org/package=cffr
