@@ -16,4 +16,6 @@ rlang::.data
 #' @importFrom rliger createLiger
 #' @importFrom flexmix flexmix
 #' @importFrom magrittr %>%
+#' @importFrom SummarizedExperiment assay
+#' @importFrom scRNAseq fetchDataset
 NULL
