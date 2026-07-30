@@ -1,37 +1,12 @@
-# Script to downsample BRCA dataset for unit testing
+# DEPRECATED: This script has been consolidated into download_BRCA_subset.R
 #
-# This script reduces the BRCA dataset to a minimal size suitable for unit testing
-# while preserving the structure needed for comprehensive testing.
-# Target: ~1MB on disk
+# Please use that script instead, which handles both downloading and downsampling
+# the BRCA dataset for testing purposes.
+#
+# The downsampling logic is now part of the unified fixture creation process.
+# See download_BRCA_subset.R for details.
 
-# Load the current fixture
-brca <- readRDS(
-  test_path(
-# Load the current fixture
-brca <- readRDS(
-  test_path(
-    "fixtures", "BRCA_Combine_and_Renormalize_SO_downsample.rds"
-  )
-)
-
-brca <- subset(
-  brca,
-  cells = sample(colnames(brca), 250),
-  features = VariableFeatures(brca)[1:250]
-)
-
-# Remove SCT misc (vst.out parameters) ~ 711kb
-# keeps the SCT assay data
-if ("SCT" %in% names(brca@assays)) {
-  brca@assays$SCT@misc <- list()
-}
-
-# compress
-saveRDS(
-  brca,
-  test_path(
-    "fixtures",
-    "BRCA_Combine_and_Renormalize_SO_downsample_1mb.rds"
-  ),
-  compress = "xz"
+warning(
+  "This script is deprecated. ",
+  "Please use download_BRCA_subset.R instead."
 )
