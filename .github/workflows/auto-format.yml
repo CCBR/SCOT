@@ -29,7 +29,7 @@ jobs:
           private-key: ${{ secrets.CCBR_BOT_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           token: ${{ steps.generate-token.outputs.token }}
           fetch-depth: 0
@@ -71,8 +71,15 @@ jobs:
           args: "--format codemeta --outfile codemeta.json"
 
       - name: format
-        uses: pre-commit/action@v3.0.1
-        continue-on-error: true
+        run: |
+          python -m pip install pre-commit
+          git add --all
+          if ! pre-commit run --show-diff-on-failure --color=always --all-files; then
+            if git diff --quiet; then
+              exit 1
+            fi
+            pre-commit run --show-diff-on-failure --color=always --all-files
+          fi
 
       - name: commit & push
         run: |
