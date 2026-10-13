@@ -27,12 +27,12 @@ jobs:
           owner: CCBR
 
       - name: techdev project
-        uses: actions/add-to-project@v1.0.2
+        uses: actions/add-to-project@v2.0.0
         with:
           project-url: https://github.com/orgs/CCBR/projects/17
           github-token: ${{ steps.generate-token.outputs.token }}
       - name: single-cell dev project
-        uses: actions/add-to-project@v1.0.2
+        uses: actions/add-to-project@v2.0.0
         with:
           project-url: https://github.com/orgs/CCBR/projects/41
           github-token: ${{ steps.generate-token.outputs.token }}
