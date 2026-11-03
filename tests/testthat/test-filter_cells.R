@@ -1,3 +1,5 @@
+pbmc_processed <- load_processed_pbmc()
+
 test_that("filter_miQC", {
   set.seed(42)
   pbmc_filt <- filter_cells(pbmc_processed, method = "miQC")
